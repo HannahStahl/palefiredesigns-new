@@ -8,9 +8,10 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Home from './components/Home';
 import About from './components/About';
-import Items from './components/Items';
+import Shop from './components/Shop';
 import Item from './components/Item';
 import Contact from './components/Contact';
+import Cart from './components/Cart';
 import NotFound from './components/NotFound';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
@@ -20,9 +21,10 @@ const Routes = ({ items }) => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
-    <Route path="/items" exact render={() => <Items items={items} />} />
+    <Route path="/items" exact render={() => <Shop items={items} />} />
     <Route path="/items/:itemName" exact render={(props) => <Item match={props.match} items={items} />} />
     <Route path="/contact" exact component={Contact} />
+    <Route path="/cart" exact render={() => <Cart items={items} />} />
     <Route component={NotFound} />
   </Switch>
 );

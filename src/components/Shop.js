@@ -1,9 +1,9 @@
 import React from 'react';
 import config from '../config';
 
-const Items = ({ items }) => (
+const Shop = ({ items }) => (
   <div>
-    <h1>Items</h1>
+    <h1>Shop</h1>
     <div className="items">
       {items.map((item) => (
         <a
@@ -23,4 +23,4 @@ const Items = ({ items }) => (
   </div>
 );
 
-export default Items;
+export default Shop;
