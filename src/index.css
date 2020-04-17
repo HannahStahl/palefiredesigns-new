@@ -98,15 +98,15 @@ code {
   text-decoration: underline;
 }
 
-.cart-icon-container {
+.bag-icon-container {
   position: relative;
 }
 
-.active > .cart-icon-container .cart-icon {
+.active > .bag-icon-container .bag-icon path,circle {
   stroke: rgba(0, 0, 0, 0.9);
 }
 
-.cart-number {
+.bag-number {
   background-color: #e51b23;
   font-size: 11px;
   color: white;
@@ -119,17 +119,17 @@ code {
   height: 20px;
 }
 
-.cart-item {
+.bag-item {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.cart-item-name {
+.bag-item-name {
   margin-bottom: 0px;
   margin-right: 10px;
 }
 
-.cart-item-quantity {
+.bag-item-quantity {
   width: 75px;
 }

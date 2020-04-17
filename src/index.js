@@ -11,31 +11,31 @@ import About from './components/About';
 import Shop from './components/Shop';
 import Item from './components/Item';
 import Contact from './components/Contact';
-import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 import NotFound from './components/NotFound';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
 import config from './config';
 
-const Routes = ({ items, cart, updateCart }) => (
+const Routes = ({ items, bag, updateBag }) => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
     <Route path="/items" exact render={() => <Shop items={items} />} />
-    <Route path="/items/:itemName" exact render={(props) => <Item match={props.match} items={items} updateCart={updateCart} />} />
+    <Route path="/items/:itemName" exact render={(props) => <Item match={props.match} items={items} updateBag={updateBag} />} />
     <Route path="/contact" exact component={Contact} />
-    <Route path="/cart" exact render={() => <Cart items={items} cart={cart} updateCart={updateCart} />} />
+    <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
     <Route component={NotFound} />
   </Switch>
 );
 
 const App = withRouter(() => {
   const [items, setItems] = useState([]);
-  const [cart, setCart] = useState([]);
+  const [bag, setBag] = useState([]);
 
-  const updateCart = () => {
-    const cartStr = localStorage.getItem('cart');
-    setCart(cartStr ? JSON.parse(cartStr) : []);
+  const updateBag = () => {
+    const bagStr = localStorage.getItem('bag');
+    setBag(bagStr ? JSON.parse(bagStr) : []);
   };
 
   useEffect(() => {
@@ -55,14 +55,14 @@ const App = withRouter(() => {
       });
       setItems(itemsList);
     });
-    updateCart();
+    updateBag();
   }, []);
 
   return (
     <>
-      <NavBar cart={cart} />
+      <NavBar bag={bag} />
       <div className="page-content">
-        <Routes items={items} cart={cart} updateCart={updateCart} />
+        <Routes items={items} bag={bag} updateBag={updateBag} />
       </div>
       {window.location.pathname !== '/' && <Footer />}
     </>

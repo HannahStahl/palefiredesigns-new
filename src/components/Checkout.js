@@ -1,38 +1,38 @@
 import React from 'react';
 import FormControl from 'react-bootstrap/FormControl';
 
-const Cart = ({ items, cart, updateCart }) => {
+const Checkout = ({ items, bag, updateBag }) => {
   const updateQuantity = (newQuantity, index) => {
     if ((/^(\s*|\d+)$/).test(newQuantity)) {
-      const updatedCart = cart;
-      updatedCart[index].quantity = parseInt(newQuantity);
-      localStorage.setItem('cart', JSON.stringify(updatedCart));
-      updateCart();
+      const updatedBag = bag;
+      updatedBag[index].quantity = parseInt(newQuantity);
+      localStorage.setItem('bag', JSON.stringify(updatedBag));
+      updateBag();
     }
   };
 
   return (
     <div>
-      <h1>Cart</h1>
+      <h1>Shopping Bag</h1>
       {items.length > 0 && (
-        cart.length > 0 ? (
-          cart.map((item, index) => (
-            <div key={item.itemId} className="cart-item">
-              <p className="cart-item-name">
+        bag.length > 0 ? (
+          bag.map((item, index) => (
+            <div key={item.itemId} className="bag-item">
+              <p className="bag-item-name">
                 {items.find((itemInList) => itemInList.itemId === item.itemId).itemName}
               </p>
               <FormControl
                 type="text"
                 value={item.quantity}
                 onChange={(e) => updateQuantity(e.target.value, index)}
-                className="cart-item-quantity"
+                className="bag-item-quantity"
               />
             </div>
           ))
-        ) : <p>No items in cart</p>
+        ) : <p>Shopping bag is empty</p>
       )}
     </div>
   );
 };
 
-export default Cart;
+export default Checkout;
