@@ -2,15 +2,24 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import config from '../config';
 
-const Home = () => (
+const Home = () => (window.innerWidth > 600 ? (
   <>
-    <img src={`${config.publicCloudfrontURL}/template-home.jpg`} alt={config.businessName} className="home-page-image" />
+    <img src={`${config.publicCloudfrontURL}/palefiredesigns-home.png`} alt={config.businessName} className="home-page-image" />
     <div>
-      <h1>Awesome Website Title</h1>
-      <p>Time to create an awesome website.</p>
-      <a href="/items"><Button size="lg" variant="outline-dark">{'Let\'s go'}</Button></a>
+      <h1>Pale Fire Designs</h1>
+      <p>Uncommon Jewelry for the Slightly Off-Center</p>
+      <a href="/items"><Button size="lg" variant="outline-dark">Shop</Button></a>
     </div>
   </>
-);
+) : (
+  <>
+    <img src={`${config.publicCloudfrontURL}/palefiredesigns-home-mobile2.png`} alt={config.businessName} className="home-page-image" />
+    <div>
+      <h1>Pale Fire Designs</h1>
+      <p>Uncommon Jewelry for the Slightly Off-Center</p>
+      <a href="/items"><Button size="lg" variant="outline-dark">Shop</Button></a>
+    </div>
+  </>
+));
 
 export default Home;

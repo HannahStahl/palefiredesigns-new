@@ -10,8 +10,8 @@ const prod = {
   apiURL: 'https://lbe32id9hg.execute-api.us-east-1.amazonaws.com/prod',
   cloudfrontBaseURL: 'https://d1esxin5o90ebg.cloudfront.net',
   emailURL: 'https://aiikn63n03.execute-api.us-east-1.amazonaws.com/prod/email/send',
-  emailAddress: 'clientemailaddress@gmail.com',
-  userID: 'client-user-id',
+  emailAddress: 'dale.feuer@gmail.com',
+  userID: 'client-user-id', // TODO
 };
 
 // Default to dev if not set
@@ -23,6 +23,6 @@ export default {
   // Add common config values here
   cloudfrontURL: `${config.cloudfrontBaseURL}/${config.userID}`,
   publicCloudfrontURL: 'https://d17jmxltsx3ffm.cloudfront.net',
-  businessName: 'My Awesome Business',
+  businessName: 'Pale Fire Designs',
   ...config,
 };
