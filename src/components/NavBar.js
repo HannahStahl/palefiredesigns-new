@@ -5,15 +5,9 @@ import ShoppingBagIcon from './ShoppingBagIcon';
 
 const NavBar = ({ bag }) => (
   <Navbar collapseOnSelect expand="lg">
-    <Navbar.Brand href="/">
-      <img
-        alt="Home"
-        src="/favicon.ico"
-        width="30"
-        height="30"
-        className="d-inline-block align-top"
-      />
-    </Navbar.Brand>
+    {window.location.pathname !== '/' && (
+      <Navbar.Brand href="/">HOME</Navbar.Brand>
+    )}
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ml-auto" activeKey={window.location.pathname}>

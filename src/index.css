@@ -127,6 +127,11 @@ h1 {
   padding-right: 0px;
 }
 
+.navbar-light .navbar-brand {
+  color: rgba(0, 0, 0, 0.5);
+  margin-left: 15px;
+}
+
 .nav-link {
   margin-left: 7px;
   margin-right: 7px;
@@ -183,6 +188,12 @@ h1 {
   margin-right: 50px;
   margin-bottom: 20px;
   border: solid 1px rgb(0,0,0,0.5);
+}
+
+@media all and (max-width: 991px) {
+  .navbar-light .navbar-brand {
+    margin-left: 0px;
+  }
 }
 
 @media all and (max-width: 600px) {
