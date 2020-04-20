@@ -100,6 +100,9 @@ code {
 
 .bag-icon-container {
   position: relative;
+  width: 30px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .active > .bag-icon-container .bag-icon path,circle {
