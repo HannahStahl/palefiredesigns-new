@@ -9,7 +9,6 @@ import * as serviceWorker from './serviceWorker';
 import Home from './components/Home';
 import About from './components/About';
 import Shop from './components/Shop';
-import Item from './components/Item';
 import Contact from './components/Contact';
 import Checkout from './components/Checkout';
 import NotFound from './components/NotFound';
@@ -21,8 +20,7 @@ const Routes = ({ items, bag, updateBag }) => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
-    <Route path="/items" exact render={() => <Shop items={items} />} />
-    <Route path="/items/:itemName" exact render={(props) => <Item match={props.match} items={items} updateBag={updateBag} />} />
+    <Route path="/items" exact render={() => <Shop updateBag={updateBag} />} />
     <Route path="/contact" exact component={Contact} />
     <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
     <Route component={NotFound} />
