@@ -3,7 +3,7 @@ import config from '../config';
 
 const Shop = ({ items }) => (
   <div>
-    <h1>Shop</h1>
+    <h1>SHOP</h1>
     <div className="items">
       {items.map((item) => (
         <a

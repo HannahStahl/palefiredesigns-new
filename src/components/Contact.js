@@ -44,20 +44,21 @@ const Contact = () => {
   };
 
   return (
-    <div>
-      <h1>Contact</h1>
+    <div className="contact">
+      <h1>GET IN TOUCH</h1>
+      <p>For custom order requests and other inquiries, please send me a note below.</p>
       <form onSubmit={handleSubmit}>
         <FormGroup controlId="name">
           <FormControl
             type="text"
-            placeholder="Your Name"
+            placeholder="Your name"
             value={name}
             onChange={(e) => updateValue(e, setName)}
           />
         </FormGroup>
         <FormGroup controlId="email">
           <FormControl
-            placeholder="Your Email Address"
+            placeholder="Your email address"
             type="email"
             value={email}
             onChange={(e) => updateValue(e, setEmail)}
@@ -67,7 +68,7 @@ const Contact = () => {
           <FormControl
             rows={10}
             as="textarea"
-            placeholder="Your Message"
+            placeholder="Your message"
             value={message}
             onChange={(e) => updateValue(e, setMessage)}
           />

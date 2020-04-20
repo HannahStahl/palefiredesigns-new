@@ -13,7 +13,7 @@ const Checkout = ({ items, bag, updateBag }) => {
 
   return (
     <div>
-      <h1>Shopping Bag</h1>
+      <h1>SHOPPING BAG</h1>
       {items.length > 0 && (
         bag.length > 0 ? (
           bag.map((item, index) => (
