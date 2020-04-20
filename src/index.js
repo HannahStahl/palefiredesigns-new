@@ -20,7 +20,7 @@ const Routes = ({ items, bag, updateBag }) => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
-    <Route path="/items" exact render={() => <Shop updateBag={updateBag} />} />
+    <Route path="/items" exact render={() => <Shop items={items} updateBag={updateBag} />} />
     <Route path="/contact" exact component={Contact} />
     <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
     <Route component={NotFound} />
@@ -37,21 +37,8 @@ const App = withRouter(() => {
   };
 
   useEffect(() => {
-    Promise.all([
-      fetch(`${config.apiURL}/publishedItems/${config.userID}`).then((res) => res.json()),
-      fetch(`${config.apiURL}/itemsToPhotos/${config.userID}`).then((res) => res.json()),
-      fetch(`${config.apiURL}/photos/${config.userID}`).then((res) => res.json()),
-    ]).then((results) => {
-      const [itemsList, itemsToPhotos, photos] = results;
-      itemsList.forEach((item, index) => {
-        const itemPhotoIds = itemsToPhotos
-          .filter((row) => row.itemId === item.itemId)
-          .map((row) => row.photoId);
-        itemsList[index].itemPhotos = photos.filter(
-          (photo) => itemPhotoIds.includes(photo.photoId),
-        );
-      });
-      setItems(itemsList);
+    fetch(config.apiURL).then((res) => res.json()).then((json) => {
+      setItems(json.results);
     });
     updateBag();
   }, []);

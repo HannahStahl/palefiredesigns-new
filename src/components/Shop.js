@@ -1,14 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Masonry from 'react-masonry-component';
 
-const Shop = ({ updateBag }) => {
-  const [etsyItems, setEtsyItems] = useState([]);
-
-  useEffect(() => {
-    fetch('https://nbqclvrlaf.execute-api.us-east-1.amazonaws.com/dev/listings/get')
-      .then((res) => res.json()).then((json) => { setEtsyItems(json.results); });
-  }, []);
-
+const Shop = ({ items, updateBag }) => {
   const addToBag = (id) => {
     let bag = JSON.parse(localStorage.getItem('bag'));
     const newBagItem = { itemId: id, quantity: 1 };
@@ -33,7 +26,7 @@ const Shop = ({ updateBag }) => {
       <h1>ALL ITEMS</h1>
       <div className="items">
         <Masonry className="masonry-layout" options={{ isFitWidth: true }}>
-          {etsyItems.map((item) => (
+          {items.map((item) => (
             <div key={item.listing_id} className="item">
               <img
                 src={item.Images[0].url_fullxfull}
