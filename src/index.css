@@ -25,13 +25,24 @@ h1 {
   margin-bottom: 50px;
 }
 
+.home {
+  float: left;
+}
+
 .home h1 {
-  margin-bottom: 10px;
+  font-size: 60px;
+  margin-top: 20%;
+  margin-bottom: 15px;
+}
+
+.home h3 {
+  font-size: 20px;
+  margin-bottom: 35px;
 }
 
 .page-content {
   padding: 5% 10% 7% 10%;
-  min-height: calc(100% - 56px);
+  min-height: calc(100% - 60px);
   margin-bottom: -80px;
 }
 
@@ -116,6 +127,11 @@ h1 {
   padding-right: 0px;
 }
 
+.nav-link {
+  margin-left: 7px;
+  margin-right: 7px;
+}
+
 .nav-link.active > .bag-icon-container .bag-icon path {
   stroke: rgba(0, 0, 0, 0.9);
 }
@@ -170,6 +186,10 @@ h1 {
 }
 
 @media all and (max-width: 600px) {
+  .home h1 {
+    font-size: 40px;
+  }
+
   .bio img {
     width: 100%;
     margin-right: 0px;
