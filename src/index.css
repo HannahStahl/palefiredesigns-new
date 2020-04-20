@@ -8,9 +8,9 @@ html, body, #root {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: .5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -21,9 +21,16 @@ code {
     monospace;
 }
 
+h1 {
+  margin-bottom: 40px;
+}
+
+.home h1 {
+  margin-bottom: 10px;
+}
+
 .page-content {
-  padding: 5%;
-  padding-top: 7%;
+  padding: 5% 10% 7% 10%;
   min-height: calc(100% - 56px);
   margin-bottom: -80px;
 }
@@ -103,7 +110,17 @@ code {
   align-items: center;
 }
 
-.nav-link.active > .bag-icon-container .bag-icon path,circle {
+.navbar-light .navbar-toggler {
+  border: none;
+  outline: none;
+  padding-right: 0px;
+}
+
+.nav-link.active > .bag-icon-container .bag-icon path {
+  stroke: rgba(0, 0, 0, 0.9);
+}
+
+.nav-link.active > .bag-icon-container .bag-icon circle {
   stroke: rgba(0, 0, 0, 0.9);
 }
 
@@ -136,12 +153,20 @@ code {
   width: 75px;
 }
 
+.bio {
+  text-align: left;
+}
+
 @media all and (hover: hover) {
   .nav-link:hover > .bag-icon-container .bag-number {
     color: rgba(0, 0, 0, 0.9);
   }
 
-  .nav-link:hover > .bag-icon-container .bag-icon path,circle {
+  .nav-link:hover > .bag-icon-container .bag-icon path {
+    stroke: rgba(0, 0, 0, 0.9);
+  }
+
+  .nav-link:hover > .bag-icon-container .bag-icon circle {
     stroke: rgba(0, 0, 0, 0.9);
   }
 
