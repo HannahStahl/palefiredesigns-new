@@ -157,6 +157,23 @@ h1 {
   text-align: left;
 }
 
+.bio img {
+  width: 300px;
+  max-width: 100%;
+  float: left;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  border: solid 1px rgb(0,0,0,0.5);
+}
+
+@media all and (max-width: 600px) {
+  .bio img {
+    width: 100%;
+    margin-right: 0px;
+    margin-bottom: 40px;
+  }
+}
+
 @media all and (hover: hover) {
   .nav-link:hover > .bag-icon-container .bag-number {
     color: rgba(0, 0, 0, 0.9);
