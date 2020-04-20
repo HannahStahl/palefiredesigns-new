@@ -65,11 +65,6 @@ code {
   color: black;
 }
 
-.item:hover {
-  color: black;
-  text-decoration: none;
-}
-
 .item-img {
   position: absolute;
   top: 0;
@@ -103,23 +98,27 @@ code {
   width: 30px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.active > .bag-icon-container .bag-icon path,circle {
+.nav-link.active > .bag-icon-container .bag-icon path,circle {
   stroke: rgba(0, 0, 0, 0.9);
 }
 
-.bag-number {
-  background-color: #e51b23;
-  font-size: 11px;
-  color: white;
-  border-radius: 50%;
-  padding: 3px;
+.bag-number-container {
   position: absolute;
-  top: -7px;
-  right: -10px;
-  min-width: 20px;
-  height: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bag-number {
+  font-size: 11px;
+  margin-top: 7px;
 }
 
 .bag-item {
@@ -135,4 +134,19 @@ code {
 
 .bag-item-quantity {
   width: 75px;
+}
+
+@media all and (hover: hover) {
+  .nav-link:hover > .bag-icon-container .bag-number {
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .nav-link:hover > .bag-icon-container .bag-icon path,circle {
+    stroke: rgba(0, 0, 0, 0.9);
+  }
+
+  .item:hover {
+    color: black;
+    text-decoration: none;
+  }
 }

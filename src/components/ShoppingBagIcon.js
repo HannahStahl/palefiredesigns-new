@@ -55,7 +55,11 @@ const ShoppingBagIcon = ({ bag }) => {
           fill="rgba(0, 0, 0, 0.5)"
         />
       </svg>
-      {total > 0 && <div className="bag-number">{total}</div>}
+      {total > 0 && (
+        <div className="bag-number-container">
+          <div className="bag-number">{total}</div>
+        </div>
+      )}
     </div>
   );
 };
