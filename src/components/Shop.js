@@ -93,7 +93,9 @@ const Shop = ({ items, bag, updateBag }) => {
         <div className="quickview" id="quickview">
           <div className="quickview-images-container">
             <img
-              src={selected === undefined ? undefined : items[selected].Images[imgIndex].url_fullxfull}
+              src={selected === undefined ? undefined : (
+                items[selected].Images[imgIndex].url_fullxfull
+              )}
               alt={selected === undefined ? '' : items[selected].title}
               className="quickview-img"
               id="quickview-img"
