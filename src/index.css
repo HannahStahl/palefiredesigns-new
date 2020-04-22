@@ -116,6 +116,13 @@ h1 {
   margin: 10vh 10vw 10vh 10vw;
   border-right: solid 1px black;
   border-bottom: solid 1px black;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.quickview-images-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .quickview-img {
@@ -152,7 +159,7 @@ h1 {
   100% {
     width: calc(80vw - 302px);
     padding: 20px 40px 20px 40px;
-    max-height: 2000px;
+    max-height: 80vh;
   }
 }
 
@@ -168,7 +175,7 @@ h1 {
   animation-duration: 1500ms;
   animation-timing-function: ease-in-out;
   width: calc(80vw - 302px);
-  max-height: 2000px;
+  max-height: 80vh;
   padding: 20px 40px 20px 40px;
 }
 
@@ -223,6 +230,64 @@ h1 {
 
 .item-img {
   width: 300px;
+  border: solid 1px black;
+  border-radius: 4px;
+}
+
+@keyframes showThumbnails {
+  0% {
+    margin-top: 0;
+    margin-bottom: 0;
+    max-height: 0;
+    opacity: 0;
+  }
+  33.3% {
+    margin-top: 0;
+    margin-bottom: 0;
+    max-height: 0;
+    opacity: 0;
+  }
+  66.7% {
+    margin-top: 0;
+    margin-bottom: 0;
+    max-height: 0;
+    opacity: 0;
+  }
+  100% {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    max-height: 80vh;
+    opacity: 1;
+  }
+}
+
+.thumbnails {
+  animation-name: showThumbnails;
+  animation-duration: 1500ms;
+  animation-timing-function: ease-in-out;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-height: 0;
+  opacity: 0;
+}
+
+.thumbnails.visible {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  max-height: 80vh;
+  opacity: 1;
+}
+
+.thumbnail {
+  width: 100px;
+  margin: 10px;
+  padding: 0px;
+}
+
+.thumbnail-img {
+  width: 100px;
   border: solid 1px black;
   border-radius: 4px;
 }
@@ -371,6 +436,10 @@ h1 {
   }
 
   .item-img:hover {
+    cursor: pointer;
+  }
+  
+  .thumbnail-img:hover {
     cursor: pointer;
   }
 

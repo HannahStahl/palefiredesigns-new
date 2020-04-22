@@ -6,6 +6,7 @@ const Shop = ({ items, bag, updateBag }) => {
   const [selected, setSelected] = useState(undefined);
   const [imgTop, setImgTop] = useState(undefined);
   const [imgLeft, setImgLeft] = useState(undefined);
+  const [imgHeight, setImgHeight] = useState(undefined);
 
   const quickView = (index) => {
     setSelected(index);
@@ -19,25 +20,34 @@ const Shop = ({ items, bag, updateBag }) => {
     const quickview = document.getElementById('quickview');
     setImgTop(top);
     setImgLeft(left);
+    setImgHeight(height);
     quickview.classList.add('visible');
+    const thumbnails = document.getElementById('thumbnails');
+    thumbnails.classList.add('visible');
     const detailsContainer = document.getElementById('quickview-details-container');
     const details = document.getElementById('quickview-details');
     detailsContainer.classList.add('visible');
     details.classList.add('visible');
     const overlay = document.getElementById('background-overlay');
     overlay.classList.add('visible');
+    document.body.style.height = '100vh';
+    document.body.style.overflow = 'hidden';
   };
 
   const exitQuickview = () => {
     setSelected(undefined);
     const quickview = document.getElementById('quickview');
     quickview.classList.remove('visible');
+    const thumbnails = document.getElementById('thumbnails');
+    thumbnails.classList.remove('visible');
     const detailsContainer = document.getElementById('quickview-details-container');
     const details = document.getElementById('quickview-details');
     detailsContainer.classList.remove('visible');
     details.classList.remove('visible');
     const overlay = document.getElementById('background-overlay');
     overlay.classList.remove('visible');
+    document.body.style.height = 'auto';
+    document.body.style.overflow = 'auto';
   };
 
   const addOrRemoveFromBag = () => {
@@ -58,6 +68,10 @@ const Shop = ({ items, bag, updateBag }) => {
     return index > -1 ? 'Remove from Bag' : 'Add to Bag';
   };
 
+  const switchPhoto = () => {
+    // TODO
+  };
+
   return (
     <div>
       <style>
@@ -68,6 +82,7 @@ const Shop = ({ items, bag, updateBag }) => {
             margin: 0;
             border-right: none;
             border-bottom: none;
+            max-height: ${imgHeight}px;
           }
           to {
             top: 0;
@@ -75,6 +90,7 @@ const Shop = ({ items, bag, updateBag }) => {
             margin: 10vh 10vw 10vh 10vw;
             border-right: solid 1px black;
             border-bottom: solid 1px black;
+            max-height: 80vh;
           }
         }`}
       </style>
@@ -82,12 +98,27 @@ const Shop = ({ items, bag, updateBag }) => {
       <div className="items">
         <div className="background-overlay" id="background-overlay" />
         <div className="quickview" id="quickview">
-          <img
-            src={selected === undefined ? undefined : items[selected].Images[0].url_fullxfull}
-            alt={selected === undefined ? '' : items[selected].title}
-            className="quickview-img"
-            id="quickview-img"
-          />
+          <div className="quickview-images-container">
+            <img
+              src={selected === undefined ? undefined : items[selected].Images[0].url_fullxfull}
+              alt={selected === undefined ? '' : items[selected].title}
+              className="quickview-img"
+              id="quickview-img"
+            />
+            <Masonry className="masonry-layout thumbnails" id="thumbnails" options={{ isFitWidth: true }}>
+              {selected === undefined ? <></> : items[selected].Images.map((image, index) => (
+                <div key={image.listing_image_id} className="thumbnail">
+                  <img
+                    src={image.url_fullxfull}
+                    alt={items[selected].title}
+                    className="thumbnail-img"
+                    id={`thumbnail-${index}`}
+                    onClick={() => switchPhoto(index)}
+                  />
+                </div>
+              ))}
+            </Masonry>
+          </div>
           <div className="item-details-container" id="quickview-details-container">
             <div className="item-details" id="quickview-details">
               {selected === undefined ? <></> : (
