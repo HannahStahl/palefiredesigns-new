@@ -88,7 +88,7 @@ h1 {
 
 .background-overlay.visible {
   animation-name: darkenBackground;
-  animation-duration: 500ms;
+  animation-duration: 300ms;
   animation-timing-function: ease-in-out;
   display: block;
   background-color: rgba(0, 0, 0, 0.7);
@@ -109,7 +109,7 @@ h1 {
 .quickview.visible {
   display: flex;
   animation-name: showQuickview;
-  animation-duration: 500ms;
+  animation-duration: 300ms;
   animation-timing-function: ease-in-out;
   top: 0;
   left: 0;
@@ -174,7 +174,7 @@ h1 {
 
 .item-details-container.visible {
   animation-name: expandQuickview;
-  animation-duration: 1500ms;
+  animation-duration: 900ms;
   animation-timing-function: ease-in-out;
   width: calc(80vw - 302px);
   max-height: 2000px;
@@ -215,7 +215,7 @@ h1 {
 
 .item-details.visible {
   animation-name: showItemDetails;
-  animation-duration: 1500ms;
+  animation-duration: 900ms;
   animation-timing-function: ease-in-out;
   opacity: 1;
 }
@@ -274,7 +274,7 @@ h1 {
 
 .thumbnails.visible {
   animation-name: showThumbnails;
-  animation-duration: 1500ms;
+  animation-duration: 900ms;
   animation-timing-function: ease-in-out;
   margin-top: 15px;
   margin-bottom: 15px;
