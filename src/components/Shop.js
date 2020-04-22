@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
+import Carousel from 'react-bootstrap/Carousel';
 import Masonry from 'react-masonry-component';
 
 const Shop = ({ items, bag, updateBag }) => {
@@ -13,6 +14,7 @@ const Shop = ({ items, bag, updateBag }) => {
     setImgIndex(0);
     setSelected(index);
     const img = document.getElementById(`item-${index}`);
+    img.style.visibility = 'hidden';
     const { top, left, height } = img.getBoundingClientRect();
     const quickview = document.getElementById('quickview');
     setImgTop(top);
@@ -32,7 +34,9 @@ const Shop = ({ items, bag, updateBag }) => {
   };
 
   const exitQuickview = () => {
+    const img = document.getElementById(`item-${selected}`);
     setSelected(undefined);
+    img.style.visibility = 'visible';
     const quickview = document.getElementById('quickview');
     quickview.classList.remove('visible');
     const thumbnails = document.getElementById('thumbnails');
@@ -92,14 +96,19 @@ const Shop = ({ items, bag, updateBag }) => {
         <div className="background-overlay" id="background-overlay" />
         <div className="quickview" id="quickview">
           <div className="quickview-images-container">
-            <img
-              src={selected === undefined ? undefined : (
-                items[selected].Images[imgIndex].url_fullxfull
-              )}
-              alt={selected === undefined ? '' : items[selected].title}
-              className="quickview-img"
-              id="quickview-img"
-            />
+            {selected === undefined ? <></> : (
+              <Carousel activeIndex={imgIndex} onSelect={setImgIndex} interval={false}>
+                {items[selected].Images.map((image) => (
+                  <Carousel.Item key={image.listing_image_id}>
+                    <img
+                      src={selected === undefined ? undefined : image.url_fullxfull}
+                      alt={selected === undefined ? '' : items[selected].title}
+                      className="quickview-img"
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            )}
             <Masonry className="masonry-layout thumbnails" id="thumbnails" options={{ isFitWidth: true }}>
               {selected === undefined ? <></> : items[selected].Images.map((image, index) => (
                 <div key={image.listing_image_id} className="thumbnail">

@@ -123,6 +123,7 @@ h1 {
 .quickview-images-container {
   display: flex;
   flex-direction: column;
+  width: 300px;
 }
 
 .quickview-img {
