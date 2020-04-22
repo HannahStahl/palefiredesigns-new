@@ -3,6 +3,8 @@ import Masonry from 'react-masonry-component';
 
 const Shop = ({ items, updateBag }) => {
   const [selected, setSelected] = useState(undefined);
+  const [imgTop, setImgTop] = useState(undefined);
+  const [imgLeft, setImgLeft] = useState(undefined);
 
   const quickView = (index) => {
     setSelected(index);
@@ -14,7 +16,9 @@ const Shop = ({ items, updateBag }) => {
     quickviewImg.style.width = `${width}px`;
     quickviewImg.style.height = `${height}px`;
     const quickview = document.getElementById('quickview');
-    quickview.style.display = 'flex';
+    setImgTop(top);
+    setImgLeft(left);
+    quickview.classList.add('visible');
     const overlay = document.getElementById('background-overlay');
     overlay.style.display = 'block';
   };
@@ -22,10 +26,10 @@ const Shop = ({ items, updateBag }) => {
   const exitQuickview = () => {
     setSelected(undefined);
     const quickview = document.getElementById('quickview');
-    quickview.style.display = 'none';
+    quickview.classList.remove('visible');
     const overlay = document.getElementById('background-overlay');
     overlay.style.display = 'none';
-  }
+  };
 
   const addToBag = (id) => {
     let bag = JSON.parse(localStorage.getItem('bag'));
@@ -48,6 +52,24 @@ const Shop = ({ items, updateBag }) => {
 
   return (
     <div>
+      <style>
+        {
+          `
+            @keyframes showQuickview {
+              from {
+                top: ${imgTop}px;
+                left: ${imgLeft}px;
+                margin: 0;
+              }
+              to {
+                top: 0;
+                left: 0;
+                margin: 10vh 10vw 10vh 10vw;
+              }
+            }
+          `
+        }
+      </style>
       <h1>ALL ITEMS</h1>
       <div className="items">
         <div className="background-overlay" id="background-overlay" />

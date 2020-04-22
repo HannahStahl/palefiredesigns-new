@@ -75,15 +75,21 @@ h1 {
 
 .quickview {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 80vw;
-  margin: 10vh 10vw 10vh 10vw;
   background-color: white;
   z-index: 11;
   display: none;
   flex-wrap: wrap;
   border: solid 1px black;
+}
+
+.quickview.visible {
+  display: flex;
+  animation-name: showQuickview;
+  animation-duration: 500ms;
+  top: 0;
+  left: 0;
+  margin: 10vh 10vw 10vh 10vw;
 }
 
 .quickview-img {
