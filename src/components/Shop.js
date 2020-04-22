@@ -24,7 +24,7 @@ const Shop = ({ items, updateBag }) => {
     detailsContainer.classList.add('visible');
     details.classList.add('visible');
     const overlay = document.getElementById('background-overlay');
-    overlay.style.display = 'block';
+    overlay.classList.add('visible');
   };
 
   const exitQuickview = () => {
@@ -36,7 +36,7 @@ const Shop = ({ items, updateBag }) => {
     detailsContainer.classList.remove('visible');
     details.classList.remove('visible');
     const overlay = document.getElementById('background-overlay');
-    overlay.style.display = 'none';
+    overlay.classList.remove('visible');
   };
 
   const addToBag = (id) => {
