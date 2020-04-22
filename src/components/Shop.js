@@ -19,6 +19,10 @@ const Shop = ({ items, updateBag }) => {
     setImgTop(top);
     setImgLeft(left);
     quickview.classList.add('visible');
+    const detailsContainer = document.getElementById('quickview-details-container');
+    const details = document.getElementById('quickview-details');
+    detailsContainer.classList.add('visible');
+    details.classList.add('visible');
     const overlay = document.getElementById('background-overlay');
     overlay.style.display = 'block';
   };
@@ -27,6 +31,10 @@ const Shop = ({ items, updateBag }) => {
     setSelected(undefined);
     const quickview = document.getElementById('quickview');
     quickview.classList.remove('visible');
+    const detailsContainer = document.getElementById('quickview-details-container');
+    const details = document.getElementById('quickview-details');
+    detailsContainer.classList.remove('visible');
+    details.classList.remove('visible');
     const overlay = document.getElementById('background-overlay');
     overlay.style.display = 'none';
   };
@@ -80,9 +88,15 @@ const Shop = ({ items, updateBag }) => {
             className="quickview-img"
             id="quickview-img"
           />
-          <div className="item-details">
-            <h3>{selected === undefined ? '' : items[selected].title}</h3>
-            <p>{selected === undefined ? '' : unescape(items[selected].description.replace(/&#39;/g, "'"))}</p>
+          <div className="item-details-container" id="quickview-details-container">
+            <div className="item-details" id="quickview-details">
+              <h3>
+                {selected === undefined ? '' : items[selected].title}
+              </h3>
+              <p>
+                {selected === undefined ? '' : unescape(items[selected].description.replace(/&#39;/g, "'"))}
+              </p>
+            </div>
           </div>
           <div className="exit-quickview" onClick={exitQuickview}>x</div>
         </div>

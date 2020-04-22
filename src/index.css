@@ -75,7 +75,6 @@ h1 {
 
 .quickview {
   position: fixed;
-  width: 80vw;
   background-color: white;
   z-index: 11;
   display: none;
@@ -87,6 +86,7 @@ h1 {
   display: flex;
   animation-name: showQuickview;
   animation-duration: 500ms;
+  animation-timing-function: ease-in-out;
   top: 0;
   left: 0;
   margin: 10vh 10vw 10vh 10vw;
@@ -105,14 +105,70 @@ h1 {
   color: rgba(0, 0, 0, 0.5);
 }
 
-.item-details {
-  width: calc(80vw - 302px);
+@keyframes expandQuickview {
+  0% {
+    width: 0;
+    max-height: 0;
+    padding: 0;
+  }
+  33.3% {
+    width: 0;
+    max-height: 0;
+    padding: 0;
+  }
+  66.6% {
+    width: calc(80vw - 302px);
+    padding: 0px 40px 0px 40px;
+    max-height: 0;
+  }
+  100% {
+    width: calc(80vw - 302px);
+    padding: 20px 40px 20px 40px;
+    max-height: 2000px;
+  }
+}
+
+.item-details-container {
   text-align: left;
+  width: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.item-details-container.visible {
+  animation-name: expandQuickview;
+  animation-duration: 1500ms;
+  animation-timing-function: ease-in-out;
+  width: calc(80vw - 302px);
+  max-height: 2000px;
   padding: 20px 40px 20px 40px;
+}
+
+@keyframes showItemDetails {
+  0% {
+    opacity: 0;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.item-details {
+  opacity: 0;
 }
 
 .item-details h3 {
   margin-bottom: 15px;
+}
+
+.item-details.visible {
+  animation-name: showItemDetails;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  opacity: 1;
 }
 
 .masonry-layout {
