@@ -130,6 +130,7 @@ h1 {
   border-bottom: solid 1px black;
   border-top-left-radius: 4px;
   border-bottom-right-radius: 4px;
+  width: 300px;
 }
 
 .exit-quickview {

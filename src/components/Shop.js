@@ -4,19 +4,16 @@ import Masonry from 'react-masonry-component';
 
 const Shop = ({ items, bag, updateBag }) => {
   const [selected, setSelected] = useState(undefined);
+  const [imgIndex, setImgIndex] = useState(0);
   const [imgTop, setImgTop] = useState(undefined);
   const [imgLeft, setImgLeft] = useState(undefined);
   const [imgHeight, setImgHeight] = useState(undefined);
 
   const quickView = (index) => {
+    setImgIndex(0);
     setSelected(index);
     const img = document.getElementById(`item-${index}`);
-    const {
-      top, left, width, height,
-    } = img.getBoundingClientRect();
-    const quickviewImg = document.getElementById('quickview-img');
-    quickviewImg.style.width = `${width}px`;
-    quickviewImg.style.height = `${height}px`;
+    const { top, left, height } = img.getBoundingClientRect();
     const quickview = document.getElementById('quickview');
     setImgTop(top);
     setImgLeft(left);
@@ -68,10 +65,6 @@ const Shop = ({ items, bag, updateBag }) => {
     return index > -1 ? 'Remove from Bag' : 'Add to Bag';
   };
 
-  const switchPhoto = () => {
-    // TODO
-  };
-
   return (
     <div>
       <style>
@@ -100,7 +93,7 @@ const Shop = ({ items, bag, updateBag }) => {
         <div className="quickview" id="quickview">
           <div className="quickview-images-container">
             <img
-              src={selected === undefined ? undefined : items[selected].Images[0].url_fullxfull}
+              src={selected === undefined ? undefined : items[selected].Images[imgIndex].url_fullxfull}
               alt={selected === undefined ? '' : items[selected].title}
               className="quickview-img"
               id="quickview-img"
@@ -113,7 +106,7 @@ const Shop = ({ items, bag, updateBag }) => {
                     alt={items[selected].title}
                     className="thumbnail-img"
                     id={`thumbnail-${index}`}
-                    onClick={() => switchPhoto(index)}
+                    onClick={() => setImgIndex(index)}
                   />
                 </div>
               ))}
