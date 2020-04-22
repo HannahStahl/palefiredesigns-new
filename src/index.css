@@ -181,7 +181,7 @@ h1 {
   opacity: 0;
 }
 
-.item-details h3 {
+.item-details h3,h4 {
   margin-bottom: 15px;
 }
 

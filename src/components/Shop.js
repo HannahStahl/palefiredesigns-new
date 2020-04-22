@@ -94,12 +94,13 @@ const Shop = ({ items, updateBag }) => {
           />
           <div className="item-details-container" id="quickview-details-container">
             <div className="item-details" id="quickview-details">
-              <h3>
-                {selected === undefined ? '' : items[selected].title}
-              </h3>
-              <p>
-                {selected === undefined ? '' : unescape(items[selected].description.replace(/&#39;/g, "'"))}
-              </p>
+              {selected === undefined ? <></> : (
+                <>
+                  <h3>{items[selected].title}</h3>
+                  <h4>{`$${items[selected].price}`}</h4>
+                  <p>{unescape(items[selected].description.replace(/&#39;/g, "'"))}</p>
+                </>
+              )}
             </div>
           </div>
           <div className="exit-quickview" onClick={exitQuickview}>x</div>
