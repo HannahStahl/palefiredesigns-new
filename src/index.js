@@ -20,7 +20,7 @@ const Routes = ({ items, bag, updateBag }) => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
-    <Route path="/items" exact render={() => <Shop items={items} updateBag={updateBag} />} />
+    <Route path="/items" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
     <Route path="/contact" exact component={Contact} />
     <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
     <Route component={NotFound} />
@@ -31,7 +31,8 @@ const App = withRouter(() => {
   const [items, setItems] = useState([]);
   const [bag, setBag] = useState([]);
 
-  const updateBag = () => {
+  const updateBag = (newBag) => {
+    if (newBag) localStorage.setItem('bag', JSON.stringify(newBag));
     const bagStr = localStorage.getItem('bag');
     setBag(bagStr ? JSON.parse(bagStr) : []);
   };

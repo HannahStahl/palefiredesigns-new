@@ -1,10 +1,6 @@
 import React from 'react';
 
 const ShoppingBagIcon = ({ bag }) => {
-  let total = 0;
-  bag.forEach((item) => {
-    total += item.quantity;
-  });
   return (
     <div className="bag-icon-container">
       <svg
@@ -55,9 +51,9 @@ const ShoppingBagIcon = ({ bag }) => {
           fill="rgba(0, 0, 0, 0.5)"
         />
       </svg>
-      {total > 0 && (
+      {bag && bag.length > 0 && (
         <div className="bag-number-container">
-          <div className="bag-number">{total}</div>
+          <div className="bag-number">{bag.length}</div>
         </div>
       )}
     </div>

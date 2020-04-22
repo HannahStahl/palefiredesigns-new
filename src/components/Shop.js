@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 import Masonry from 'react-masonry-component';
 
-const Shop = ({ items, updateBag }) => {
+const Shop = ({ items, bag, updateBag }) => {
   const [selected, setSelected] = useState(undefined);
   const [imgTop, setImgTop] = useState(undefined);
   const [imgLeft, setImgLeft] = useState(undefined);
@@ -39,48 +40,43 @@ const Shop = ({ items, updateBag }) => {
     overlay.classList.remove('visible');
   };
 
-  const addToBag = (id) => {
-    let bag = JSON.parse(localStorage.getItem('bag'));
-    const newBagItem = { itemId: id, quantity: 1 };
-    if (bag) {
-      const index = bag.findIndex((itemInList) => itemInList.itemId === newBagItem.itemId);
-      const currentBagItem = bag[index];
-      if (currentBagItem) {
-        const newQuantity = currentBagItem.quantity + parseInt(newBagItem.quantity);
-        bag[index].quantity = newQuantity;
-      } else {
-        bag.push(newBagItem);
-      }
-    } else {
-      bag = [newBagItem];
-    }
-    localStorage.setItem('bag', JSON.stringify(bag));
-    updateBag();
+  const addOrRemoveFromBag = () => {
+    const { listing_id } = items[selected]; // eslint-disable-line camelcase
+    const newBagItem = listing_id; // eslint-disable-line camelcase
+    const index = bag.findIndex((itemInList) => itemInList === newBagItem);
+    if (index > -1) bag.splice(index, 1);
+    else bag.push(newBagItem);
+    updateBag(bag);
+  };
+
+  console.log(items[selected]);
+
+  const getButtonText = () => {
+    const item = items[selected];
+    if (!item) return '';
+    const index = bag.findIndex((itemInList) => itemInList === item.listing_id);
+    return index > -1 ? 'Remove from Bag' : 'Add to Bag';
   };
 
   return (
     <div>
       <style>
-        {
-          `
-            @keyframes showQuickview {
-              from {
-                top: ${imgTop}px;
-                left: ${imgLeft}px;
-                margin: 0;
-                border-right: none;
-                border-bottom: none;
-              }
-              to {
-                top: 0;
-                left: 0;
-                margin: 10vh 10vw 10vh 10vw;
-                border-right: solid 1px black;
-                border-bottom: solid 1px black;
-              }
-            }
-          `
-        }
+        {`@keyframes showQuickview {
+          from {
+            top: ${imgTop}px;
+            left: ${imgLeft}px;
+            margin: 0;
+            border-right: none;
+            border-bottom: none;
+          }
+          to {
+            top: 0;
+            left: 0;
+            margin: 10vh 10vw 10vh 10vw;
+            border-right: solid 1px black;
+            border-bottom: solid 1px black;
+          }
+        }`}
       </style>
       <h1>ALL ITEMS</h1>
       <div className="items">
@@ -97,7 +93,12 @@ const Shop = ({ items, updateBag }) => {
               {selected === undefined ? <></> : (
                 <>
                   <h3>{items[selected].title}</h3>
-                  <h4>{`$${items[selected].price}`}</h4>
+                  <div className="item-price-container">
+                    <h4>{`$${items[selected].price}`}</h4>
+                    <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag}>
+                      {getButtonText()}
+                    </Button>
+                  </div>
                   <p>{unescape(items[selected].description.replace(/&#39;/g, "'"))}</p>
                 </>
               )}
