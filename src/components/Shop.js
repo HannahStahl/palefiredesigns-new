@@ -68,11 +68,15 @@ const Shop = ({ items, updateBag }) => {
                 top: ${imgTop}px;
                 left: ${imgLeft}px;
                 margin: 0;
+                border-right: none;
+                border-bottom: none;
               }
               to {
                 top: 0;
                 left: 0;
                 margin: 10vh 10vw 10vh 10vw;
+                border-right: solid 1px black;
+                border-bottom: solid 1px black;
               }
             }
           `
