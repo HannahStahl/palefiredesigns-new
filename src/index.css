@@ -231,6 +231,21 @@ h1 {
   margin: 0 auto;
 }
 
+@keyframes fadeInItems {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.items-list {
+  animation-name: fadeInItems;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+}
+
 .item {
   position: relative;
   width: 300px;

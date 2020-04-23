@@ -5,6 +5,7 @@ import Masonry from 'react-masonry-component';
 
 const Shop = ({ items, bag, updateBag }) => {
   const [selected, setSelected] = useState(undefined);
+  const [showImages, setShowImages] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   const [imgTop, setImgTop] = useState(undefined);
   const [imgLeft, setImgLeft] = useState(undefined);
@@ -76,7 +77,10 @@ const Shop = ({ items, bag, updateBag }) => {
   return (
     <div>
       <style>
-        {`@keyframes expandQuickview {
+        {`.items-list {
+          opacity: ${showImages ? '1' : '0'};
+        }
+        @keyframes expandQuickview {
           0% {
             top: ${imgTop}px;
             left: ${imgLeft}px;
@@ -179,7 +183,11 @@ const Shop = ({ items, bag, updateBag }) => {
           </div>
           <div className="exit-quickview" onClick={exitQuickview}>x</div>
         </div>
-        <Masonry className="masonry-layout" options={{ isFitWidth: true }}>
+        <Masonry
+          className="masonry-layout items-list"
+          options={{ isFitWidth: true }}
+          onLayoutComplete={() => setShowImages(true)}
+        >
           {items.map((item, index) => (
             <div key={item.listing_id} className="item" onClick={() => quickView(index)}>
               <img
