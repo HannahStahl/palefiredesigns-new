@@ -71,6 +71,7 @@ const Shop = ({ items, bag, updateBag }) => {
   };
 
   const units = selected !== undefined && getDimensions(items[selected].item_dimensions_unit);
+  const quickviewWidth = Math.min(922, 0.8 * window.innerWidth);
 
   console.log(items[selected]);
 
@@ -106,7 +107,7 @@ const Shop = ({ items, bag, updateBag }) => {
             border-right: solid 1px black;
             border-bottom: solid 1px black;
             max-height: ${imgHeight}px;
-            width: min(922px, 80vw);
+            width: ${quickviewWidth}px;
           }
           100% {
             top: 0;
@@ -115,7 +116,7 @@ const Shop = ({ items, bag, updateBag }) => {
             border-right: solid 1px black;
             border-bottom: solid 1px black;
             max-height: 80vh;
-            width: min(922px, 80vw);
+            width: ${quickviewWidth}px;
           }
         }`}
       </style>
