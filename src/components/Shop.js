@@ -102,7 +102,7 @@ const Shop = ({ items, bag, updateBag }) => {
             border-right: solid 1px black;
             border-bottom: solid 1px black;
             max-height: ${imgHeight}px;
-            width: 922px;
+            width: min(922px, 80vw);
           }
           100% {
             top: 0;
@@ -111,7 +111,7 @@ const Shop = ({ items, bag, updateBag }) => {
             border-right: solid 1px black;
             border-bottom: solid 1px black;
             max-height: 80vh;
-            width: 922px;
+            width: min(922px, 80vw);
           }
         }`}
       </style>
