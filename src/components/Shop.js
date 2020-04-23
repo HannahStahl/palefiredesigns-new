@@ -60,8 +60,6 @@ const Shop = ({ items, bag, updateBag }) => {
     updateBag(bag);
   };
 
-  console.log(items[selected]);
-
   const getButtonText = () => {
     const item = items[selected];
     if (!item) return '';
@@ -143,14 +141,16 @@ const Shop = ({ items, bag, updateBag }) => {
         </div>
         <Masonry className="masonry-layout" options={{ isFitWidth: true }}>
           {items.map((item, index) => (
-            <div key={item.listing_id} className="item">
+            <div key={item.listing_id} className="item" onClick={() => quickView(index)}>
               <img
                 src={item.Images[0].url_fullxfull}
                 alt={item.title}
                 className="item-img"
                 id={`item-${index}`}
-                onClick={() => quickView(index)}
               />
+              <div className="quickview-button-container" id="quickview-button-container">
+                <Button size="lg" variant="light">Quick View</Button>
+              </div>
             </div>
           ))}
         </Masonry>
