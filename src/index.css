@@ -198,12 +198,19 @@ h1 {
 }
 
 .item-details h3 {
-  margin-bottom: 15px;
-}
-
-.item-details h4 {
   margin-bottom: 0;
   margin-right: 15px;
+}
+
+.item-dimensions, .item-materials {
+  display: flex;
+  align-items: center;
+}
+
+.item-details-icon {
+  width: 20px;
+  margin-right: 15px;
+  margin-bottom: 1rem;
 }
 
 .item-price-container {

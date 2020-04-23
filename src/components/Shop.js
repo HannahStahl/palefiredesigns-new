@@ -67,6 +67,14 @@ const Shop = ({ items, bag, updateBag }) => {
     return index > -1 ? 'Remove from Bag' : 'Add to Bag';
   };
 
+  const getDimensions = (unit) => {
+    if (unit === 'in') return '"';
+    if (unit === 'ft') return "'";
+    return unit;
+  };
+
+  const units = selected !== undefined && getDimensions(items[selected].item_dimensions_unit);
+
   return (
     <div>
       <style>
@@ -125,14 +133,28 @@ const Shop = ({ items, bag, updateBag }) => {
             <div className="item-details" id="quickview-details">
               {selected === undefined ? <></> : (
                 <>
-                  <h3>{items[selected].title}</h3>
                   <div className="item-price-container">
-                    <h4>{`$${items[selected].price}`}</h4>
+                    <h3>{`$${items[selected].price}`}</h3>
                     <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag}>
                       {getButtonText()}
                     </Button>
                   </div>
-                  <p>{unescape(items[selected].description.replace(/&#39;/g, "'"))}</p>
+                  {(items[selected].item_length || items[selected].item_width) && (
+                    <div className="item-dimensions">
+                      <img src="/dimensions.svg" alt="Dimensions" className="item-details-icon" />
+                      <p>
+                        {items[selected].item_length ? `${items[selected].item_length}${units} long` : ''}
+                        {(items[selected].item_length && items[selected].item_width) ? ', ' : ''}
+                        {items[selected].item_width ? `${items[selected].item_width}${units} wide` : ''}
+                      </p>
+                    </div>
+                  )}
+                  {(items[selected].materials && items[selected].materials.length > 0) && (
+                    <div className="item-materials">
+                      <img src="/materials.svg" alt="Materials" className="item-details-icon" />
+                      <p>{items[selected].materials.map((material, index) => `${index > 0 ? ', ' : ''}${material}`)}</p>
+                    </div>
+                  )}
                 </>
               )}
             </div>
