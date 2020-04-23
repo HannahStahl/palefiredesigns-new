@@ -75,7 +75,7 @@ const Shop = ({ items, bag, updateBag }) => {
   };
 
   const units = selected !== undefined && getDimensions(items[selected].item_dimensions_unit);
-  const quickviewWidth = Math.min(952, 0.8 * window.innerWidth);
+  const quickviewWidth = Math.min(907, 0.8 * window.innerWidth);
 
   console.log(items[selected]);
 

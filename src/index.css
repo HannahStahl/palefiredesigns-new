@@ -113,7 +113,7 @@ h1 {
   left: 0;
   margin: 10vh 10vw 10vh 10vw;
   max-height: 80vh;
-  width: min(952px, 80vw);
+  width: min(907px, 80vw);
   overflow-y: auto;
 }
 
@@ -157,9 +157,9 @@ h1 {
 
 .item-details-container {
   text-align: left;
-  width: 320px;
+  width: 335px;
   max-height: 2000px;
-  padding: 20px 40px 20px 0px;
+  padding: 20px 40px 20px 15px;
 }
 
 @keyframes fadeInDetails {
@@ -180,7 +180,7 @@ h1 {
   margin-top: 15px;
   margin-bottom: 15px;
   max-height: 2000px;
-  width: 300px;
+  width: 240px;
 }
 
 .thumbnails {
