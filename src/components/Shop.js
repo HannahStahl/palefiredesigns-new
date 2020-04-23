@@ -17,11 +17,13 @@ const Shop = ({ items, bag, updateBag }) => {
     const img = document.getElementById(`item-${index}`);
     img.style.visibility = 'hidden';
     const { top, left, height } = img.getBoundingClientRect();
-    const quickview = document.getElementById('quickview');
     setImgTop(top);
     setImgLeft(left);
     setImgHeight(height);
+    const quickview = document.getElementById('quickview');
     quickview.classList.add('expanded');
+    const quickviewImgContainer = document.getElementById('quickview-img-container');
+    quickviewImgContainer.classList.add('expanded');
     const thumbnails = document.getElementById('thumbnails');
     thumbnails.classList.add('visible');
     const details = document.getElementById('quickview-details');
@@ -38,6 +40,8 @@ const Shop = ({ items, bag, updateBag }) => {
     img.style.visibility = 'visible';
     const quickview = document.getElementById('quickview');
     quickview.classList.remove('expanded');
+    const quickviewImgContainer = document.getElementById('quickview-img-container');
+    quickviewImgContainer.classList.remove('expanded');
     const thumbnails = document.getElementById('thumbnails');
     thumbnails.classList.remove('visible');
     const details = document.getElementById('quickview-details');
@@ -71,7 +75,7 @@ const Shop = ({ items, bag, updateBag }) => {
   };
 
   const units = selected !== undefined && getDimensions(items[selected].item_dimensions_unit);
-  const quickviewWidth = Math.min(922, 0.8 * window.innerWidth);
+  const quickviewWidth = Math.min(952, 0.8 * window.innerWidth);
 
   console.log(items[selected]);
 
@@ -86,8 +90,6 @@ const Shop = ({ items, bag, updateBag }) => {
             top: ${imgTop}px;
             left: ${imgLeft}px;
             margin: 0;
-            border-right: none;
-            border-bottom: none;
             max-height: ${imgHeight}px;
             width: 302px;
           }
@@ -95,26 +97,20 @@ const Shop = ({ items, bag, updateBag }) => {
             top: 0;
             left: 0;
             margin: 10vh 10vw 10vh 10vw;
-            border-right: solid 1px black;
-            border-bottom: solid 1px black;
-            max-height: ${imgHeight}px;
-            width: 302px;
+            max-height: ${imgHeight + 30}px;
+            width: 332px;
           }
           66.7% {
             top: 0;
             left: 0;
             margin: 10vh 10vw 10vh 10vw;
-            border-right: solid 1px black;
-            border-bottom: solid 1px black;
-            max-height: ${imgHeight}px;
+            max-height: ${imgHeight + 30}px;
             width: ${quickviewWidth}px;
           }
           100% {
             top: 0;
             left: 0;
             margin: 10vh 10vw 10vh 10vw;
-            border-right: solid 1px black;
-            border-bottom: solid 1px black;
             max-height: 80vh;
             width: ${quickviewWidth}px;
           }
@@ -124,19 +120,21 @@ const Shop = ({ items, bag, updateBag }) => {
       <div className="items">
         <div className="background-overlay" id="background-overlay" />
         <div className="quickview" id="quickview">
-          {selected === undefined ? <></> : (
-            <Carousel activeIndex={imgIndex} onSelect={setImgIndex} interval={false}>
-              {items[selected].Images.map((image) => (
-                <Carousel.Item key={image.listing_image_id}>
-                  <img
-                    src={selected === undefined ? undefined : image.url_fullxfull}
-                    alt={selected === undefined ? '' : items[selected].title}
-                    className="quickview-img"
-                  />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          )}
+          <div className="quickview-img-container" id="quickview-img-container">
+            {selected === undefined ? <></> : (
+              <Carousel activeIndex={imgIndex} onSelect={setImgIndex} interval={false}>
+                {items[selected].Images.map((image) => (
+                  <Carousel.Item key={image.listing_image_id}>
+                    <img
+                      src={selected === undefined ? undefined : image.url_fullxfull}
+                      alt={selected === undefined ? '' : items[selected].title}
+                      className="quickview-img"
+                    />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+            )}
+          </div>
           <div className="thumbnails-container">
             <Masonry className="masonry-layout thumbnails" id="thumbnails" options={{ isFitWidth: true }}>
               {selected === undefined ? <></> : items[selected].Images.map((image, index) => (
