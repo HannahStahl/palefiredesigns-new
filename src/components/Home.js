@@ -19,7 +19,7 @@ const Home = () => (
     <div className="home-section home-section-2 right-text">
       <div className="home-section-text">
         <h1>Collar Me Beautiful</h1>
-        <a href="/items">
+        <a href="/items/necklaces">
           <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP NECKLACES</Button>
         </a>
       </div>
@@ -27,7 +27,7 @@ const Home = () => (
     <div className="home-section home-section-3 left-text">
       <div className="home-section-text">
         <h1>Wrist Action</h1>
-        <a href="/items">
+        <a href="/items/bracelets">
           <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP BRACELETS</Button>
         </a>
       </div>
@@ -35,7 +35,7 @@ const Home = () => (
     <div className="home-section home-section-4 right-text">
       <div className="home-section-text">
         <h1>Lobe Trotters</h1>
-        <a href="/items">
+        <a href="/items/earrings">
           <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP EARRINGS</Button>
         </a>
       </div>

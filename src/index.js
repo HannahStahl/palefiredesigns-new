@@ -21,6 +21,9 @@ const Routes = ({ items, bag, updateBag }) => (
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
     <Route path="/items" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
+    <Route path="/items/necklaces" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
+    <Route path="/items/bracelets" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
+    <Route path="/items/earrings" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
     <Route path="/contact" exact component={Contact} />
     <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
     <Route component={NotFound} />
