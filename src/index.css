@@ -417,6 +417,11 @@ h1 {
     margin-right: 0px;
     margin-bottom: 40px;
   }
+
+  .page-content {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
 }
 
 @media all and (hover: hover) {

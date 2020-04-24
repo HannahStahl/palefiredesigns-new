@@ -145,7 +145,7 @@ const Shop = ({ items, bag, updateBag }) => {
         {style}
       </style>
       <h1>ALL ITEMS</h1>
-      <div className="items">
+      <div>
         <div className="background-overlay" id="background-overlay">
           <div className="quickview" id="quickview">
             <div className="quickview-img-container" id="quickview-img-container">
