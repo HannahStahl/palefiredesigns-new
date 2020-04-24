@@ -75,13 +75,11 @@ const Shop = ({ items, bag, updateBag }) => {
   };
 
   const units = selected !== undefined && getDimensions(items[selected].item_dimensions_unit);
-  let quickviewWidth = 907;
-  const availableWidth = 0.8 * window.innerWidth;
-  if (availableWidth < 907) quickviewWidth = 572;
-  if (availableWidth < 572) quickviewWidth = 302;
-  const quickviewMargin = (window.innerWidth - quickviewWidth) / 2;
 
-  console.log(items[selected]);
+  let quickviewWidth = 882;
+  const availableWidth = 0.9 * window.innerWidth;
+  if (availableWidth < 882) quickviewWidth = 332;
+  const quickviewMargin = (window.innerWidth - quickviewWidth) / 2;
 
   return (
     <div>

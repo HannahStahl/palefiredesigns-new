@@ -155,9 +155,9 @@ h1 {
 
 .item-details-container {
   text-align: left;
-  width: 335px;
+  width: 310px;
   max-height: 2000px;
-  padding: 20px 40px 20px 15px;
+  padding: 15px;
 }
 
 @keyframes fadeInDetails {
