@@ -8,7 +8,7 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Home from './components/Home';
 import About from './components/About';
-import Shop from './components/Shop';
+import Items from './components/Items';
 import Contact from './components/Contact';
 import Checkout from './components/Checkout';
 import NotFound from './components/NotFound';
@@ -20,10 +20,10 @@ const Routes = ({ items, bag, updateBag }) => (
   <Switch>
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
-    <Route path="/items" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
-    <Route path="/items/necklaces" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
-    <Route path="/items/bracelets" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
-    <Route path="/items/earrings" exact render={() => <Shop items={items} bag={bag} updateBag={updateBag} />} />
+    <Route path="/items" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
+    <Route path="/items/necklaces" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
+    <Route path="/items/bracelets" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
+    <Route path="/items/earrings" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
     <Route path="/contact" exact component={Contact} />
     <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
     <Route component={NotFound} />
