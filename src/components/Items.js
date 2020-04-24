@@ -3,7 +3,9 @@ import Button from 'react-bootstrap/Button';
 import Masonry from 'react-masonry-component';
 import QuickView from './QuickView';
 
-const Items = ({ items, bag, updateBag }) => {
+const Items = ({
+  items, bag, updateBag, header,
+}) => {
   const [selected, setSelected] = useState(undefined);
   const [showImages, setShowImages] = useState(false);
 
@@ -16,7 +18,7 @@ const Items = ({ items, bag, updateBag }) => {
           }
         `}
       </style>
-      <h1>ALL ITEMS</h1>
+      {header && <h1>{header}</h1>}
       <div>
         <QuickView
           items={items}

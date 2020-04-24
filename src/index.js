@@ -9,6 +9,7 @@ import * as serviceWorker from './serviceWorker';
 import Home from './components/Home';
 import About from './components/About';
 import Items from './components/Items';
+import Category from './components/Category';
 import Contact from './components/Contact';
 import Checkout from './components/Checkout';
 import NotFound from './components/NotFound';
@@ -21,9 +22,13 @@ const Routes = ({ items, bag, updateBag }) => (
     <Route path="/" exact component={Home} />
     <Route path="/about" exact component={About} />
     <Route path="/items" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
-    <Route path="/items/necklaces" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
-    <Route path="/items/bracelets" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
-    <Route path="/items/earrings" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
+    <Route
+      path="/items/:categoryName"
+      exact
+      render={(props) => (
+        <Category items={items} bag={bag} updateBag={updateBag} match={props.match} />
+      )}
+    />
     <Route path="/contact" exact component={Contact} />
     <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
     <Route component={NotFound} />
