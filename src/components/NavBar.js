@@ -4,10 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import ShoppingBagIcon from './ShoppingBagIcon';
 
 const NavBar = ({ bag }) => (
-  <Navbar collapseOnSelect expand="lg">
-    {window.location.pathname !== '/' && (
-      <Navbar.Brand href="/">HOME</Navbar.Brand>
-    )}
+  <Navbar collapseOnSelect expand="lg" fixed="top">
+    <Navbar.Brand href="/">HOME</Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ml-auto" activeKey={window.location.pathname}>
