@@ -147,10 +147,10 @@ h1 {
 
 .exit-quickview {
   position: absolute;
-  top: 0px;
-  right: 15px;
-  font-size: 25px;
-  color: rgba(0, 0, 0, 0.5);
+  top: 12px;
+  right: 20px;
+  width: 20px;
+  color: white;
 }
 
 .item-details-container {
@@ -447,7 +447,6 @@ h1 {
   }
 
   .exit-quickview:hover {
-    color: rgba(0, 0, 0, 0.9);
     cursor: pointer;
   }
 }

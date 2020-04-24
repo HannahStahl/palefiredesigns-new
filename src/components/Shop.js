@@ -188,7 +188,9 @@ const Shop = ({ items, bag, updateBag }) => {
                 )}
               </div>
             </div>
-            <div className="exit-quickview" onClick={exitQuickview}>x</div>
+          </div>
+          <div className="exit-quickview" onClick={exitQuickview}>
+            <img src="/exit.svg" alt="Exit" />
           </div>
         </div>
         <Masonry
