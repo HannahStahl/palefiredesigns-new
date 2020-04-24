@@ -76,51 +76,73 @@ const Shop = ({ items, bag, updateBag }) => {
 
   const units = selected !== undefined && getDimensions(items[selected].item_dimensions_unit);
 
+  let mobileStyling = false;
   let quickviewWidth = 882;
   const availableWidth = 0.9 * window.innerWidth;
-  if (availableWidth < 882) quickviewWidth = 332;
+  if (availableWidth < 882) {
+    mobileStyling = true;
+    quickviewWidth = 332;
+  }
   const quickviewMargin = (window.innerWidth - quickviewWidth) / 2;
+
+  let style = `
+    .items-list {
+      opacity: ${showImages ? '1' : '0'};
+    }
+    @keyframes expandQuickview {
+      0% {
+        top: ${imgTop}px;
+        left: ${imgLeft}px;
+        margin: 0;
+        max-height: ${imgHeight}px;
+        width: 302px;
+      }
+      33.3% {
+        top: 0;
+        left: 0;
+        margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
+        max-height: ${imgHeight + 30}px;
+        width: 332px;
+      }
+      66.7% {
+        top: 0;
+        left: 0;
+        margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
+        max-height: ${imgHeight + 30}px;
+        width: ${quickviewWidth}px;
+      }
+      100% {
+        top: 0;
+        left: 0;
+        margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
+        max-height: 80vh;
+        width: ${quickviewWidth}px;
+      }
+    }
+    .quickview.expanded {
+      width: ${quickviewWidth}px;
+      margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
+    }
+  `;
+  if (mobileStyling) {
+    style += `
+      .item-details-container {
+        margin-left: 14px;
+        margin-right: 14px;
+      }
+      .thumbnails-container {
+        width: 300px;
+      }
+      .thumbnail, .thumbnail-img {
+        width: 80px;
+      }
+    `;
+  }
 
   return (
     <div>
       <style>
-        {`.items-list {
-          opacity: ${showImages ? '1' : '0'};
-        }
-        @keyframes expandQuickview {
-          0% {
-            top: ${imgTop}px;
-            left: ${imgLeft}px;
-            margin: 0;
-            max-height: ${imgHeight}px;
-            width: 302px;
-          }
-          33.3% {
-            top: 0;
-            left: 0;
-            margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
-            max-height: ${imgHeight + 30}px;
-            width: 332px;
-          }
-          66.7% {
-            top: 0;
-            left: 0;
-            margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
-            max-height: ${imgHeight + 30}px;
-            width: ${quickviewWidth}px;
-          }
-          100% {
-            top: 0;
-            left: 0;
-            margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
-            max-height: 80vh;
-            width: ${quickviewWidth}px;
-          }
-        }
-        .quickview.expanded {
-          width: ${quickviewWidth}px;
-          margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;
-        }`}
+        {style}
       </style>
       <h1>ALL ITEMS</h1>
       <div className="items">
