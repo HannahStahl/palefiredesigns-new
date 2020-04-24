@@ -47,10 +47,10 @@ const App = withRouter(() => {
   return (
     <>
       <NavBar bag={bag} />
-      <div className="page-content">
+      <div className={window.location.pathname === '/' ? '' : 'page-content'}>
         <Routes items={items} bag={bag} updateBag={updateBag} />
       </div>
-      {window.location.pathname !== '/' && <Footer />}
+      <Footer />
     </>
   );
 });
