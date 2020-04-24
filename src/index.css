@@ -112,7 +112,6 @@ h1 {
   top: 0;
   left: 0;
   max-height: 80vh;
-  width: min(907px, 80vw);
   overflow-y: auto;
 }
 
