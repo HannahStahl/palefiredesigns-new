@@ -95,7 +95,7 @@ h1 {
 }
 
 .quickview {
-  position: fixed;
+  position: absolute;
   background-color: white;
   z-index: 11;
   display: none;
@@ -111,7 +111,6 @@ h1 {
   animation-timing-function: ease-in-out;
   top: 0;
   left: 0;
-  margin: 10vh 10vw 10vh 10vw;
   max-height: 80vh;
   width: min(907px, 80vw);
   overflow-y: auto;
