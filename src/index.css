@@ -359,6 +359,15 @@ h1 {
   margin-left: 15px;
 }
 
+.dropdown-item.active {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.dropdown-item:not(.active) {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .nav-link {
   margin-left: 7px;
   margin-right: 7px;
@@ -437,6 +446,10 @@ h1 {
     margin-left: 0px;
   }
 
+  .dropdown-item {
+    text-align: center;
+  }
+
   .home {
     margin-top: 54px;
   }
@@ -469,6 +482,11 @@ h1 {
 }
 
 @media all and (hover: hover) {
+  .dropdown-item:hover {
+    background-color: white;
+    color: rgba(0, 0, 0, 0.9);
+  }
+
   .nav-link:hover > .bag-icon-container .bag-number {
     color: rgba(0, 0, 0, 0.9);
   }
