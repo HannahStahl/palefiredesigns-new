@@ -7,26 +7,22 @@ const Category = ({
   const [categoryName, setCategoryName] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
 
-  const getEtsyCategoryName = (name) => {
-    if (name === 'NECKLACES') return 'Necklace';
-    if (name === 'BRACELETS') return 'Bracelet';
-    if (name === 'EARRINGS') return 'Earrings';
-    return undefined;
-  };
-
   useEffect(() => {
-    const uppercaseCategoryName = match.params.categoryName.toUpperCase();
-    const etsyCategoryName = getEtsyCategoryName(uppercaseCategoryName);
-    if (!etsyCategoryName) window.location.pathname = '/items';
-    else {
-      setCategoryName(uppercaseCategoryName);
+    const thisCategoryName = match.params.categoryName;
+    const capitalizedCategoryName = (
+      thisCategoryName.charAt(0).toUpperCase() + thisCategoryName.slice(1)
+    );
+    if (!['Necklaces', 'Bracelets', 'Earrings'].includes(capitalizedCategoryName)) {
+      window.location.pathname = '/items';
+    } else {
+      setCategoryName(capitalizedCategoryName);
       setFilteredItems(items.filter((item) => (
-        item.category_path && item.category_path[1] === etsyCategoryName
+        item.taxonomy_path && item.taxonomy_path[1] === capitalizedCategoryName
       )));
     }
   }, [match]);
 
-  return <Items items={filteredItems} bag={bag} updateBag={updateBag} header={categoryName} />;
+  return <Items items={filteredItems} bag={bag} updateBag={updateBag} header={categoryName.toUpperCase()} />;
 };
 
 export default Category;
