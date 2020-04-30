@@ -19,12 +19,8 @@ const Checkout = ({ items, bag, updateBag }) => {
     if (items.length > 0 && bag.length > 0) {
       let runningTotal = 0;
       bag.forEach((item) => {
-        const itemDetails = items.find((itemInList) => itemInList.itemId === item.itemId);
-        if (itemDetails.itemOnSale) {
-          runningTotal += parseInt(itemDetails.itemSalePrice); // TODO get correct property name
-        } else {
-          runningTotal += parseInt(itemDetails.price);
-        }
+        const itemDetails = items.find((itemInList) => itemInList.listing_id === item);
+        runningTotal += parseFloat(itemDetails.price);
       });
       setTotal(runningTotal);
     }
@@ -69,15 +65,23 @@ const Checkout = ({ items, bag, updateBag }) => {
       <h1>SHOPPING BAG</h1>
       {items.length > 0 && (
         bag.length > 0 ? (
-          <>
-            {bag.map((item) => (
-              <div key={item} className="bag-item">
-                <p className="bag-item-name">
-                  {items.find((itemInList) => itemInList.listing_id === item).title}
-                </p>
-              </div>
-            ))}
-            <p>{`Total: $${total}`}</p>
+          <div className="shopping-bag">
+            {bag.map((item) => {
+              const itemDetails = items.find((itemInList) => itemInList.listing_id === item);
+              return (
+                <div key={item}>
+                  <div className="bag-item">
+                    <img src={itemDetails.Images[0].url_fullxfull} alt={itemDetails.title} />
+                    <h4 className="bag-item-price">{`$${itemDetails.price}`}</h4>
+                  </div>
+                  <hr />
+                </div>
+              );
+            })}
+            <h4 className="bag-total">
+              <span>TOTAL:</span>
+              <span>{`$${total.toFixed(2)}`}</span>
+            </h4>
             <div className="checkout-form-container">
               <StripeProvider stripe={stripe}>
                 <Elements
@@ -89,7 +93,7 @@ const Checkout = ({ items, bag, updateBag }) => {
                 </Elements>
               </StripeProvider>
             </div>
-          </>
+          </div>
         ) : <p>Shopping bag is empty</p>
       )}
       <CheckoutSuccess show={showSuccessModal} closeModal={() => setShowSuccessModal(false)} />
