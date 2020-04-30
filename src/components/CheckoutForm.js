@@ -34,7 +34,7 @@ const CheckoutForm = ({ isLoading, onSubmit, ...props }) => {
         onChange={(e) => setIsCardComplete(e.complete)}
         style={{
           base: {
-            fontSize: '16px',
+            fontSize: '19.2px',
             color: '#495057',
             fontFamily: "'Dosis', sans-serif",
           },

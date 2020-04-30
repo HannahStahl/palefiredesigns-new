@@ -12,29 +12,27 @@ const QuickView = ({
   const [imgLeft, setImgLeft] = useState(undefined);
   const [imgHeight, setImgHeight] = useState(undefined);
 
-  const showQuickView = () => {
-    const img = document.getElementById(`item-${selected}`);
-    img.style.visibility = 'hidden';
-    const { top, left, height } = img.getBoundingClientRect();
-    setImgTop(top);
-    setImgLeft(left);
-    setImgHeight(height);
-    const quickview = document.getElementById('quickview');
-    quickview.classList.add('expanded');
-    const quickviewImgContainer = document.getElementById('quickview-img-container');
-    quickviewImgContainer.classList.add('expanded');
-    const thumbnails = document.getElementById('thumbnails');
-    thumbnails.classList.add('visible');
-    const details = document.getElementById('quickview-details');
-    details.classList.add('visible');
-    const overlay = document.getElementById('background-overlay');
-    overlay.classList.add('visible');
-    document.body.style.height = '100vh';
-    document.body.style.overflow = 'hidden';
-  };
-
   useEffect(() => {
-    if (selected !== undefined) showQuickView();
+    if (selected !== undefined) {
+      const img = document.getElementById(`item-${selected}`);
+      img.style.visibility = 'hidden';
+      const { top, left, height } = img.getBoundingClientRect();
+      setImgTop(top);
+      setImgLeft(left);
+      setImgHeight(height);
+      const quickview = document.getElementById('quickview');
+      quickview.classList.add('expanded');
+      const quickviewImgContainer = document.getElementById('quickview-img-container');
+      quickviewImgContainer.classList.add('expanded');
+      const thumbnails = document.getElementById('thumbnails');
+      thumbnails.classList.add('visible');
+      const details = document.getElementById('quickview-details');
+      details.classList.add('visible');
+      const overlay = document.getElementById('background-overlay');
+      overlay.classList.add('visible');
+      document.body.style.height = '100vh';
+      document.body.style.overflow = 'hidden';
+    }
   }, [selected]);
 
   const exitQuickview = () => {
@@ -68,7 +66,7 @@ const QuickView = ({
   const getButtonText = () => {
     if (!item) return '';
     const index = bag.findIndex((itemInList) => itemInList === item.listing_id);
-    return index > -1 ? 'Remove from Bag' : 'Add to Bag';
+    return index > -1 ? 'REMOVE FROM BAG' : 'ADD TO BAG';
   };
 
   const getDimensions = (unit) => {
@@ -80,9 +78,9 @@ const QuickView = ({
   const units = selected !== undefined && getDimensions(item.item_dimensions_unit);
 
   let mobileStyling = false;
-  let quickviewWidth = 882;
+  let quickviewWidth = 897;
   const availableWidth = 0.9 * window.innerWidth;
-  if (availableWidth < 882) {
+  if (availableWidth < 897) {
     mobileStyling = true;
     quickviewWidth = 332;
   }
@@ -126,8 +124,8 @@ const QuickView = ({
   if (mobileStyling) {
     style += `
       .item-details-container {
-        margin-left: 14px;
-        margin-right: 14px;
+        margin-left: 11px;
+        margin-right: 11px;
       }
       .thumbnails-container {
         width: 300px;
@@ -177,7 +175,7 @@ const QuickView = ({
             {selected === undefined ? <></> : (
               <>
                 <div className="item-price-container">
-                  <h3>{`$${item.price}`}</h3>
+                  <h3 className="item-price">{`$${item.price}`}</h3>
                   <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag}>
                     {getButtonText()}
                   </Button>

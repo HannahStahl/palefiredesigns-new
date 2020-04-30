@@ -3,6 +3,7 @@ import { Elements, StripeProvider } from 'react-stripe-elements';
 import config from '../config';
 import CheckoutForm from './CheckoutForm';
 import CheckoutSuccess from './CheckoutSuccess';
+import Items from './Items';
 
 
 const Checkout = ({ items, bag, updateBag }) => {
@@ -65,19 +66,12 @@ const Checkout = ({ items, bag, updateBag }) => {
       <h1>SHOPPING BAG</h1>
       {items.length > 0 && (
         bag.length > 0 ? (
-          <div className="shopping-bag">
-            {bag.map((item) => {
-              const itemDetails = items.find((itemInList) => itemInList.listing_id === item);
-              return (
-                <div key={item}>
-                  <div className="bag-item">
-                    <img src={itemDetails.Images[0].url_fullxfull} alt={itemDetails.title} />
-                    <h4 className="bag-item-price">{`$${itemDetails.price}`}</h4>
-                  </div>
-                  <hr />
-                </div>
-              );
-            })}
+          <div>
+            <Items
+              items={bag.map((item) => items.find((itemInList) => itemInList.listing_id === item))}
+              bag={bag}
+              updateBag={updateBag}
+            />
             <h4 className="bag-total">
               <span>TOTAL:</span>
               <span>{`$${total.toFixed(2)}`}</span>

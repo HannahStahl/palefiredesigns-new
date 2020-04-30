@@ -20,9 +20,16 @@ const Category = ({
         item.taxonomy_path && item.taxonomy_path[1] === capitalizedCategoryName
       )));
     }
-  }, [match]);
+  }, [match, items]);
 
-  return <Items items={filteredItems} bag={bag} updateBag={updateBag} header={categoryName.toUpperCase()} />;
+  return (
+    <Items
+      items={filteredItems}
+      bag={bag}
+      updateBag={updateBag}
+      header={categoryName.toUpperCase()}
+    />
+  );
 };
 
 export default Category;

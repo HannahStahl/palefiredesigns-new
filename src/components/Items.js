@@ -7,17 +7,9 @@ const Items = ({
   items, bag, updateBag, header,
 }) => {
   const [selected, setSelected] = useState(undefined);
-  const [showImages, setShowImages] = useState(false);
 
   return (
     <div>
-      <style>
-        {`
-          .items-list {
-            opacity: ${showImages ? '1' : '0'};
-          }
-        `}
-      </style>
       {header && <h1>{header}</h1>}
       <div>
         <QuickView
@@ -27,11 +19,7 @@ const Items = ({
           bag={bag}
           updateBag={updateBag}
         />
-        <Masonry
-          className="masonry-layout items-list"
-          options={{ isFitWidth: true }}
-          onLayoutComplete={() => setShowImages(true)}
-        >
+        <Masonry className="masonry-layout" options={{ isFitWidth: true }}>
           {items.map((item, index) => (
             <div key={item.listing_id} className="item" onClick={() => setSelected(index)}>
               <img
@@ -41,7 +29,7 @@ const Items = ({
                 id={`item-${index}`}
               />
               <div className="quickview-button-container" id="quickview-button-container">
-                <Button size="lg" variant="light">Quick View</Button>
+                <Button size="lg" variant="light">QUICK VIEW</Button>
               </div>
             </div>
           ))}
