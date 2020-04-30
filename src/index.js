@@ -46,7 +46,7 @@ const App = withRouter(() => {
   };
 
   useEffect(() => {
-    fetch(config.apiURL).then((res) => res.json()).then((json) => {
+    fetch(config.etsyApiURL).then((res) => res.json()).then((json) => {
       setItems(json.results);
     });
     updateBag();
