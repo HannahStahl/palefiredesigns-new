@@ -7,7 +7,9 @@ const CheckoutSuccess = ({ show, closeModal }) => (
     <Modal.Header closeButton />
     <Modal.Body>
       <p>Thanks for your order!</p>
-      <Button size="lg" variant="outline-dark">BACK TO SHOP</Button>
+      <a href="/items">
+        <Button size="lg" variant="outline-dark">BACK TO SHOP</Button>
+      </a>
     </Modal.Body>
   </Modal>
 );

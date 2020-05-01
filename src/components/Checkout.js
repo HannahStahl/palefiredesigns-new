@@ -27,10 +27,6 @@ const Checkout = ({ items, bag, updateBag }) => {
     }
   }, [items, bag]);
 
-  const removeItem = () => {
-    // TODO
-  };
-
   const handleSubmit = async ({ token, error }) => {
     if (error) {
       alert(error);
@@ -38,15 +34,17 @@ const Checkout = ({ items, bag, updateBag }) => {
     }
     setIsLoading(true);
     try {
-      fetch(`${config.apiURL}/charge/${config.userID}`, {
+      fetch(`${config.etsyApiURL}/purchase`, {
         method: 'POST',
         body: JSON.stringify({
+          listingIds: bag,
           amount: total,
           description: config.businessName,
           source: token.id,
+          userId: config.userID,
         }),
       }).then((res) => res.json()).then((json) => {
-        if (json.error) {
+        if (!json[0] || json[0].error) {
           alert('Oops! An error occurred with our payment processing system. Please use the Contact form to send us a message, and we\'ll get it straightened out right away.');
           setIsLoading(false);
         } else {
