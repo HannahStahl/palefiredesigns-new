@@ -46,7 +46,7 @@ const App = withRouter(() => {
   };
 
   useEffect(() => {
-    fetch(`${config.etsyApiURL}/${config.listFunction}`).then((res) => res.json()).then((json) => {
+    fetch(`${config.etsyApiURL}/listings`).then((res) => res.json()).then((json) => {
       const newItems = json.results;
       newItems.forEach((item, index) => {
         if (!item.Images) newItems[index].Images = [{ url_fullxfull: 'placeholder.png' }];

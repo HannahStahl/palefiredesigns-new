@@ -34,7 +34,7 @@ const Checkout = ({ items, bag, updateBag }) => {
     }
     setIsLoading(true);
     try {
-      fetch(`${config.etsyApiURL}/${config.purchaseFunction}`, {
+      fetch(`${config.etsyApiURL}/purchase`, {
         method: 'POST',
         body: JSON.stringify({
           listingIds: bag,
