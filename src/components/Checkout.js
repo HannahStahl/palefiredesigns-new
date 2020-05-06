@@ -34,7 +34,7 @@ const Checkout = ({ items, bag, updateBag }) => {
     }
     setIsLoading(true);
     try {
-      fetch(`${config.etsyApiURL}/purchase`, {
+      fetch(`${config.etsyApiURL}/${config.purchaseFunction}`, {
         method: 'POST',
         body: JSON.stringify({
           listingIds: bag,
@@ -44,7 +44,7 @@ const Checkout = ({ items, bag, updateBag }) => {
           userId: config.userID,
         }),
       }).then((res) => res.json()).then((json) => {
-        if (!json[0] || json[0].error) {
+        if (!json.status) {
           alert('Oops! An error occurred with our payment processing system. Please use the Contact form to send us a message, and we\'ll get it straightened out right away.');
           setIsLoading(false);
         } else {
