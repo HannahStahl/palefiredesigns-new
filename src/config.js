@@ -14,8 +14,8 @@ const prod = {
   cloudfrontBaseURL: 'https://d1esxin5o90ebg.cloudfront.net',
   emailURL: 'https://aiikn63n03.execute-api.us-east-1.amazonaws.com/prod/email/send',
   emailAddress: 'dale.feuer@gmail.com',
-  userID: 'client-user-id', // TODO
-  stripeKey: 'client-prod-stripe-key', // TODO
+  userID: 'us-east-1:e51b2b71-8b21-46c0-a302-6f3b84783041', // TODO change to user ID you create for Mom
+  stripeKey: 'pk_live_I9Ef3jCoWQ6uj7bodYY5GyFw', // TODO change to public key of Stripe account you create for Mom
 };
 
 // Default to dev if not set
