@@ -59,10 +59,10 @@ const Checkout = ({ items, bag, updateBag }) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               name,
-              email,
-              sourceEmail: config.emailAddress,
-              siteDomain: window.location.origin,
               html,
+              userEmail: email,
+              clientEmail: config.emailAddress,
+              siteDomain: window.location.origin,
               orderNotification: true,
             }),
           }).then((response) => response.json()).then(() => {
