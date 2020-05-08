@@ -44,6 +44,7 @@ const Checkout = ({ items, bag, updateBag }) => {
           description: config.businessName,
           source: token.id,
           userId: config.userID,
+          email,
         }),
       }).then((res) => res.json()).then((json) => {
         if (!json.status) {
