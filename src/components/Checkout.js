@@ -52,7 +52,7 @@ const Checkout = ({ items, bag, updateBag }) => {
           setIsLoading(false);
         } else {
           const html = constructOrderNotificationHtml(
-            items, name, total, address, city, state, zip,
+            bag.map((item) => getItemDetails(items, item)), name, total, address, city, state, zip,
           );
           fetch(config.emailURL, {
             method: 'POST',
