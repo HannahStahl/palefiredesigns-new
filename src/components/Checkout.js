@@ -16,18 +16,21 @@ const Checkout = ({ items, bag, updateBag }) => {
     setStripe(window.Stripe(config.stripeKey));
   }, []);
 
+  const getItemDetails = (item) => items.find((itemInList) => itemInList.listing_id === item);
+
   useEffect(() => {
     if (items.length > 0 && bag.length > 0) {
       let runningTotal = 0;
       bag.forEach((item) => {
-        const itemDetails = items.find((itemInList) => itemInList.listing_id === item);
-        runningTotal += parseFloat(itemDetails.price);
+        runningTotal += parseFloat(getItemDetails(item).price);
       });
       setTotal(runningTotal);
     }
   }, [items, bag]);
 
-  const handleSubmit = async ({ token, error }) => {
+  const handleSubmit = async ({
+    token, error, name, email, address, city, state, zip,
+  }) => {
     if (error) {
       alert(error);
       return;
@@ -48,9 +51,81 @@ const Checkout = ({ items, bag, updateBag }) => {
           alert('Oops! An error occurred with our payment processing system. Please use the Contact form to send us a message, and we\'ll get it straightened out right away.');
           setIsLoading(false);
         } else {
-          updateBag([]);
-          setIsLoading(false);
-          setShowSuccessModal(true);
+          let itemsTable = '';
+          items.forEach((item) => {
+            itemsTable += `
+              <tr>
+                <td>
+                  <a href="https://etsy.com/your/shops/${config.etsyShopName}/tools/listings/state:inactive/${item.listing_id}">
+                    <img src="${item.Images[0].url_fullxfull}" width="200" />
+                  </a>
+                </td>
+                <td>$${item.price}</td>
+              </tr>
+            `;
+          });
+          const html = `
+            <html>
+              <head>
+                <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet" />
+                <style>
+                  * {
+                    font-family: 'Rubik', sans-serif;
+                  }
+                  h2 {
+                    font-weight: normal;
+                    letter-spacing: 1.6px;
+                  }
+                  p {
+                    font-size: 16px;
+                    letter-spacing: 1.1px;
+                  }
+                  .items-table td {
+                    padding: 20px;
+                    border: solid 1px rgb(206, 212, 218);
+                  }
+                  .note {
+                    font-size: 14px;
+                  }
+                  .address {
+                    margin: 0px;
+                  }
+                </style>
+              </head>
+              <body>
+                <h2>You have a new order from <b>${name}</b>!</h2>
+                <table class="items-table">
+                  <thead><tr>
+                    <td><b>ITEM</b></td>
+                    <td><b>PRICE</b></td>
+                  </tr></thead>
+                  <tbody>${itemsTable}</tbody>
+                </table>
+                <p><b>TOTAL AMOUNT PAID:</b> $${total.toFixed(2)}</p>
+                <p class="address"><b>SHIP TO:</b></p>
+                <p class="address">${name}</p>
+                <p class="address">${address}</p>
+                <p class="address">${city}, ${state} ${zip}</p>
+                <p class="note"><i>To get in touch with ${name}, simply reply to this email.</i></p>
+              </body>
+            </html>
+          `;
+          fetch(config.emailURL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name,
+              email,
+              sourceEmail: config.emailAddress,
+              siteDomain: window.location.origin,
+              html,
+              orderNotification: true,
+            }),
+          }).then((response) => response.json()).then(() => {
+            updateBag([]);
+            setIsLoading(false);
+            setShowSuccessModal(true);
+          });
         }
       });
     } catch (e) {
@@ -66,7 +141,7 @@ const Checkout = ({ items, bag, updateBag }) => {
         bag.length > 0 ? (
           <div>
             <Items
-              items={bag.map((item) => items.find((itemInList) => itemInList.listing_id === item))}
+              items={bag.map(getItemDetails)}
               bag={bag}
               updateBag={updateBag}
             />
