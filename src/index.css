@@ -371,7 +371,7 @@ h1 {
   justify-content: center;
 }
 
-.shopping-bag-details {
+.shopping-bag-details.collapsed {
   max-width: 400px;
 }
 

@@ -32,7 +32,7 @@ const Checkout = ({ items, bag, updateBag }) => {
   const showCheckoutForm = () => {
     setCheckoutFormVisible(true);
     const { offsetTop } = document.getElementById('checkout');
-    setTimeout(() => window.scrollTo(0, offsetTop), 100);
+    setTimeout(() => window.scrollTo(0, offsetTop - 40), 100);
   };
 
   const handleSubmit = async ({
@@ -111,7 +111,7 @@ const Checkout = ({ items, bag, updateBag }) => {
       {items.length > 0 && (
         bag.length > 0 ? (
           <div className="checkout-container">
-            <div className="shopping-bag-details">
+            <div className={`shopping-bag-details${checkoutFormVisible ? ' collapsed' : ''}`}>
               <Items
                 items={bag.map((item) => getItemDetails(items, item))}
                 bag={bag}
