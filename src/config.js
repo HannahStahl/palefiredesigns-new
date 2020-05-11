@@ -27,6 +27,6 @@ export default {
   // Add common config values here
   cloudfrontURL: `${config.cloudfrontBaseURL}/${config.userID}`,
   publicCloudfrontURL: 'https://d17jmxltsx3ffm.cloudfront.net',
-  businessName: 'Pale Fire Designs',
+  businessName: 'Dale Feuer Jewelry',
   ...config,
 };
