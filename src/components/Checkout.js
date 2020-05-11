@@ -4,7 +4,7 @@ import config from '../config';
 import CheckoutForm from './CheckoutForm';
 import CheckoutSuccess from './CheckoutSuccess';
 import Items from './Items';
-import { constructOrderNotificationHtml, getItemDetails } from '../utils';
+import { constructOrderNotificationHtml, constructOrderConfirmationHtml, getItemDetails } from '../utils';
 
 
 const Checkout = ({ items, bag, updateBag }) => {
@@ -51,21 +51,40 @@ const Checkout = ({ items, bag, updateBag }) => {
           alert('Oops! An error occurred with our payment processing system. Please use the Contact form to send us a message, and we\'ll get it straightened out right away.');
           setIsLoading(false);
         } else {
-          const html = constructOrderNotificationHtml(
-            bag.map((item) => getItemDetails(items, item)), name, total, address, city, state, zip,
-          );
-          fetch(config.emailURL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              name,
-              html,
-              userEmail: email,
-              clientEmail: config.emailAddress,
-              siteDomain: window.location.origin,
-              orderNotification: true,
+          const emailsToSend = [
+            fetch(config.emailURL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name,
+                html: constructOrderNotificationHtml(
+                  bag.map((item) => getItemDetails(items, item)),
+                  name, total, address, city, state, zip,
+                ),
+                userEmail: email,
+                clientEmail: config.emailAddress,
+                siteDomain: window.location.origin,
+                orderNotification: true,
+              }),
             }),
-          }).then((response) => response.json()).then(() => {
+            fetch(config.emailURL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name,
+                html: constructOrderConfirmationHtml(
+                  bag.map((item) => getItemDetails(items, item)),
+                  name, total, address, city, state, zip,
+                ),
+                userEmail: email,
+                clientEmail: config.emailAddress,
+                siteDomain: window.location.origin,
+                orderConfirmation: true,
+                businessName: config.businessName,
+              }),
+            }),
+          ];
+          Promise.all(emailsToSend).then(() => {
             updateBag([]);
             setIsLoading(false);
             setShowSuccessModal(true);
