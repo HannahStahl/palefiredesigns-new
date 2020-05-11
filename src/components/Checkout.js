@@ -108,23 +108,30 @@ const Checkout = ({ items, bag, updateBag }) => {
       <h1>SHOPPING BAG</h1>
       {items.length > 0 && (
         bag.length > 0 ? (
-          <div>
-            <Items
-              items={bag.map((item) => getItemDetails(items, item))}
-              bag={bag}
-              updateBag={updateBag}
-            />
-            <h4 className="bag-total">
-              <span>TOTAL:</span>
-              <span>{`$${total.toFixed(2)}`}</span>
-            </h4>
-            <p>
-              Free standard shipping with USPS.
-              Please allow 1-2 days of processing time prior to shipping.
-            </p>
-            <Button size="lg" variant="outline-dark" onClick={showCheckoutForm} className="checkout-button">
-              CHECK OUT
-            </Button>
+          <div className="checkout-container">
+            <div className="shopping-bag-details">
+              <Items
+                items={bag.map((item) => getItemDetails(items, item))}
+                bag={bag}
+                updateBag={updateBag}
+              />
+              <h4 className="bag-total">
+                <span>TOTAL:</span>
+                <span>{`$${total.toFixed(2)}`}</span>
+              </h4>
+              <p>
+                Free standard shipping with USPS.
+                Please allow 1-2 days of processing time prior to shipping.
+              </p>
+              <Button
+                size="lg"
+                variant="outline-dark"
+                onClick={showCheckoutForm}
+                className={`checkout-button${checkoutFormVisible ? ' hidden' : ''}`}
+              >
+                CHECK OUT
+              </Button>
+            </div>
             <div className={`checkout-form-container${checkoutFormVisible ? '' : ' hidden'}`}>
               <StripeProvider stripe={stripe}>
                 <Elements

@@ -80,7 +80,7 @@ h1 {
 .page-content {
   position: relative;
   margin-top: 60px;
-  padding: 5% 10% 7% 10%;
+  padding: 5% 8% 7% 8%;
   min-height: calc(100% - 60px);
   margin-bottom: -80px;
 }
@@ -365,6 +365,16 @@ h1 {
   stroke: rgba(0, 0, 0, 0.9);
 }
 
+.checkout-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.shopping-bag-details {
+  max-width: 400px;
+}
+
 .bag-number-container {
   position: absolute;
   width: 100%;
@@ -437,8 +447,12 @@ h1 {
   margin-top: 10px;
 }
 
+.checkout-button.hidden {
+  display: none;
+}
+
 .checkout-form-container {
-  padding-top: 30px;
+  padding-top: 20px;
 }
 
 .checkout-form-container.hidden {
