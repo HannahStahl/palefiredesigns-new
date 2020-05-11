@@ -146,7 +146,7 @@ const QuickView = ({
       <div className="quickview" id="quickview">
         <div className="quickview-img-container" id="quickview-img-container">
           {selected === undefined ? <></> : (
-            <Carousel activeIndex={imgIndex} onSelect={setImgIndex} interval={false}>
+            <Carousel activeIndex={imgIndex} onSelect={setImgIndex} interval={false} slide={false}>
               {item.Images.map((image) => (
                 <Carousel.Item key={image.listing_image_id}>
                   <img
