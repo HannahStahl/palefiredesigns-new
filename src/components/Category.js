@@ -36,11 +36,7 @@ const Category = ({
           <h1>{getCategoryNickname().toUpperCase()}</h1>
         </div>
       </div>
-      <Items
-        items={filteredItems}
-        bag={bag}
-        updateBag={updateBag}
-      />
+      <Items items={filteredItems} bag={bag} updateBag={updateBag} />
     </>
   );
 };

@@ -10,6 +10,7 @@ import Home from './components/Home';
 import About from './components/About';
 import Items from './components/Items';
 import Category from './components/Category';
+import Collection from './components/Collection';
 import Contact from './components/Contact';
 import Checkout from './components/Checkout';
 import NotFound from './components/NotFound';
@@ -27,6 +28,13 @@ const Routes = ({ items, bag, updateBag }) => (
       exact
       render={(props) => (
         <Category items={items} bag={bag} updateBag={updateBag} match={props.match} />
+      )}
+    />
+    <Route
+      path="/collections/:collectionName"
+      exact
+      render={(props) => (
+        <Collection items={items} bag={bag} updateBag={updateBag} match={props.match} />
       )}
     />
     <Route path="/contact" exact component={Contact} />
