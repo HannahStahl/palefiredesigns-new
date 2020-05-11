@@ -4,7 +4,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import Masonry from 'react-masonry-component';
 
 const QuickView = ({
-  items, selected, setSelected, bag, updateBag,
+  items, selected, setSelected, bag, updateBag, closeOnRemove,
 }) => {
   const item = items[selected];
   const [imgIndex, setImgIndex] = useState(0);
@@ -58,8 +58,12 @@ const QuickView = ({
     const { listing_id } = item; // eslint-disable-line camelcase
     const newBagItem = listing_id; // eslint-disable-line camelcase
     const index = bag.findIndex((itemInList) => itemInList === newBagItem);
-    if (index > -1) bag.splice(index, 1);
-    else bag.push(newBagItem);
+    let removingItem = false;
+    if (index > -1) {
+      removingItem = true;
+      bag.splice(index, 1);
+    } else bag.push(newBagItem);
+    if (removingItem && closeOnRemove) exitQuickview();
     updateBag(bag);
   };
 

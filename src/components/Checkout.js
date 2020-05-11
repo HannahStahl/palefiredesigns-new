@@ -116,6 +116,7 @@ const Checkout = ({ items, bag, updateBag }) => {
                 items={bag.map((item) => getItemDetails(items, item))}
                 bag={bag}
                 updateBag={updateBag}
+                closeOnRemove
               />
               <h4 className="bag-total">
                 <span>TOTAL:</span>

@@ -4,7 +4,7 @@ import Masonry from 'react-masonry-component';
 import QuickView from './QuickView';
 
 const Items = ({
-  items, bag, updateBag, header,
+  items, bag, updateBag, header, closeOnRemove,
 }) => {
   const [selected, setSelected] = useState(undefined);
 
@@ -18,6 +18,7 @@ const Items = ({
           setSelected={setSelected}
           bag={bag}
           updateBag={updateBag}
+          closeOnRemove={closeOnRemove}
         />
         <Masonry className="masonry-layout" options={{ isFitWidth: true }}>
           {items.map((item, index) => (
