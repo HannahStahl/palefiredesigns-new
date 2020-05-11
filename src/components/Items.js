@@ -4,13 +4,12 @@ import Masonry from 'react-masonry-component';
 import QuickView from './QuickView';
 
 const Items = ({
-  items, bag, updateBag, header, closeOnRemove,
+  items, bag, updateBag, closeOnRemove,
 }) => {
   const [selected, setSelected] = useState(undefined);
 
   return (
     <div>
-      {header && <h1>{header}</h1>}
       <div>
         <QuickView
           items={items}

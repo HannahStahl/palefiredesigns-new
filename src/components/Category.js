@@ -22,13 +22,26 @@ const Category = ({
     }
   }, [match, items]);
 
+  const getCategoryNickname = () => {
+    if (categoryName === 'Necklaces') return 'Collar Me Beautiful';
+    if (categoryName === 'Bracelets') return 'Wrist Action';
+    if (categoryName === 'Earrings') return 'Lobe Trotters';
+    return '';
+  };
+
   return (
-    <Items
-      items={filteredItems}
-      bag={bag}
-      updateBag={updateBag}
-      header={categoryName.toUpperCase()}
-    />
+    <>
+      <div className="category-banner">
+        <div className="category-name">
+          <h1>{getCategoryNickname().toUpperCase()}</h1>
+        </div>
+      </div>
+      <Items
+        items={filteredItems}
+        bag={bag}
+        updateBag={updateBag}
+      />
+    </>
   );
 };
 
