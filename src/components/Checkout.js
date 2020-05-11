@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Elements, StripeProvider } from 'react-stripe-elements';
+import Button from 'react-bootstrap/Button';
 import config from '../config';
 import CheckoutForm from './CheckoutForm';
 import CheckoutSuccess from './CheckoutSuccess';
@@ -12,6 +13,7 @@ const Checkout = ({ items, bag, updateBag }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [total, setTotal] = useState(0);
+  const [checkoutFormVisible, setCheckoutFormVisible] = useState(false);
 
   useEffect(() => {
     setStripe(window.Stripe(config.stripeKey));
@@ -26,6 +28,10 @@ const Checkout = ({ items, bag, updateBag }) => {
       setTotal(runningTotal);
     }
   }, [items, bag]);
+
+  const showCheckoutForm = () => {
+    setCheckoutFormVisible(true);
+  };
 
   const handleSubmit = async ({
     token, error, name, email, address, city, state, zip,
@@ -116,7 +122,10 @@ const Checkout = ({ items, bag, updateBag }) => {
               Free standard shipping with USPS.
               Please allow 1-2 days of processing time prior to shipping.
             </p>
-            <div className="checkout-form-container">
+            <Button size="lg" variant="outline-dark" onClick={showCheckoutForm} className="checkout-button">
+              CHECK OUT
+            </Button>
+            <div className={`checkout-form-container${checkoutFormVisible ? '' : ' hidden'}`}>
               <StripeProvider stripe={stripe}>
                 <Elements
                   fonts={[{

@@ -381,6 +381,7 @@ h1 {
 
 .bag-total {
   margin-top: 60px;
+  margin-bottom: 20px;
 }
 
 .bag-total span:first-of-type {
@@ -432,8 +433,16 @@ h1 {
   line-height: 1.3333333;
 }
 
+.checkout-button {
+  margin-top: 10px;
+}
+
 .checkout-form-container {
   padding-top: 30px;
+}
+
+.checkout-form-container.hidden {
+  display: none;
 }
 
 .checkout-form .card-field.StripeElement--focus {
@@ -547,8 +556,17 @@ h1 {
   }
 
   .page-content {
+    padding-top: 10%;
     padding-left: 5%;
     padding-right: 5%;
+  }
+
+  h1 {
+    margin-bottom: 35px;
+  }
+
+  .bag-total {
+    margin-top: 40px;
   }
 }
 
