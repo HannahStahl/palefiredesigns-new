@@ -52,6 +52,7 @@ const CheckoutForm = ({ isLoading, onSubmit, ...props }) => {
     <form className="checkout-form" onSubmit={handleSubmitClick}>
       <FormGroup size="lg" controlId="name">
         <FormControl
+          autoFocus
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}

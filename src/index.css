@@ -390,7 +390,7 @@ h1 {
 }
 
 .bag-total {
-  margin-top: 60px;
+  margin-top: 30px;
   margin-bottom: 20px;
 }
 
@@ -456,7 +456,14 @@ h1 {
 }
 
 .checkout-form-container.hidden {
-  display: none;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+.checkout-form-container.visible {
+  width: auto;
+  height: auto;
 }
 
 .checkout-form .card-field.StripeElement--focus {
@@ -577,10 +584,6 @@ h1 {
 
   h1 {
     margin-bottom: 35px;
-  }
-
-  .bag-total {
-    margin-top: 40px;
   }
 }
 

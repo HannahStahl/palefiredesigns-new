@@ -31,6 +31,8 @@ const Checkout = ({ items, bag, updateBag }) => {
 
   const showCheckoutForm = () => {
     setCheckoutFormVisible(true);
+    const { offsetTop } = document.getElementById('checkout');
+    setTimeout(() => window.scrollTo(0, offsetTop), 100);
   };
 
   const handleSubmit = async ({
@@ -132,7 +134,7 @@ const Checkout = ({ items, bag, updateBag }) => {
                 CHECK OUT
               </Button>
             </div>
-            <div className={`checkout-form-container${checkoutFormVisible ? '' : ' hidden'}`}>
+            <div id="checkout" className={`checkout-form-container ${checkoutFormVisible ? 'visible' : 'hidden'}`}>
               <StripeProvider stripe={stripe}>
                 <Elements
                   fonts={[{
