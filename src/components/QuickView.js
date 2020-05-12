@@ -120,6 +120,11 @@ const QuickView = ({
         width: ${quickviewWidth}px;
       }
     }
+    .quickview {
+      top: ${imgTop}px;
+      left: ${imgLeft}px;
+      max-height: ${imgHeight}px;
+    }
     .quickview.expanded {
       width: ${quickviewWidth}px;
       margin: 10vh ${quickviewMargin}px 10vh ${quickviewMargin}px;

@@ -157,17 +157,20 @@ h1 {
   flex-wrap: wrap;
   border-radius: 4px;
   flex-wrap: wrap;
+  overflow: hidden;
+  width: 302px;
+  margin: 0;
 }
 
 .quickview.expanded {
   display: flex;
+  overflow-y: auto;
   animation-name: expandQuickview;
   animation-duration: 900ms;
   animation-timing-function: ease-in-out;
   top: 0;
   left: 0;
   max-height: 80vh;
-  overflow-y: auto;
 }
 
 .quickview .carousel {
@@ -290,6 +293,7 @@ h1 {
 
 .item-price {
   margin-right: 15px;
+  margin-bottom: 0px;
 }
 
 .masonry-layout {
