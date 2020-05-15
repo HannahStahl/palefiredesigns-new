@@ -176,7 +176,7 @@ const QuickView = ({
               className="masonry-layout thumbnails"
               options={{ isFitWidth: true }}
               onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
-              onImagesLoaded={(images) => setImagesLoaded(images.images.length > 0)}
+              onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
             >
               {selected === undefined ? <></> : item.Images.map((image, index) => (
                 <div key={image.listing_image_id} className="thumbnail">

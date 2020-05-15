@@ -27,8 +27,8 @@ const Items = ({
         <Masonry
           className={`masonry-layout ${showItems ? 'visible' : 'hidden'}`}
           options={{ isFitWidth: true }}
-          onLayoutComplete={(layout) => setLayoutComplete(layout.length > 0)}
-          onImagesLoaded={(images) => setImagesLoaded(images.images.length > 0)}
+          onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
+          onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
         >
           {items.map((item, index) => (
             <div key={item.listing_id} className="item" onClick={() => setSelected(index)}>
