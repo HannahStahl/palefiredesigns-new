@@ -11,6 +11,10 @@ const QuickView = ({
   const [imgTop, setImgTop] = useState(undefined);
   const [imgLeft, setImgLeft] = useState(undefined);
   const [imgHeight, setImgHeight] = useState(undefined);
+  const [animationComplete, setAnimationComplete] = useState(false);
+  const [layoutComplete, setLayoutComplete] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const showThumbnails = layoutComplete && imagesLoaded;
 
   useEffect(() => {
     if (selected !== undefined) {
@@ -24,14 +28,15 @@ const QuickView = ({
       quickview.classList.add('expanded');
       const quickviewImgContainer = document.getElementById('quickview-img-container');
       quickviewImgContainer.classList.add('expanded');
-      const thumbnails = document.getElementById('thumbnails');
-      thumbnails.classList.add('visible');
       const details = document.getElementById('quickview-details');
       details.classList.add('visible');
       const overlay = document.getElementById('background-overlay');
       overlay.classList.add('visible');
       document.body.style.height = '100vh';
       document.body.style.overflow = 'hidden';
+      setTimeout(() => {
+        setAnimationComplete(true);
+      }, 1200);
     }
   }, [selected]);
 
@@ -43,8 +48,6 @@ const QuickView = ({
     quickview.classList.remove('expanded');
     const quickviewImgContainer = document.getElementById('quickview-img-container');
     quickviewImgContainer.classList.remove('expanded');
-    const thumbnails = document.getElementById('thumbnails');
-    thumbnails.classList.remove('visible');
     const details = document.getElementById('quickview-details');
     details.classList.remove('visible');
     const overlay = document.getElementById('background-overlay');
@@ -52,6 +55,9 @@ const QuickView = ({
     document.body.style.height = 'auto';
     document.body.style.overflow = 'auto';
     setImgIndex(0);
+    setAnimationComplete(false);
+    setImagesLoaded(false);
+    setLayoutComplete(false);
   };
 
   const addOrRemoveFromBag = () => {
@@ -164,21 +170,30 @@ const QuickView = ({
             </Carousel>
           )}
         </div>
-        <div className="thumbnails-container">
-          <Masonry className="masonry-layout thumbnails" id="thumbnails" options={{ isFitWidth: true }}>
-            {selected === undefined ? <></> : item.Images.map((image, index) => (
-              <div key={image.listing_image_id} className="thumbnail">
-                <img
-                  src={image.url_fullxfull}
-                  alt={item.title}
-                  className="thumbnail-img"
-                  id={`thumbnail-${index}`}
-                  onClick={() => setImgIndex(index)}
-                />
-              </div>
-            ))}
-          </Masonry>
-        </div>
+        {animationComplete ? (
+          <div className={`thumbnails-container ${showThumbnails ? 'visible' : 'hidden'}`}>
+            <Masonry
+              className="masonry-layout thumbnails"
+              options={{ isFitWidth: true }}
+              onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
+              onImagesLoaded={(images) => setImagesLoaded(images.images.length > 0)}
+            >
+              {selected === undefined ? <></> : item.Images.map((image, index) => (
+                <div key={image.listing_image_id} className="thumbnail">
+                  <img
+                    src={image.url_fullxfull}
+                    alt={item.title}
+                    className="thumbnail-img"
+                    id={`thumbnail-${index}`}
+                    onClick={() => setImgIndex(index)}
+                  />
+                </div>
+              ))}
+            </Masonry>
+          </div>
+        ) : (
+          <div className="thumbnails-placeholder" />
+        )}
         <div className="item-details-container">
           <div className="item-details" id="quickview-details">
             {selected === undefined ? <></> : (

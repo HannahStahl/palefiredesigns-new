@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Masonry from 'react-masonry-component';
 import QuickView from './QuickView';
+import Loading from './Loading';
 
 const Items = ({
   items, bag, updateBag, closeOnRemove,
 }) => {
   const [selected, setSelected] = useState(undefined);
+  const [layoutComplete, setLayoutComplete] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+  const showItems = layoutComplete && imagesLoaded;
 
   return (
     <div>
@@ -19,7 +23,13 @@ const Items = ({
           updateBag={updateBag}
           closeOnRemove={closeOnRemove}
         />
-        <Masonry className="masonry-layout" options={{ isFitWidth: true }}>
+        {!showItems && <Loading />}
+        <Masonry
+          className={`masonry-layout ${showItems ? 'visible' : 'hidden'}`}
+          options={{ isFitWidth: true }}
+          onLayoutComplete={(layout) => setLayoutComplete(layout.length > 0)}
+          onImagesLoaded={(images) => setImagesLoaded(images.images.length > 0)}
+        >
           {items.map((item, index) => (
             <div key={item.listing_id} className="item" onClick={() => setSelected(index)}>
               <img
