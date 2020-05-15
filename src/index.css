@@ -190,9 +190,44 @@ h1 {
   border-radius: 4px;
 }
 
+.quickview .carousel .carousel-inner {
+  border-radius: 4px;
+}
+
+.quickview .hidden-carousel {
+  visibility: hidden;
+}
+
+.quickview .zoomed-carousel {
+  width: auto;
+  max-width: 80vw;
+  max-height: 80vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 13;
+}
+
+.zoomed-carousel-background {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  z-index: 12;
+}
+
 .quickview-img {
   border-radius: 4px;
   width: 300px;
+}
+
+.zoomed-carousel .quickview-img {
+  width: auto;
+  max-width: 80vw;
+  max-height: 80vh;
 }
 
 @keyframes expandQuickviewImg {
@@ -361,7 +396,7 @@ h1 {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  margin-right: 3px;
+  margin-right: 4px;
   background:rgba(0, 0, 0, 0.5);
   animation: wave 1.3s linear infinite;
 }
@@ -743,7 +778,15 @@ h1 {
     cursor: pointer;
   }
 
+  .quickview-img.zoomable:hover {
+    cursor: zoom-in;
+  }
+
   .exit-quickview:hover {
     cursor: pointer;
+  }
+
+  .zoomed-carousel-background:hover {
+    cursor: zoom-out;
   }
 }

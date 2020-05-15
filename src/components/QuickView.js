@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Button from 'react-bootstrap/Button';
-import Carousel from 'react-bootstrap/Carousel';
-import Masonry from 'react-masonry-component';
+import QuickViewCarousel from './QuickViewCarousel';
+import QuickViewThumbnails from './QuickViewThumbnails';
+import QuickViewDetails from './QuickViewDetails';
 
 const QuickView = ({
   items, selected, setSelected, bag, updateBag, closeOnRemove,
@@ -59,33 +59,6 @@ const QuickView = ({
     setImagesLoaded(false);
     setLayoutComplete(false);
   };
-
-  const addOrRemoveFromBag = () => {
-    const { listing_id } = item; // eslint-disable-line camelcase
-    const newBagItem = listing_id; // eslint-disable-line camelcase
-    const index = bag.findIndex((itemInList) => itemInList === newBagItem);
-    let removingItem = false;
-    if (index > -1) {
-      removingItem = true;
-      bag.splice(index, 1);
-    } else bag.push(newBagItem);
-    if (removingItem && closeOnRemove) exitQuickview();
-    updateBag(bag);
-  };
-
-  const getButtonText = () => {
-    if (!item) return '';
-    const index = bag.findIndex((itemInList) => itemInList === item.listing_id);
-    return index > -1 ? 'REMOVE FROM BAG' : 'ADD TO BAG';
-  };
-
-  const getDimensions = (unit) => {
-    if (unit === 'in') return '"';
-    if (unit === 'ft') return "'";
-    return unit;
-  };
-
-  const units = selected !== undefined && getDimensions(item.item_dimensions_unit);
 
   let mobileStyling = false;
   let quickviewWidth = 897;
@@ -157,73 +130,35 @@ const QuickView = ({
       <div className="quickview" id="quickview">
         <div className="quickview-img-container" id="quickview-img-container">
           {selected === undefined ? <></> : (
-            <Carousel activeIndex={imgIndex} onSelect={setImgIndex} interval={false} slide={false}>
-              {item.Images.map((image) => (
-                <Carousel.Item key={image.listing_image_id}>
-                  <img
-                    src={selected === undefined ? undefined : image.url_fullxfull}
-                    alt={selected === undefined ? '' : item.title}
-                    className="quickview-img"
-                  />
-                </Carousel.Item>
-              ))}
-            </Carousel>
+            <QuickViewCarousel
+              imgIndex={imgIndex}
+              setImgIndex={setImgIndex}
+              item={item}
+              selected={selected}
+              mobileStyling={mobileStyling}
+            />
           )}
         </div>
         {animationComplete ? (
-          <div className={`thumbnails-container ${showThumbnails ? 'visible' : 'hidden'}`}>
-            <Masonry
-              className="masonry-layout thumbnails"
-              options={{ isFitWidth: true }}
-              onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
-              onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
-            >
-              {selected === undefined ? <></> : item.Images.map((image, index) => (
-                <div key={image.listing_image_id} className="thumbnail">
-                  <img
-                    src={image.url_fullxfull}
-                    alt={item.title}
-                    className="thumbnail-img"
-                    id={`thumbnail-${index}`}
-                    onClick={() => setImgIndex(index)}
-                  />
-                </div>
-              ))}
-            </Masonry>
-          </div>
+          <QuickViewThumbnails
+            showThumbnails={showThumbnails}
+            selected={selected}
+            setLayoutComplete={setLayoutComplete}
+            setImagesLoaded={setImagesLoaded}
+            item={item}
+            setImgIndex={setImgIndex}
+          />
         ) : (
           <div className="thumbnails-placeholder" />
         )}
-        <div className="item-details-container">
-          <div className="item-details" id="quickview-details">
-            {selected === undefined ? <></> : (
-              <>
-                <div className="item-price-container">
-                  <h3 className="item-price">{`$${item.price}`}</h3>
-                  <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag}>
-                    {getButtonText()}
-                  </Button>
-                </div>
-                {(item.item_length || item.item_width) && (
-                  <div className="item-dimensions">
-                    <img src="/dimensions.svg" alt="Dimensions" className="item-details-icon" />
-                    <p>
-                      {item.item_length ? `${item.item_length}${units} long` : ''}
-                      {(item.item_length && item.item_width) ? ', ' : ''}
-                      {item.item_width ? `${item.item_width}${units} wide` : ''}
-                    </p>
-                  </div>
-                )}
-                {(item.materials && item.materials.length > 0) && (
-                  <div className="item-materials">
-                    <img src="/materials.svg" alt="Materials" className="item-details-icon" />
-                    <p>{item.materials.map((material, index) => `${index > 0 ? ', ' : ''}${material}`)}</p>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-        </div>
+        <QuickViewDetails
+          selected={selected}
+          bag={bag}
+          item={item}
+          closeOnRemove={closeOnRemove}
+          exitQuickview={exitQuickview}
+          updateBag={updateBag}
+        />
       </div>
       <div className="exit-quickview" onClick={exitQuickview}>
         <img src="/exit.svg" alt="Exit" />
