@@ -125,8 +125,11 @@ const QuickView = ({
   }
 
   return (
-    <div className="background-overlay" id="background-overlay">
+    <>
       <style>{style}</style>
+      <div className="background-overlay" id="background-overlay" onClick={exitQuickview}>
+        <div className="exit-quickview"><img src="/exit.svg" alt="Exit" /></div>
+      </div>
       <div className="quickview" id="quickview">
         <div className="quickview-img-container" id="quickview-img-container">
           {selected === undefined ? <></> : (
@@ -160,10 +163,7 @@ const QuickView = ({
           updateBag={updateBag}
         />
       </div>
-      <div className="exit-quickview" onClick={exitQuickview}>
-        <img src="/exit.svg" alt="Exit" />
-      </div>
-    </div>
+    </>
   );
 };
 

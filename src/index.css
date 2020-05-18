@@ -162,7 +162,7 @@ h1 {
 }
 
 .quickview {
-  position: absolute;
+  position: fixed;
   background-color: white;
   z-index: 11;
   display: none;
