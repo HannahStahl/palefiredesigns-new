@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
@@ -7,9 +8,9 @@ const CheckoutSuccess = ({ show, closeModal }) => (
     <Modal.Header closeButton />
     <Modal.Body>
       <p>Thanks for your order!</p>
-      <a href="/items">
+      <NavLink to="/items">
         <Button size="lg" variant="outline-dark">BACK TO SHOP</Button>
-      </a>
+      </NavLink>
     </Modal.Body>
   </Modal>
 );

@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import config from '../config';
 import CheckoutForm from './CheckoutForm';
 import CheckoutSuccess from './CheckoutSuccess';
-import Items from './Items';
+import ItemsList from './ItemsList';
 import { constructOrderNotificationHtml, constructOrderConfirmationHtml, getItemDetails } from '../utils';
 
 
@@ -106,13 +106,13 @@ const Checkout = ({ items, bag, updateBag }) => {
   };
 
   return (
-    <div>
+    <div className="page-content">
       <h1>SHOPPING BAG</h1>
       {items.length > 0 && (
         bag.length > 0 ? (
           <div className="checkout-container">
             <div className={`shopping-bag-details${checkoutFormVisible ? ' collapsed' : ''}`}>
-              <Items
+              <ItemsList
                 items={bag.map((item) => getItemDetails(items, item))}
                 bag={bag}
                 updateBag={updateBag}

@@ -44,7 +44,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="contact">
+    <div className="contact page-content">
       <h1>GET IN TOUCH</h1>
       <p>For custom order requests and other inquiries, please send me a note below.</p>
       <form onSubmit={handleSubmit}>

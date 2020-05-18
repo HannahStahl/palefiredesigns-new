@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -12,9 +13,9 @@ const Home = () => (
               <h1>Uncommon Jewelry</h1>
               <h1 className="tagline-line-2">for the Slightly Off-Center</h1>
             </div>
-            <a href="/items">
+            <NavLink to="/items">
               <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP</Button>
-            </a>
+            </NavLink>
           </div>
         </div>
       </Carousel.Item>
@@ -23,9 +24,9 @@ const Home = () => (
           <div className="home-section-text">
             <h1>Featured Collection:</h1>
             <h1>Luxe Cuffs</h1>
-            <a href="/collections/luxe-cuffs">
+            <NavLink to="/collections/luxe-cuffs">
               <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP THE COLLECTION</Button>
-            </a>
+            </NavLink>
           </div>
         </div>
       </Carousel.Item>
@@ -38,9 +39,9 @@ const Home = () => (
               Natural beauty, balanced asymmetry, the spirit of yin yang...these
               are a few of my favorite things.
             </p>
-            <a href="/about">
+            <NavLink to="/about">
               <Button size="lg" variant="outline-dark" className="home-page-btn">READ MORE</Button>
-            </a>
+            </NavLink>
           </div>
         </div>
       </Carousel.Item>
@@ -48,25 +49,25 @@ const Home = () => (
     <div className="home-section home-section-2 right-text">
       <div className="home-section-text">
         <h1>Collar Me Beautiful</h1>
-        <a href="/items/necklaces">
+        <NavLink to="/items/necklaces">
           <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP NECKLACES</Button>
-        </a>
+        </NavLink>
       </div>
     </div>
     <div className="home-section home-section-3 left-text">
       <div className="home-section-text">
         <h1>Wrist Action</h1>
-        <a href="/items/bracelets">
+        <NavLink to="/items/bracelets">
           <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP BRACELETS</Button>
-        </a>
+        </NavLink>
       </div>
     </div>
     <div className="home-section home-section-4 right-text">
       <div className="home-section-text">
         <h1>Lobe Trotters</h1>
-        <a href="/items/earrings">
+        <NavLink to="/items/earrings">
           <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP EARRINGS</Button>
-        </a>
+        </NavLink>
       </div>
     </div>
   </div>

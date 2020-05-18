@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Items from './Items';
+import ItemsList from './ItemsList';
 
 const Collection = ({
   items, sortBy, setSortBy, bag, updateBag, match,
@@ -20,20 +20,20 @@ const Collection = ({
   }, [match, items]);
 
   return (
-    <>
+    <div className="page-content">
       <div className="category-banner">
         <div className="category-name">
           <h1>{collectionName.toUpperCase()}</h1>
         </div>
       </div>
-      <Items
+      <ItemsList
         items={filteredItems}
         sortBy={sortBy}
         setSortBy={setSortBy}
         bag={bag}
         updateBag={updateBag}
       />
-    </>
+    </div>
   );
 };
 

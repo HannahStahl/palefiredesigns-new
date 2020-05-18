@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Items from './Items';
+import ItemsList from './ItemsList';
 
 const Category = ({
   items, sortBy, setSortBy, bag, updateBag, match,
@@ -8,17 +8,19 @@ const Category = ({
   const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
-    const thisCategoryName = match.params.categoryName;
-    const capitalizedCategoryName = (
-      thisCategoryName.charAt(0).toUpperCase() + thisCategoryName.slice(1)
-    );
-    if (!['Necklaces', 'Bracelets', 'Earrings'].includes(capitalizedCategoryName)) {
-      window.location.pathname = '/items';
-    } else {
-      setCategoryName(capitalizedCategoryName);
-      setFilteredItems(items.filter((item) => (
-        item.taxonomy_path && item.taxonomy_path[1] === capitalizedCategoryName
-      )));
+    if (match) {
+      const thisCategoryName = match.params.categoryName;
+      const capitalizedCategoryName = (
+        thisCategoryName.charAt(0).toUpperCase() + thisCategoryName.slice(1)
+      );
+      if (!['Necklaces', 'Bracelets', 'Earrings'].includes(capitalizedCategoryName)) {
+        window.location.pathname = '/items';
+      } else {
+        setCategoryName(capitalizedCategoryName);
+        setFilteredItems(items.filter((item) => (
+          item.taxonomy_path && item.taxonomy_path[1] === capitalizedCategoryName
+        )));
+      }
     }
   }, [match, items]);
 
@@ -30,20 +32,20 @@ const Category = ({
   };
 
   return (
-    <>
+    <div className="page-content">
       <div className="category-banner">
         <div className="category-name">
           <h1>{getCategoryNickname().toUpperCase()}</h1>
         </div>
       </div>
-      <Items
+      <ItemsList
         items={filteredItems}
         bag={bag}
         updateBag={updateBag}
         sortBy={sortBy}
         setSortBy={setSortBy}
       />
-    </>
+    </div>
   );
 };
 

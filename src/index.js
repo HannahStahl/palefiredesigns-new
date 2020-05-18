@@ -42,20 +42,18 @@ const App = withRouter(() => {
     } else if (sortBy === 'Most expensive') {
       setSortedItems([...items].sort((a, b) => parseFloat(b.price) - parseFloat(a.price)));
     }
-  }, [sortBy]);
+  }, [sortBy, items]);
 
   return (
     <>
       <NavBar bag={bag} />
-      <div className={window.location.pathname === '/' ? '' : 'page-content'}>
-        <Routes
-          items={sortedItems}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          bag={bag}
-          updateBag={updateBag}
-        />
-      </div>
+      <Routes
+        items={sortedItems}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        bag={bag}
+        updateBag={updateBag}
+      />
       <Footer />
     </>
   );
