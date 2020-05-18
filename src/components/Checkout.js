@@ -122,10 +122,8 @@ const Checkout = ({ items, bag, updateBag }) => {
                 <span>TOTAL:</span>
                 <span>{`$${total.toFixed(2)}`}</span>
               </h4>
-              <p className="shipping-note">
-                Free standard shipping with USPS.
-                Please allow 1-2 days of processing time prior to shipping.
-              </p>
+              <p className="shipping-note">Free standard shipping with USPS.</p>
+              <p>Please allow 1-2 days of processing time prior to shipping.</p>
               <Button
                 size="lg"
                 variant="outline-dark"

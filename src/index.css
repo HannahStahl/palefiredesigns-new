@@ -536,7 +536,12 @@ h1 {
   justify-content: center;
 }
 
+.shopping-bag-details {
+  min-width: 100%;
+}
+
 .shopping-bag-details.collapsed {
+  min-width: 0px;
   max-width: 400px;
   flex-grow: 1;
 }
@@ -565,9 +570,7 @@ h1 {
 }
 
 .shipping-note {
-  max-width: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: 0px;
 }
 
 .bio {
