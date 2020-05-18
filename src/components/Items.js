@@ -3,9 +3,10 @@ import Button from 'react-bootstrap/Button';
 import Masonry from 'react-masonry-component';
 import QuickView from './QuickView';
 import Loading from './Loading';
+import SortBy from './SortBy';
 
 const Items = ({
-  items, bag, updateBag, closeOnRemove,
+  items, sortBy, setSortBy, bag, updateBag, closeOnRemove,
 }) => {
   const [selected, setSelected] = useState(undefined);
   const [layoutComplete, setLayoutComplete] = useState(false);
@@ -23,27 +24,30 @@ const Items = ({
           updateBag={updateBag}
           closeOnRemove={closeOnRemove}
         />
-        {!showItems && <Loading />}
-        <Masonry
-          className={`masonry-layout ${showItems ? 'visible' : 'hidden'}`}
-          options={{ isFitWidth: true }}
-          onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
-          onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
-        >
-          {items.map((item, index) => (
-            <div key={item.listing_id} className="item" onClick={() => setSelected(index)}>
-              <img
-                src={item.Images[0].url_fullxfull}
-                alt={item.title}
-                className="item-img"
-                id={`item-${index}`}
-              />
-              <div className="quickview-button-container" id="quickview-button-container">
-                <Button size="lg" variant="light">QUICK VIEW</Button>
+        {sortBy && <SortBy sortBy={sortBy} setSortBy={setSortBy} />}
+        <div className="items-container">
+          {!showItems && <Loading />}
+          <Masonry
+            className={`masonry-layout ${showItems ? 'visible' : 'hidden'}`}
+            options={{ isFitWidth: true }}
+            onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
+            onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
+          >
+            {items.map((item, index) => (
+              <div key={item.listing_id} className="item" onClick={() => setSelected(index)}>
+                <img
+                  src={item.Images[0].url_fullxfull}
+                  alt={item.title}
+                  className="item-img"
+                  id={`item-${index}`}
+                />
+                <div className="quickview-button-container" id="quickview-button-container">
+                  <Button size="lg" variant="light">QUICK VIEW</Button>
+                </div>
               </div>
-            </div>
-          ))}
-        </Masonry>
+            ))}
+          </Masonry>
+        </div>
       </div>
     </div>
   );

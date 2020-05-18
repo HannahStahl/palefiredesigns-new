@@ -1,50 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import {
-  BrowserRouter, withRouter, Route, Switch,
-} from 'react-router-dom';
+import { BrowserRouter, withRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import Home from './components/Home';
-import About from './components/About';
-import Items from './components/Items';
-import Category from './components/Category';
-import Collection from './components/Collection';
-import Contact from './components/Contact';
-import Checkout from './components/Checkout';
-import NotFound from './components/NotFound';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import Routes from './components/Routes';
 import config from './config';
-
-const Routes = ({ items, bag, updateBag }) => (
-  <Switch>
-    <Route path="/" exact component={Home} />
-    <Route path="/about" exact component={About} />
-    <Route path="/items" exact render={() => <Items items={items} bag={bag} updateBag={updateBag} />} />
-    <Route
-      path="/items/:categoryName"
-      exact
-      render={(props) => (
-        <Category items={items} bag={bag} updateBag={updateBag} match={props.match} />
-      )}
-    />
-    <Route
-      path="/collections/:collectionName"
-      exact
-      render={(props) => (
-        <Collection items={items} bag={bag} updateBag={updateBag} match={props.match} />
-      )}
-    />
-    <Route path="/contact" exact component={Contact} />
-    <Route path="/checkout" exact render={() => <Checkout items={items} bag={bag} updateBag={updateBag} />} />
-    <Route component={NotFound} />
-  </Switch>
-);
+import { sortByOptions } from './utils';
 
 const App = withRouter(() => {
   const [items, setItems] = useState([]);
+  const [sortBy, setSortBy] = useState(sortByOptions[0]);
+  const [sortedItems, setSortedItems] = useState([]);
   const [bag, setBag] = useState([]);
 
   const updateBag = (newBag) => {
@@ -60,16 +29,32 @@ const App = withRouter(() => {
         if (!item.Images) newItems[index].Images = [{ url_fullxfull: 'placeholder.png' }];
       });
       setItems(newItems);
+      setSortedItems(newItems);
     });
-
     updateBag();
   }, []);
+
+  useEffect(() => {
+    if (sortBy === 'Newest') {
+      setSortedItems([...items]);
+    } else if (sortBy === 'Least expensive') {
+      setSortedItems([...items].sort((a, b) => parseFloat(a.price) - parseFloat(b.price)));
+    } else if (sortBy === 'Most expensive') {
+      setSortedItems([...items].sort((a, b) => parseFloat(b.price) - parseFloat(a.price)));
+    }
+  }, [sortBy]);
 
   return (
     <>
       <NavBar bag={bag} />
       <div className={window.location.pathname === '/' ? '' : 'page-content'}>
-        <Routes items={items} bag={bag} updateBag={updateBag} />
+        <Routes
+          items={sortedItems}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          bag={bag}
+          updateBag={updateBag}
+        />
       </div>
       <Footer />
     </>

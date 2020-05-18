@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Items from './Items';
 
 const Collection = ({
-  items, bag, updateBag, match,
+  items, sortBy, setSortBy, bag, updateBag, match,
 }) => {
   const [collectionName, setCollectionName] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
@@ -26,7 +26,13 @@ const Collection = ({
           <h1>{collectionName.toUpperCase()}</h1>
         </div>
       </div>
-      <Items items={filteredItems} bag={bag} updateBag={updateBag} />
+      <Items
+        items={filteredItems}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        bag={bag}
+        updateBag={updateBag}
+      />
     </>
   );
 };

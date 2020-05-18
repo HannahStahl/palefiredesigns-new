@@ -386,7 +386,7 @@ h1 {
 }
 
 .loading-dots {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
 }
@@ -407,6 +407,10 @@ h1 {
 
 .loading-dot.third {
   animation-delay: -0.9s;
+}
+
+.items-container {
+  position: relative;
 }
 
 .item {
@@ -690,6 +694,18 @@ h1 {
 
 .payment-note .fa-lock {
   margin-right: 5px;
+}
+
+.sort-by {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.sort-by-dropdown {
+  width: 150px;
+  margin-left: 10px;
 }
 
 @media all and (max-width: 991px) {

@@ -1,5 +1,7 @@
 import config from './config';
 
+export const sortByOptions = ['Newest', 'Least expensive', 'Most expensive'];
+
 export const getItemDetails = (items, item) => (
   items.find((itemInList) => itemInList.listing_id === item)
 );

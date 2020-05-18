@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Items from './Items';
 
 const Category = ({
-  items, bag, updateBag, match,
+  items, sortBy, setSortBy, bag, updateBag, match,
 }) => {
   const [categoryName, setCategoryName] = useState('');
   const [filteredItems, setFilteredItems] = useState([]);
@@ -36,7 +36,13 @@ const Category = ({
           <h1>{getCategoryNickname().toUpperCase()}</h1>
         </div>
       </div>
-      <Items items={filteredItems} bag={bag} updateBag={updateBag} />
+      <Items
+        items={filteredItems}
+        bag={bag}
+        updateBag={updateBag}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+      />
     </>
   );
 };
