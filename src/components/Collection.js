@@ -8,14 +8,16 @@ const Collection = ({
   const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
-    const thisCollectionName = match.params.collectionName.toLowerCase().replace(/-/g, ' ');
-    if (!['luxe cuffs'].includes(thisCollectionName)) {
-      window.location.pathname = '/items';
-    } else {
-      setCollectionName(thisCollectionName);
-      setFilteredItems(items.filter((item) => (
-        item.tags.map((tag) => tag.toLowerCase()).includes(thisCollectionName)
-      )));
+    if (match) {
+      const thisCollectionName = match.params.collectionName.toLowerCase().replace(/-/g, ' ');
+      if (!['luxe cuffs'].includes(thisCollectionName)) {
+        window.location.pathname = '/items';
+      } else {
+        setCollectionName(thisCollectionName);
+        setFilteredItems(items.filter((item) => (
+          item.tags.map((tag) => tag.toLowerCase()).includes(thisCollectionName)
+        )));
+      }
     }
   }, [match, items]);
 

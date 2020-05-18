@@ -14,9 +14,11 @@ const Checkout = ({ items, bag, updateBag }) => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [total, setTotal] = useState(0);
   const [checkoutFormVisible, setCheckoutFormVisible] = useState(false);
+  const [enableStripeDisplay, setEnableStripeDisplay] = useState(false);
 
   useEffect(() => {
     setStripe(window.Stripe(config.stripeKey));
+    setTimeout(() => setEnableStripeDisplay(true), 1000);
   }, []);
 
   useEffect(() => {
@@ -134,15 +136,17 @@ const Checkout = ({ items, bag, updateBag }) => {
               </Button>
             </div>
             <div id="checkout" className={`checkout-form-container ${checkoutFormVisible ? 'visible' : 'hidden'}`}>
-              <StripeProvider stripe={stripe}>
-                <Elements
-                  fonts={[{
-                    cssSrc: 'https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap',
-                  }]}
-                >
-                  <CheckoutForm isLoading={isLoading} onSubmit={handleSubmit} />
-                </Elements>
-              </StripeProvider>
+              {enableStripeDisplay && (
+                <StripeProvider stripe={stripe}>
+                  <Elements
+                    fonts={[{
+                      cssSrc: 'https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700;800&display=swap',
+                    }]}
+                  >
+                    <CheckoutForm isLoading={isLoading} onSubmit={handleSubmit} />
+                  </Elements>
+                </StripeProvider>
+              )}
             </div>
           </div>
         ) : <p>Shopping bag is empty</p>
