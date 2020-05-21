@@ -14,8 +14,8 @@ const prod = {
   cloudfrontBaseURL: 'https://d1esxin5o90ebg.cloudfront.net',
   emailURL: 'https://aiikn63n03.execute-api.us-east-1.amazonaws.com/prod/email/send',
   emailAddress: 'dale.feuer@gmail.com',
-  userID: 'us-east-1:e51b2b71-8b21-46c0-a302-6f3b84783041', // TODO change to user ID you create for Mom
-  stripeKey: 'pk_live_I9Ef3jCoWQ6uj7bodYY5GyFw', // TODO change to public key of Stripe account you create for Mom
+  userID: 'us-east-1:7156c525-9bad-4462-917f-fa34238e44d6',
+  stripeKey: 'pk_live_j4EXKDVNno04806MgJ9is2PA001bH2tDPg',
 };
 
 // Default to dev if not set

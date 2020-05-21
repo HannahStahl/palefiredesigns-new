@@ -6,7 +6,7 @@ const About = () => (
   <div className="page-content">
     <h1>MEET THE ARTIST: DALE FEUER</h1>
     <div className="bio">
-      <img src={`${config.publicCloudfrontURL}/palefiredesigns-bio.jpg`} alt="Dale Feuer" />
+      <img src={`${config.publicCloudfrontURL}/palefiredesigns-bio2.jpg`} alt="Dale Feuer" />
       {content.bio.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
     </div>
   </div>
