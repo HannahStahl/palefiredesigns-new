@@ -40,7 +40,7 @@ export default ({
           <>
             <div className="item-price-container">
               <h3 className="item-price">{`$${item.price}`}</h3>
-              <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag}>
+              <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag} className="aqua-button">
                 {getButtonText()}
               </Button>
             </div>

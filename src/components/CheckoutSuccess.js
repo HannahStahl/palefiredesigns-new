@@ -9,7 +9,7 @@ const CheckoutSuccess = ({ show, closeModal }) => (
     <Modal.Body>
       <p>Thanks for your order!</p>
       <NavLink to="/items">
-        <Button size="lg" variant="outline-dark">BACK TO SHOP</Button>
+        <Button size="lg" variant="outline-dark" className="coral-button">BACK TO SHOP</Button>
       </NavLink>
     </Modal.Body>
   </Modal>

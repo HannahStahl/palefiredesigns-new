@@ -14,7 +14,7 @@ const Home = () => (
               <h1 className="tagline-line-2">for the Slightly Off-Center</h1>
             </div>
             <NavLink to="/items">
-              <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP</Button>
+              <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP</Button>
             </NavLink>
           </div>
         </div>
@@ -25,7 +25,7 @@ const Home = () => (
             <h1>Featured Collection:</h1>
             <h1>Luxe Cuffs</h1>
             <NavLink to="/collections/luxe-cuffs">
-              <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP THE COLLECTION</Button>
+              <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP THE COLLECTION</Button>
             </NavLink>
           </div>
         </div>
@@ -40,7 +40,7 @@ const Home = () => (
               are a few of my favorite things.
             </p>
             <NavLink to="/about">
-              <Button size="lg" variant="outline-dark" className="home-page-btn">READ MORE</Button>
+              <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">READ MORE</Button>
             </NavLink>
           </div>
         </div>
@@ -50,7 +50,7 @@ const Home = () => (
       <div className="home-section-text">
         <h1>Collar Me Beautiful</h1>
         <NavLink to="/items/necklaces">
-          <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP NECKLACES</Button>
+          <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP NECKLACES</Button>
         </NavLink>
       </div>
     </div>
@@ -58,7 +58,7 @@ const Home = () => (
       <div className="home-section-text">
         <h1>Wrist Action</h1>
         <NavLink to="/items/bracelets">
-          <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP BRACELETS</Button>
+          <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP BRACELETS</Button>
         </NavLink>
       </div>
     </div>
@@ -66,7 +66,7 @@ const Home = () => (
       <div className="home-section-text">
         <h1>Lobe Trotters</h1>
         <NavLink to="/items/earrings">
-          <Button size="lg" variant="outline-dark" className="home-page-btn">SHOP EARRINGS</Button>
+          <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP EARRINGS</Button>
         </NavLink>
       </div>
     </div>

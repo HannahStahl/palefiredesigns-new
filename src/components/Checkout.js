@@ -124,13 +124,15 @@ const Checkout = ({ items, bag, updateBag }) => {
                 <span>TOTAL:</span>
                 <span>{`$${total.toFixed(2)}`}</span>
               </h4>
-              <p className="shipping-note">Free standard shipping with USPS.</p>
-              <p>Please allow 1-2 days of processing time prior to shipping.</p>
+              <div className="shipping-note">
+                <p>Free standard shipping with USPS.</p>
+                <p>Please allow 1-2 days of processing time prior to shipping.</p>
+              </div>
               <Button
                 size="lg"
                 variant="outline-dark"
                 onClick={showCheckoutForm}
-                className={`checkout-button${checkoutFormVisible ? ' hidden' : ''}`}
+                className={`aqua-button checkout-button${checkoutFormVisible ? ' hidden' : ''}`}
               >
                 CHECK OUT
               </Button>

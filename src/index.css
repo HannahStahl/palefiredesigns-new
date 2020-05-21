@@ -1,5 +1,6 @@
 * {
   margin: 0;
+  letter-spacing: .5px;
 }
 
 html, body, #root {
@@ -10,10 +11,12 @@ body {
   margin: 0;
   font-family: 'Dosis', sans-serif;
   font-size: 1.2rem;
-  letter-spacing: .5px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  --coral: #e64c25;
+  --aqua: #3cbdac;
+  --dark-aqua: #33a092;
 }
 
 code {
@@ -27,6 +30,24 @@ h1 {
 
 .btn:focus, .btn:active {
   box-shadow: none !important;
+}
+
+.coral-button {
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+.coral-button:disabled {
+  color: var(--coral);
+}
+
+.aqua-button {
+  border-color: var(--dark-aqua);
+  color: var(--dark-aqua);
+}
+
+.aqua-button:disabled {
+  color: var(--dark-aqua);
 }
 
 .page-enter {
@@ -576,6 +597,12 @@ h1 {
 }
 
 .shipping-note {
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.shipping-note p:first-of-type {
   margin-bottom: 0px;
 }
 
@@ -790,6 +817,18 @@ h1 {
 }
 
 @media all and (hover: hover) {
+  .coral-button:hover {
+    border-color: var(--coral);
+    color: white;
+    background-color: var(--coral);
+  }
+
+  .aqua-button:hover {
+    border-color: var(--dark-aqua);
+    color: white;
+    background-color: var(--dark-aqua);
+  }
+
   .navbar-home-link:hover {
     height: 58px;
   }

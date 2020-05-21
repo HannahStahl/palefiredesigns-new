@@ -133,6 +133,7 @@ const CheckoutForm = ({ isLoading, onSubmit, ...props }) => {
         size="lg"
         variant="outline-dark"
         disabled={!validateForm()}
+        className="aqua-button"
       >
         {isLoading || isProcessing ? 'PLACING ORDER...' : 'PLACE ORDER'}
       </Button>

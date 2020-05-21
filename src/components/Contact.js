@@ -79,6 +79,7 @@ const Contact = () => {
           size="lg"
           variant="outline-dark"
           disabled={!validateForm()}
+          className="coral-button"
         >
           {buttonText}
         </Button>
