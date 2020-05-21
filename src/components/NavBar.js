@@ -7,7 +7,9 @@ import ShoppingBagIcon from './ShoppingBagIcon';
 
 export default ({ bag }) => (
   <Navbar collapseOnSelect expand="lg" fixed="top">
-    <Navbar.Brand as={NavLink} to="/">HOME</Navbar.Brand>
+    <Navbar.Brand as={NavLink} to="/">
+      <img src="/dale-feuer-logo.png" alt="Home" className="navbar-home-link" />
+    </Navbar.Brand>
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="ml-auto" activeKey={window.location.pathname}>
