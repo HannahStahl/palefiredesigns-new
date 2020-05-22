@@ -15,6 +15,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   --coral: #e64c25;
+  --dark-coral: #c43f1e;
   --aqua: #3cbdac;
   --dark-aqua: #33a092;
 }
@@ -32,22 +33,16 @@ h1 {
   box-shadow: none !important;
 }
 
-.coral-button {
+.coral-button, .coral-button:disabled {
   border-color: var(--coral);
-  color: var(--coral);
+  background-color: var(--coral);
+  color: white;
 }
 
-.coral-button:disabled {
-  color: var(--coral);
-}
-
-.aqua-button {
-  border-color: var(--dark-aqua);
-  color: var(--dark-aqua);
-}
-
-.aqua-button:disabled {
-  color: var(--dark-aqua);
+.aqua-button, .aqua-button:disabled {
+  border-color: var(--aqua);
+  background-color: var(--aqua);
+  color: white;
 }
 
 .page-enter {
@@ -823,9 +818,9 @@ h1 {
 
 @media all and (hover: hover) {
   .coral-button:hover {
-    border-color: var(--coral);
+    border-color: var(--dark-coral);
     color: white;
-    background-color: var(--coral);
+    background-color: var(--dark-coral);
   }
 
   .aqua-button:hover {
