@@ -114,23 +114,23 @@ a {
   background-position: center;
 }
 
-.home-section-1.slide-1 {
+.home-section.slide-1 {
   background-image: url("jewelry.jpg");
 }
 
-.home-section-1.slide-2 {
+.home-section.slide-2 {
   background-image: url("luxe-cuffs.jpg");
 }
 
-.home-section-1.slide-3 {
+.home-section.slide-3 {
   background-image: url("necklaces.jpg");
 }
 
-.home-section-1.slide-4 {
+.home-section.slide-4 {
   background-image: url("bracelets.jpg");
 }
 
-.home-section-1.slide-5 {
+.home-section.slide-5 {
   background-image: url("earrings.jpg");
 }
 
@@ -158,13 +158,9 @@ a {
 
 .home-section-text {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   max-width: min(515px, 80vw);
-}
-
-.home-section-1 .home-section-text {
   animation-name: fadeInText;
   animation-duration: 600ms;
   animation-timing-function: ease-in-out;
@@ -830,6 +826,12 @@ a {
   margin-left: 10px;
 }
 
+@media all and (max-width: 1024px) {
+  .home-section-text-box {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+}
+
 @media all and (max-width: 991px) {
   .navbar-light .navbar-brand {
     margin-left: 0px;
@@ -853,6 +855,24 @@ a {
   }
 }
 
+@media all and (min-width: 601px) {
+  .home-section.slide-1 .home-section-text-box {
+    margin-bottom: 250px;
+  }
+  
+  .home-section.slide-3 .home-section-text-box {
+    margin-bottom: 330px;
+  }
+  
+  .home-section.slide-4 .home-section-text-box {
+    margin-top: 150px;
+  }
+  
+  .home-section.slide-5 .home-section-text-box {
+    margin-bottom: 200px;
+  }
+}
+
 @media all and (max-width: 600px) {
   .home h1 {
     font-size: 36px;
@@ -866,10 +886,6 @@ a {
   .home-section.right-text {
     padding-right: 0px;
     justify-content: center;
-  }
-
-  .home-section-text-box {
-    background-color: rgba(255, 255, 255, 0.6);
   }
 
   .bio img {
