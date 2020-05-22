@@ -104,32 +104,34 @@ a {
   margin-bottom: 0px;
 }
 
-.home-page-btn {
-  margin-top: 30px;
-}
-
 .home-section {
   width: 100vw;
   min-height: calc(100vh - 86px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-size: cover;
+  background-position: center;
 }
 
 .home-section-1.slide-1 {
   background-image: url("jewelry.jpg");
-  background-size: cover;
-  background-position: center;
 }
 
 .home-section-1.slide-2 {
   background-image: url("luxe-cuffs.jpg");
-  background-size: cover;
-  background-position: center;
 }
 
-.home-section-3 {
-  background-color: #eee;
+.home-section-1.slide-3 {
+  background-image: url("necklaces.jpg");
+}
+
+.home-section-1.slide-4 {
+  background-image: url("bracelets.jpg");
+}
+
+.home-section-1.slide-5 {
+  background-image: url("earrings.jpg");
 }
 
 .home-section.left-text {
@@ -140,34 +142,6 @@ a {
 .home-section.right-text {
   padding-right: 10%;
   justify-content: flex-end;
-}
-
-.home-section.right-img .home-section-text-box {
-  margin-left: 30px;
-}
-
-.home-section.left-img .home-section-text-box {
-  margin-right: 30px;
-}
-
-.home-section.category {
-  padding: 7vh 7vw 7vh 7vw;
-}
-
-.home-section.category .home-section-text-box {
-  background-color: transparent;
-  padding: 50px;
-}
-
-.home-section.category button {
-  border-color: white;
-}
-
-.home-category-img {
-  max-height: min(500px, calc(86vw - 86px));
-  max-width: 50%;
-  align-self: center;
-  border-radius: 10px;
 }
 
 @keyframes fadeInText {
@@ -190,25 +164,21 @@ a {
   max-width: min(515px, 80vw);
 }
 
-.category .home-section-text {
-  padding-top: 0px;
-  align-self: center;
-}
-
 .home-section-1 .home-section-text {
   animation-name: fadeInText;
   animation-duration: 600ms;
   animation-timing-function: ease-in-out;
 }
 
-.slide-1 .home-section-text-box {
-  width: min(515px, 80vw);
-}
-
 .home-section-text-box {
   padding: 30px 40px 30px 40px;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.4);
+  color: #212529;
+}
+
+.slide-1 .home-section-text-box {
+  width: min(515px, 80vw);
 }
 
 .artist-quote {
@@ -857,22 +827,6 @@ a {
   margin-left: 10px;
 }
 
-@media all and (max-width: 1001px) {
-  .home-category-img {
-    max-width: 100%;
-    align-self: flex-end;
-  }
-
-  .category .home-section-text {
-    padding-top: 0px;
-    align-self: flex-start;
-  }
-
-  .home-section-text-box {
-    margin: 0px !important;
-  }
-}
-
 @media all and (max-width: 991px) {
   .navbar-light .navbar-brand {
     margin-left: 0px;
@@ -973,6 +927,11 @@ a {
 }
 
 @media all and (hover: hover) {
+  .home-section-text-box:hover {
+    color: #212529;
+    text-decoration: none;
+  }
+
   a:hover {
     color: var(--dark-aqua);
   }
