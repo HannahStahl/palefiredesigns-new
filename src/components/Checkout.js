@@ -109,7 +109,7 @@ const Checkout = ({ items, bag, updateBag }) => {
 
   return (
     <div className="page-content">
-      <h1>SHOPPING BAG</h1>
+      <h1 className="checkout-header">SHOPPING BAG</h1>
       {items.length > 0 && (
         bag.length > 0 ? (
           <div className="checkout-container">

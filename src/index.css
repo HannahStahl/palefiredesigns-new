@@ -518,7 +518,7 @@ a {
 }
 
 .navbar-home-link {
-  height: 55px;
+  height: 60px;
   transition: all 200ms;
   transition-timing-function: ease-in-out;
 }
@@ -560,6 +560,10 @@ a {
 
 .nav-link.active > .bag-icon-container .bag-icon circle {
   stroke: rgba(0, 0, 0, 0.9);
+}
+
+.checkout-header {
+  margin-bottom: 30px;
 }
 
 .checkout-container {
@@ -817,6 +821,11 @@ a {
   h1 {
     margin-bottom: 35px;
   }
+
+  .category-name {
+    justify-content: center;
+    text-align: center;
+  }
 }
 
 @media all and (min-width: 480px) {
@@ -844,7 +853,7 @@ a {
   }
 
   .navbar-home-link:hover {
-    height: 58px;
+    height: 64px;
   }
 
   .dropdown-item:hover {
