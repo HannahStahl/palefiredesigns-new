@@ -4,7 +4,7 @@
 }
 
 html, body, #root {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 86px);
 }
 
 body {
@@ -78,7 +78,7 @@ a {
 
 .home {
   width: 100vw;
-  margin-top: 60px;
+  margin-top: 86px;
   animation-name: fadeIn;
   animation-duration: 300ms;
   animation-timing-function: ease-in-out;
@@ -110,7 +110,7 @@ a {
 
 .home-section {
   width: 100vw;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 86px);
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -219,9 +219,9 @@ a {
 
 .page-content {
   position: relative;
-  margin-top: 60px;
+  margin-top: 86px;
   padding: 9vh 8vw 9vh 8vw;
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 86px);
   margin-bottom: -80px;
 }
 
