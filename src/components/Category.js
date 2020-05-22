@@ -33,7 +33,7 @@ const Category = ({
 
   return (
     <div className="page-content">
-      <div className="category-banner">
+      <div className="category-banner" style={{ backgroundImage: `url("../${categoryName.toLowerCase()}.jpg")` }}>
         <div className="category-name">
           <h1>{getCategoryNickname().toUpperCase()}</h1>
         </div>

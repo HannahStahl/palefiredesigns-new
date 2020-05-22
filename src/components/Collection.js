@@ -23,7 +23,7 @@ const Collection = ({
 
   return (
     <div className="page-content">
-      <div className="category-banner">
+      <div className="category-banner" style={{ backgroundImage: `url("../${collectionName.replace(/ /g, '-').toLowerCase()}.jpg")` }}>
         <div className="category-name">
           <h1>{collectionName.toUpperCase()}</h1>
         </div>

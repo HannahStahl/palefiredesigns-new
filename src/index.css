@@ -153,11 +153,12 @@ h1 {
   text-align: left;
   border-bottom: solid 1px #eee;
   width: 100vw;
-  height: 300px;
+  height: 400px;
   min-height: 50vh;
   margin: -9vh -8vw -9vh -8vw;
   margin-bottom: 60px;
-  background-color: #eee;
+  background-size: cover;
+  background-position: center;
 }
 
 .category-name {
@@ -167,9 +168,13 @@ h1 {
 }
 
 .category-name h1 {
-  margin-left: 8vw;
-  margin-right: 8vw;
+  margin-left: 6vw;
+  margin-right: 6vw;
   margin-bottom: 0px;
+  padding: 25px 30px 25px 30px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgba(230, 76, 37, 0.6);
 }
 
 @keyframes darkenBackground {
