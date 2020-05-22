@@ -67,9 +67,25 @@ a {
   transition: opacity 300ms;
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .home {
   width: 100vw;
   margin-top: 60px;
+  animation-name: fadeIn;
+  animation-duration: 300ms;
+  animation-timing-function: ease-in-out;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  width: 10%;
 }
 
 .carousel-control-prev-icon {
@@ -85,7 +101,7 @@ a {
 }
 
 .home h1 {
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .home-page-btn {
@@ -98,7 +114,19 @@ a {
   display: flex;
 }
 
-.home-section-1, .home-section-3 {
+.home-section-1.slide-1 {
+  background-image: url("jewelry.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.home-section-1.slide-2 {
+  background-image: url("luxe-cuffs.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.home-section-3 {
   background-color: #eee;
 }
 
@@ -117,21 +145,23 @@ a {
   flex-direction: column;
   align-items: center;
   padding-top: calc(50vh - 170px);
-  max-width: min(450px, 80vw);
+  max-width: min(515px, 80vw);
+}
+
+.slide-1 .home-section-text-box {
+  width: min(515px, 80vw);
+}
+
+.home-section-text-box {
+  padding: 30px 40px 30px 40px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.4);
 }
 
 .artist-quote {
   font-style: italic;
   margin-top: 20px;
   margin-bottom: 0px;
-}
-
-.tagline {
-  text-align: left;
-}
-
-.tagline-line-2 {
-  margin-left: 20px;
 }
 
 .page-content {
@@ -167,8 +197,8 @@ a {
 }
 
 .category-name h1 {
-  margin-left: 6vw;
-  margin-right: 6vw;
+  margin-left: 7vw;
+  margin-right: 7vw;
   margin-bottom: 0px;
   padding: 25px 30px 25px 30px;
   border-radius: 4px;
@@ -394,15 +424,6 @@ a {
 
 .thumbnails-container.hidden {
   opacity: 0;
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 
 .masonry-layout.visible {
@@ -804,6 +825,21 @@ a {
     font-size: 26px;
   }
 
+  .home-section.left-text {
+    padding-left: 0px;
+    justify-content: center;
+  }
+  
+  .home-section.right-text {
+    padding-right: 0px;
+    justify-content: center;
+  }
+
+  .home-section-text-box {
+    padding: 20px 28px 20px 28px;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
   .bio img {
     width: 100%;
     margin-right: 0px;
@@ -825,6 +861,31 @@ a {
   .category-name {
     justify-content: center;
     text-align: center;
+  }
+}
+
+@media all and (min-width: 600px) {
+  @keyframes shiftTagline {
+    0% {
+      margin-left: 0px;
+    }
+    50% {
+      margin-left: 0px;
+    }
+    100% {
+      margin-left: 20px;
+    }
+  }
+
+  .tagline-line-1 {
+    margin-right: 100px;
+  }
+
+  .tagline-line-2 {
+    animation-name: shiftTagline;
+    animation-duration: 1200ms;
+    animation-timing-function: ease-in-out;
+    margin-left: 20px;
   }
 }
 

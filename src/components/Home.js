@@ -7,41 +7,47 @@ const Home = () => (
   <div className="home">
     <Carousel>
       <Carousel.Item>
-        <div className="home-section home-section-1 left-text">
+        <div className="home-section home-section-1 left-text slide-1">
           <div className="home-section-text">
-            <div className="tagline">
-              <h1>Uncommon Jewelry</h1>
-              <h1 className="tagline-line-2">for the Slightly Off-Center</h1>
+            <div className="home-section-text-box">
+              <div>
+                <h1 className="tagline-line-1">Uncommon Jewelry</h1>
+                <h1 className="tagline-line-2">for the Slightly Off-Center</h1>
+              </div>
+              <NavLink to="/items">
+                <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP</Button>
+              </NavLink>
             </div>
-            <NavLink to="/items">
-              <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP</Button>
-            </NavLink>
           </div>
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="home-section home-section-1 right-text">
+        <div className="home-section home-section-1 right-text slide-2">
           <div className="home-section-text">
-            <h1>Featured Collection:</h1>
-            <h1>Luxe Cuffs</h1>
-            <NavLink to="/collections/luxe-cuffs">
-              <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP THE COLLECTION</Button>
-            </NavLink>
+            <div className="home-section-text-box">
+              <h1>Featured Collection:</h1>
+              <h1>Luxe Cuffs</h1>
+              <NavLink to="/collections/luxe-cuffs">
+                <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP THE COLLECTION</Button>
+              </NavLink>
+            </div>
           </div>
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="home-section home-section-1 left-text">
+        <div className="home-section home-section-1 left-text slide-3">
           <div className="home-section-text">
-            <h1>Meet the Artist:</h1>
-            <h1>Dale Feuer</h1>
-            <p className="artist-quote">
-              Natural beauty, balanced asymmetry, the spirit of yin yang...these
-              are a few of my favorite things.
-            </p>
-            <NavLink to="/about">
-              <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">READ MORE</Button>
-            </NavLink>
+            <div className="home-section-text-box">
+              <h1>Meet the Artist:</h1>
+              <h1>Dale Feuer</h1>
+              <p className="artist-quote">
+                Natural beauty, balanced asymmetry, the spirit of yin yang...these
+                are a few of my favorite things.
+              </p>
+              <NavLink to="/about">
+                <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">READ MORE</Button>
+              </NavLink>
+            </div>
           </div>
         </div>
       </Carousel.Item>
