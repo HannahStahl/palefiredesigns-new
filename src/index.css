@@ -135,12 +135,12 @@ a {
 }
 
 .home-section.left-text {
-  padding-left: 10%;
+  padding-left: 8%;
   justify-content: flex-start;
 }
 
 .home-section.right-text {
-  padding-right: 10%;
+  padding-right: 8%;
   justify-content: flex-end;
 }
 
@@ -160,7 +160,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: calc(50vh - 170px);
+  justify-content: center;
   max-width: min(515px, 80vw);
 }
 
@@ -172,9 +172,12 @@ a {
 
 .home-section-text-box {
   padding: 30px 40px 30px 40px;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.4);
   color: #212529;
+}
+
+.home-section-text-box:visited, .home-section-text-box:active, .home-section-text-box:focus {
+  color: #212529;
+  text-decoration: none;
 }
 
 .slide-1 .home-section-text-box {
@@ -852,7 +855,7 @@ a {
 
 @media all and (max-width: 600px) {
   .home h1 {
-    font-size: 26px;
+    font-size: 36px;
   }
 
   .home-section.left-text {
@@ -866,8 +869,7 @@ a {
   }
 
   .home-section-text-box {
-    padding: 20px 28px 20px 28px;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.6);
   }
 
   .bio img {
