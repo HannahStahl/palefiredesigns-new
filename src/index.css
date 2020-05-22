@@ -116,14 +116,6 @@ a {
   justify-content: center;
 }
 
-.home-section.aqua {
-  background-color: var(--aqua);
-}
-
-.home-section.coral {
-  background-color: var(--coral);
-}
-
 .home-section-1.slide-1 {
   background-image: url("jewelry.jpg");
   background-size: cover;
@@ -134,6 +126,10 @@ a {
   background-image: url("luxe-cuffs.jpg");
   background-size: cover;
   background-position: center;
+}
+
+.home-section-3 {
+  background-color: #eee;
 }
 
 .home-section.left-text {
@@ -160,7 +156,6 @@ a {
 
 .home-section.category .home-section-text-box {
   background-color: transparent;
-  color: white;
   padding: 50px;
 }
 
@@ -578,15 +573,6 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
-
-.footer.aqua {
-  background-color: var(--aqua);
-  color: white;
-}
-
-.footer.aqua a {
-  color: white;
 }
 
 .footer p {

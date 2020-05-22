@@ -55,7 +55,7 @@ const Home = () => (
         </div>
       </Carousel.Item>
     </Carousel>
-    <div className="home-section category right-img home-section-2 aqua">
+    <div className="home-section category right-img home-section-2">
       <Fade><img className="home-category-img" src="home-necklaces.jpg" alt="Necklaces" /></Fade>
       <Fade>
         <div className="home-section-text">
@@ -68,7 +68,7 @@ const Home = () => (
         </div>
       </Fade>
     </div>
-    <div className="home-section category left-img home-section-3 coral">
+    <div className="home-section category left-img home-section-3">
       {mobile && <Fade><img className="home-category-img" src="home-bracelets.jpg" alt="Bracelets" /></Fade>}
       <Fade>
         <div className="home-section-text">
@@ -82,7 +82,7 @@ const Home = () => (
       </Fade>
       {!mobile && <Fade><img className="home-category-img" src="home-bracelets.jpg" alt="Bracelets" /></Fade>}
     </div>
-    <div className="home-section category right-img home-section-4 aqua">
+    <div className="home-section category right-img home-section-4">
       <Fade><img className="home-category-img" src="home-earrings.jpg" alt="Earrings" /></Fade>
       <Fade>
         <div className="home-section-text">
