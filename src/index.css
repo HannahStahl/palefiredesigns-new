@@ -481,6 +481,7 @@ a {
   background-color: rgba(0, 0, 0, 0.4);
   opacity: 0;
   transition: opacity 0s;
+  border-radius: 4px;
 }
 
 .quickview-button-container .btn {
@@ -645,6 +646,11 @@ a {
   font-size: 1.2rem;
 }
 
+.form-control:focus {
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 0.2rem rgba(51, 160, 146, .25);
+}
+
 .checkout-form .card-field {
   margin-bottom: 15px;
   background-color: white;
@@ -679,8 +685,8 @@ a {
 }
 
 .checkout-form .card-field.StripeElement--focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
-  border-color: #80bdff;
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 0.2rem rgba(51, 160, 146, .25);
 }
 
 .checkout-form .form-row {
@@ -696,8 +702,8 @@ a {
 }
 
 .checkout-form .form-row.focused {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
-  border-color: #80bdff;
+  border-color: var(--aqua);
+  box-shadow: 0 0 0 0.2rem rgba(51, 160, 146, .25);
 }
 
 .checkout-form .form-row.focused * .form-control {
