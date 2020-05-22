@@ -709,6 +709,10 @@ a {
   border-radius: 4px;
 }
 
+.about-page, .contact-page {
+  background-color: #eee;
+}
+
 .contact form {
   max-width: 650px;
   margin-left: auto;

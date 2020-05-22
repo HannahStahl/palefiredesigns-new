@@ -52,7 +52,9 @@ export default ({
               unmountOnExit
             >
               {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-              <div className="page"><Component {...props} match={match} /></div>
+              <div className={`page ${window.location.pathname.split('/')[1]}-page`}>
+                <Component {...props} match={match} />
+              </div>
             </CSSTransition>
           )}
         </Route>
