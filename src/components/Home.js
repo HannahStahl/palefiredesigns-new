@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { Fade } from 'react-reveal';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 
@@ -53,28 +54,34 @@ const Home = () => (
       </Carousel.Item>
     </Carousel>
     <div className="home-section home-section-2 right-text">
-      <div className="home-section-text">
-        <h1>Collar Me Beautiful</h1>
-        <NavLink to="/items/necklaces">
-          <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP NECKLACES</Button>
-        </NavLink>
-      </div>
+      <Fade>
+        <div className="home-section-text">
+          <h1>Collar Me Beautiful</h1>
+          <NavLink to="/items/necklaces">
+            <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP NECKLACES</Button>
+          </NavLink>
+        </div>
+      </Fade>
     </div>
     <div className="home-section home-section-3 left-text">
-      <div className="home-section-text">
-        <h1>Wrist Action</h1>
-        <NavLink to="/items/bracelets">
-          <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP BRACELETS</Button>
-        </NavLink>
-      </div>
+      <Fade>
+        <div className="home-section-text">
+          <h1>Wrist Action</h1>
+          <NavLink to="/items/bracelets">
+            <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP BRACELETS</Button>
+          </NavLink>
+        </div>
+      </Fade>
     </div>
     <div className="home-section home-section-4 right-text">
-      <div className="home-section-text">
-        <h1>Lobe Trotters</h1>
-        <NavLink to="/items/earrings">
-          <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP EARRINGS</Button>
-        </NavLink>
-      </div>
+      <Fade>
+        <div className="home-section-text">
+          <h1>Lobe Trotters</h1>
+          <NavLink to="/items/earrings">
+            <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP EARRINGS</Button>
+          </NavLink>
+        </div>
+      </Fade>
     </div>
   </div>
 );
