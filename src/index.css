@@ -110,8 +110,18 @@ a {
 
 .home-section {
   width: 100vw;
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-section.aqua {
+  background-color: var(--aqua);
+}
+
+.home-section.coral {
+  background-color: var(--coral);
 }
 
 .home-section-1.slide-1 {
@@ -126,10 +136,6 @@ a {
   background-position: center;
 }
 
-.home-section-3 {
-  background-color: #eee;
-}
-
 .home-section.left-text {
   padding-left: 10%;
   justify-content: flex-start;
@@ -138,6 +144,35 @@ a {
 .home-section.right-text {
   padding-right: 10%;
   justify-content: flex-end;
+}
+
+.home-section.right-img .home-section-text-box {
+  margin-left: 30px;
+}
+
+.home-section.left-img .home-section-text-box {
+  margin-right: 30px;
+}
+
+.home-section.category {
+  padding: 7vh 7vw 7vh 7vw;
+}
+
+.home-section.category .home-section-text-box {
+  background-color: transparent;
+  color: white;
+  padding: 50px;
+}
+
+.home-section.category button {
+  border-color: white;
+}
+
+.home-category-img {
+  max-height: min(500px, calc(86vw - 86px));
+  max-width: 50%;
+  align-self: center;
+  border-radius: 10px;
 }
 
 @keyframes fadeInText {
@@ -158,6 +193,11 @@ a {
   align-items: center;
   padding-top: calc(50vh - 170px);
   max-width: min(515px, 80vw);
+}
+
+.category .home-section-text {
+  padding-top: 0px;
+  align-self: center;
 }
 
 .home-section-1 .home-section-text {
@@ -540,6 +580,15 @@ a {
   align-items: center;
 }
 
+.footer.aqua {
+  background-color: var(--aqua);
+  color: white;
+}
+
+.footer.aqua a {
+  color: white;
+}
+
 .footer p {
   font-size: 14px;
   margin-bottom: 0px;
@@ -818,6 +867,22 @@ a {
   margin-left: 10px;
 }
 
+@media all and (max-width: 1001px) {
+  .home-category-img {
+    max-width: 100%;
+    align-self: flex-end;
+  }
+
+  .category .home-section-text {
+    padding-top: 0px;
+    align-self: flex-start;
+  }
+
+  .home-section-text-box {
+    margin: 0px !important;
+  }
+}
+
 @media all and (max-width: 991px) {
   .navbar-light .navbar-brand {
     margin-left: 0px;
@@ -832,7 +897,7 @@ a {
   }
 
   .home-section {
-    height: calc(100vh - 54px);
+    min-height: calc(100vh - 54px);
   }
 
   .page-content {

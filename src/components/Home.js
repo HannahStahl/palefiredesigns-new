@@ -4,6 +4,8 @@ import { Fade } from 'react-reveal';
 import Button from 'react-bootstrap/Button';
 import Carousel from 'react-bootstrap/Carousel';
 
+const mobile = window.innerWidth <= 1001;
+
 const Home = () => (
   <div className="home">
     <Carousel>
@@ -53,33 +55,43 @@ const Home = () => (
         </div>
       </Carousel.Item>
     </Carousel>
-    <div className="home-section home-section-2 right-text">
+    <div className="home-section category right-img home-section-2 aqua">
+      <Fade><img className="home-category-img" src="home-necklaces.jpg" alt="Necklaces" /></Fade>
       <Fade>
         <div className="home-section-text">
-          <h1>Collar Me Beautiful</h1>
-          <NavLink to="/items/necklaces">
-            <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP NECKLACES</Button>
-          </NavLink>
+          <div className="home-section-text-box">
+            <h1>Collar Me Beautiful</h1>
+            <NavLink to="/items/necklaces">
+              <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP NECKLACES</Button>
+            </NavLink>
+          </div>
         </div>
       </Fade>
     </div>
-    <div className="home-section home-section-3 left-text">
+    <div className="home-section category left-img home-section-3 coral">
+      {mobile && <Fade><img className="home-category-img" src="home-bracelets.jpg" alt="Bracelets" /></Fade>}
       <Fade>
         <div className="home-section-text">
-          <h1>Wrist Action</h1>
-          <NavLink to="/items/bracelets">
-            <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP BRACELETS</Button>
-          </NavLink>
+          <div className="home-section-text-box">
+            <h1>Wrist Action</h1>
+            <NavLink to="/items/bracelets">
+              <Button size="lg" variant="outline-dark" className="home-page-btn coral-button">SHOP BRACELETS</Button>
+            </NavLink>
+          </div>
         </div>
       </Fade>
+      {!mobile && <Fade><img className="home-category-img" src="home-bracelets.jpg" alt="Bracelets" /></Fade>}
     </div>
-    <div className="home-section home-section-4 right-text">
+    <div className="home-section category right-img home-section-4 aqua">
+      <Fade><img className="home-category-img" src="home-earrings.jpg" alt="Earrings" /></Fade>
       <Fade>
         <div className="home-section-text">
-          <h1>Lobe Trotters</h1>
-          <NavLink to="/items/earrings">
-            <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP EARRINGS</Button>
-          </NavLink>
+          <div className="home-section-text-box">
+            <h1>Lobe Trotters</h1>
+            <NavLink to="/items/earrings">
+              <Button size="lg" variant="outline-dark" className="home-page-btn aqua-button">SHOP EARRINGS</Button>
+            </NavLink>
+          </div>
         </div>
       </Fade>
     </div>
