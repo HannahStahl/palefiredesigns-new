@@ -29,6 +29,10 @@ h1 {
   margin-bottom: 50px;
 }
 
+a {
+  color: var(--aqua);
+}
+
 .btn:focus, .btn:active {
   box-shadow: none !important;
 }
@@ -817,6 +821,10 @@ h1 {
 }
 
 @media all and (hover: hover) {
+  a:hover {
+    color: var(--dark-aqua);
+  }
+
   .coral-button:hover {
     border-color: var(--dark-coral);
     color: white;
