@@ -855,6 +855,12 @@ a {
   }
 }
 
+@media all and (min-width: 992px) {
+  .navbar-dropdown-category {
+    padding-left: 40px;
+  }
+}
+
 @media all and (min-width: 601px) {
   .home-section.slide-1 .home-section-text-box {
     margin-bottom: 250px;
@@ -968,6 +974,11 @@ a {
 
   .navbar-home-link:hover {
     height: 64px;
+  }
+
+  .navbar-dropdown-header:hover {
+    cursor: default;
+    color: rgba(0, 0, 0, 0.5) !important;
   }
 
   .dropdown-item:hover {

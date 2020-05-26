@@ -21,9 +21,12 @@ export default ({ bag }) => (
           >
             ALL
           </NavDropdown.Item>
-          <NavDropdown.Item as={NavLink} to="/items/necklaces">NECKLACES</NavDropdown.Item>
-          <NavDropdown.Item as={NavLink} to="/items/bracelets">BRACELETS</NavDropdown.Item>
-          <NavDropdown.Item as={NavLink} to="/items/earrings">EARRINGS</NavDropdown.Item>
+          <NavDropdown.Item className="navbar-dropdown-header">BY CATEGORY</NavDropdown.Item>
+          <NavDropdown.Item as={NavLink} to="/items/necklaces" className="navbar-dropdown-category">Necklaces</NavDropdown.Item>
+          <NavDropdown.Item as={NavLink} to="/items/bracelets" className="navbar-dropdown-category">Bracelets</NavDropdown.Item>
+          <NavDropdown.Item as={NavLink} to="/items/earrings" className="navbar-dropdown-category">Earrings</NavDropdown.Item>
+          <NavDropdown.Item className="navbar-dropdown-header">BY COLLECTION</NavDropdown.Item>
+          <NavDropdown.Item as={NavLink} to="/collections/luxe-cuffs" className="navbar-dropdown-category">Luxe Cuffs</NavDropdown.Item>
         </NavDropdown>
         <Nav.Link as={NavLink} to="/about">ABOUT</Nav.Link>
         <Nav.Link as={NavLink} to="/contact">CONTACT</Nav.Link>
