@@ -34,7 +34,10 @@ const Checkout = ({ items, bag, updateBag }) => {
   const showCheckoutForm = () => {
     setCheckoutFormVisible(true);
     const { offsetTop } = document.getElementById('checkout');
-    setTimeout(() => window.scrollTo({ top: offsetTop - 40, behavior: 'smooth' }), 100);
+    setTimeout(() => {
+      window.scrollTo({ top: offsetTop - 40, behavior: 'smooth' });
+      document.getElementById('name').focus();
+    }, 100);
   };
 
   const handleSubmit = async ({
