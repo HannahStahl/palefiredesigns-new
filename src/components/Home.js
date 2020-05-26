@@ -1,12 +1,15 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
+import config from '../config';
+
+const getImgUrl = (fileName) => `url("${config.publicCloudfrontURL}/dalefeuerjewelry-${fileName}.jpg")`;
 
 const Home = () => (
   <div className="home">
     <Carousel>
       <Carousel.Item>
-        <div className="home-section left-text slide-1">
+        <div className="home-section left-text slide-1" style={{ backgroundImage: getImgUrl('jewelry') }}>
           <div className="home-section-text">
             <NavLink to="/items" className="home-section-text-box">
               <div>
@@ -18,7 +21,7 @@ const Home = () => (
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="home-section right-text slide-2">
+        <div className="home-section right-text slide-2" style={{ backgroundImage: getImgUrl('luxe-cuffs') }}>
           <div className="home-section-text">
             <NavLink to="/collections/luxe-cuffs" className="home-section-text-box">
               <h1>Featured Collection:</h1>
@@ -28,7 +31,7 @@ const Home = () => (
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="home-section left-text slide-3">
+        <div className="home-section left-text slide-3" style={{ backgroundImage: getImgUrl('necklaces') }}>
           <div className="home-section-text">
             <NavLink to="/items/necklaces" className="home-section-text-box">
               <h1>Collar Me Beautiful</h1>
@@ -37,7 +40,7 @@ const Home = () => (
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="home-section right-text slide-4">
+        <div className="home-section right-text slide-4" style={{ backgroundImage: getImgUrl('bracelets') }}>
           <div className="home-section-text">
             <NavLink to="/items/bracelets" className="home-section-text-box">
               <h1>Wrist Action</h1>
@@ -46,7 +49,7 @@ const Home = () => (
         </div>
       </Carousel.Item>
       <Carousel.Item>
-        <div className="home-section left-text slide-5">
+        <div className="home-section left-text slide-5" style={{ backgroundImage: getImgUrl('earrings') }}>
           <div className="home-section-text">
             <NavLink to="/items/earrings" className="home-section-text-box">
               <h1>Lobe Trotters</h1>

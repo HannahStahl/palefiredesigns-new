@@ -114,26 +114,6 @@ a {
   background-position: center;
 }
 
-.home-section.slide-1 {
-  background-image: url("jewelry.jpg");
-}
-
-.home-section.slide-2 {
-  background-image: url("luxe-cuffs.jpg");
-}
-
-.home-section.slide-3 {
-  background-image: url("necklaces.jpg");
-}
-
-.home-section.slide-4 {
-  background-image: url("bracelets.jpg");
-}
-
-.home-section.slide-5 {
-  background-image: url("earrings.jpg");
-}
-
 .home-section.left-text {
   padding-left: 8%;
   justify-content: flex-start;

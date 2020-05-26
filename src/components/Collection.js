@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ItemsList from './ItemsList';
+import config from '../config';
 
 const Collection = ({
   items, sortBy, setSortBy, bag, updateBag, match,
@@ -23,7 +24,10 @@ const Collection = ({
 
   return (
     <div className="page-content">
-      <div className="category-banner" style={{ backgroundImage: `url("../${collectionName.replace(/ /g, '-').toLowerCase()}.jpg")` }}>
+      <div
+        className="category-banner"
+        style={{ backgroundImage: `url("${config.publicCloudfrontURL}/dalefeuerjewelry-${collectionName.replace(/ /g, '-').toLowerCase()}-banner.jpg")` }}
+      >
         <div className="category-name">
           <h1>{collectionName.toUpperCase()}</h1>
         </div>
