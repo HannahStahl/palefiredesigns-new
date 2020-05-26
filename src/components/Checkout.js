@@ -24,10 +24,21 @@ const Checkout = ({ items, bag, updateBag }) => {
   useEffect(() => {
     if (items.length > 0 && bag.length > 0) {
       let runningTotal = 0;
-      bag.forEach((item) => {
-        runningTotal += parseFloat(getItemDetails(items, item).price);
-      });
-      setTotal(runningTotal);
+      let index = 0;
+      let itemNotFound = false;
+      while (index < bag.length && !itemNotFound) {
+        const item = bag[index];
+        const itemDetails = getItemDetails(items, item);
+        if (itemDetails) {
+          runningTotal += parseFloat(getItemDetails(items, item).price);
+          index += 1;
+        } else {
+          itemNotFound = true;
+          bag.splice(index, 1);
+          updateBag(bag);
+        }
+      }
+      if (!itemNotFound) setTotal(runningTotal);
     }
   }, [items, bag]);
 
@@ -114,7 +125,7 @@ const Checkout = ({ items, bag, updateBag }) => {
     <div className="page-content">
       <h1 className="checkout-header">SHOPPING BAG</h1>
       {items.length > 0 && (
-        bag.length > 0 ? (
+        (bag.length > 0 && total > 0) ? (
           <div className="checkout-container">
             <div className={`shopping-bag-details${checkoutFormVisible ? ' collapsed' : ''}`}>
               <ItemsList
@@ -154,7 +165,7 @@ const Checkout = ({ items, bag, updateBag }) => {
               )}
             </div>
           </div>
-        ) : <p>Shopping bag is empty</p>
+        ) : <p>No items yet</p>
       )}
       <CheckoutSuccess show={showSuccessModal} closeModal={() => setShowSuccessModal(false)} />
     </div>
