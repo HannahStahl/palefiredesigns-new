@@ -7,6 +7,7 @@ const QuickView = ({
   items, selected, setSelected, bag, updateBag, closeOnRemove,
 }) => {
   const item = items[selected];
+  const [expanded, setExpanded] = useState(false);
   const [imgIndex, setImgIndex] = useState(0);
   const [imgTop, setImgTop] = useState(undefined);
   const [imgLeft, setImgLeft] = useState(undefined);
@@ -24,19 +25,10 @@ const QuickView = ({
       setImgTop(top);
       setImgLeft(left);
       setImgHeight(height);
-      const quickview = document.getElementById('quickview');
-      quickview.classList.add('expanded');
-      const quickviewImgContainer = document.getElementById('quickview-img-container');
-      quickviewImgContainer.classList.add('expanded');
-      const details = document.getElementById('quickview-details');
-      details.classList.add('visible');
-      const overlay = document.getElementById('background-overlay');
-      overlay.classList.add('visible');
+      setExpanded(true);
       document.body.style.height = '100vh';
       document.body.style.overflow = 'hidden';
-      setTimeout(() => {
-        setAnimationComplete(true);
-      }, 1200);
+      setTimeout(() => setAnimationComplete(true), 1200);
     }
   }, [selected]);
 
@@ -44,14 +36,7 @@ const QuickView = ({
     const img = document.getElementById(`item-${selected}`);
     setSelected(undefined);
     img.style.visibility = 'visible';
-    const quickview = document.getElementById('quickview');
-    quickview.classList.remove('expanded');
-    const quickviewImgContainer = document.getElementById('quickview-img-container');
-    quickviewImgContainer.classList.remove('expanded');
-    const details = document.getElementById('quickview-details');
-    details.classList.remove('visible');
-    const overlay = document.getElementById('background-overlay');
-    overlay.classList.remove('visible');
+    setExpanded(false);
     document.body.style.height = 'auto';
     document.body.style.overflow = 'auto';
     setImgIndex(0);
@@ -127,11 +112,15 @@ const QuickView = ({
   return (
     <>
       <style>{style}</style>
-      <div className="background-overlay" id="background-overlay" onClick={exitQuickview}>
+      <div
+        className={`background-overlay${expanded ? ' visible' : ''}`}
+        id="background-overlay"
+        onClick={exitQuickview}
+      >
         <div className="exit-quickview"><img src="/exit.svg" alt="Exit" /></div>
       </div>
-      <div className="quickview" id="quickview">
-        <div className="quickview-img-container" id="quickview-img-container">
+      <div className={`quickview${expanded ? ' expanded' : ''}`} id="quickview">
+        <div className={`quickview-img-container${expanded ? ' expanded' : ''}`} id="quickview-img-container">
           {selected === undefined ? <></> : (
             <QuickViewCarousel
               imgIndex={imgIndex}
