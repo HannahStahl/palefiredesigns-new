@@ -586,6 +586,10 @@ a {
   margin-left: 15px;
 }
 
+.navbar-dropdown-header {
+  color: rgba(0, 0, 0, 0.5);
+}
+
 .dropdown-item.active {
   background-color: white;
   color: rgba(0, 0, 0, 0.9);
@@ -837,6 +841,10 @@ a {
     margin-left: 0px;
   }
 
+  .navbar-dropdown-header {
+    text-align: center;
+  }
+
   .dropdown-item {
     text-align: center;
   }
@@ -858,6 +866,10 @@ a {
 @media all and (min-width: 992px) {
   .navbar-dropdown-category {
     padding-left: 40px;
+  }
+
+  .navbar-dropdown-header {
+    padding: .25rem 1.5rem .25rem 1.5rem;
   }
 }
 
@@ -970,11 +982,6 @@ a {
 
   .navbar-home-link:hover {
     height: 64px;
-  }
-
-  .navbar-dropdown-header:hover {
-    cursor: default;
-    color: rgba(0, 0, 0, 0.5) !important;
   }
 
   .dropdown-item:hover {
