@@ -26,7 +26,11 @@ const Collection = ({
     <div className="page-content">
       <div
         className="category-banner"
-        style={{ backgroundImage: `url("${config.publicCloudfrontURL}/dalefeuerjewelry-${collectionName.replace(/ /g, '-').toLowerCase()}-banner.jpg")` }}
+        style={{
+          backgroundImage: collectionName.length > 0 ? (
+            `url("${config.publicCloudfrontURL}/dalefeuerjewelry-${collectionName.replace(/ /g, '-').toLowerCase()}-banner.jpg")`
+          ) : undefined,
+        }}
       >
         <div className="category-name">
           <h1>{collectionName.toUpperCase()}</h1>

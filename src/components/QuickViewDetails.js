@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 export default ({
-  selected, bag, item, closeOnRemove, exitQuickview, updateBag,
+  show, selected, bag, item, closeOnRemove, exitQuickview, updateBag,
 }) => {
   const getButtonText = () => {
     if (!item) return '';
@@ -34,7 +34,7 @@ export default ({
   const units = getUnits();
 
   return (
-    <div className="item-details-container">
+    <div className={`item-details-container ${show ? 'visible' : 'hidden'}`}>
       <div className="item-details" id="quickview-details">
         {selected === undefined ? <></> : (
           <>

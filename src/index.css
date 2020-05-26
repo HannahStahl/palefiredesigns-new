@@ -359,6 +359,10 @@ a {
   width: 240px;
 }
 
+.thumbnails-outer-container {
+  position: relative;
+}
+
 .thumbnails-container {
   margin-left: auto;
   margin-right: auto;
@@ -427,7 +431,7 @@ a {
   opacity: 0;
 }
 
-.thumbnails-container.hidden {
+.thumbnails-container.hidden, .item-details-container.hidden {
   opacity: 0;
 }
 
@@ -438,7 +442,7 @@ a {
   animation-timing-function: ease-in-out;
 }
 
-.thumbnails-container.visible {
+.thumbnails-container.visible, .item-details-container.visible {
   opacity: 1;
   animation-name: fadeIn;
   animation-duration: 300ms;

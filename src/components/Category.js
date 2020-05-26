@@ -37,7 +37,9 @@ const Category = ({
       <div
         className="category-banner"
         style={{
-          backgroundImage: `url("${config.publicCloudfrontURL}/dalefeuerjewelry-${categoryName.toLowerCase()}-banner.jpg")`
+          backgroundImage: categoryName.length > 0 ? (
+            `url("${config.publicCloudfrontURL}/dalefeuerjewelry-${categoryName.toLowerCase()}-banner.jpg")`
+          ) : undefined,
         }}
       >
         <div className="category-name">

@@ -58,7 +58,7 @@ const Checkout = ({ items, bag, updateBag }) => {
         }),
       }).then((res) => res.json()).then((json) => {
         if (!json.status) {
-          alert('Oops! An error occurred with our payment processing system. Please use the Contact form to send us a message, and we\'ll get it straightened out right away.');
+          alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
           setIsLoading(false);
         } else {
           const emailsToSend = [

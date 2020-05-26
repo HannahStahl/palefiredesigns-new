@@ -155,6 +155,7 @@ const QuickView = ({
           <div className="thumbnails-placeholder" />
         )}
         <QuickViewDetails
+          show={showThumbnails}
           selected={selected}
           bag={bag}
           item={item}
