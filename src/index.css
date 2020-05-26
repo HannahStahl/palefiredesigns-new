@@ -862,10 +862,6 @@ a {
 }
 
 @media all and (min-width: 601px) {
-  .home-section.slide-1 .home-section-text-box {
-    margin-bottom: 250px;
-  }
-  
   .home-section.slide-3 .home-section-text-box {
     margin-bottom: 330px;
   }
