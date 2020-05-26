@@ -44,6 +44,10 @@ const App = withRouter(() => {
     }
   }, [sortBy, items]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [window.location.pathname]);
+
   return (
     <>
       <NavBar bag={bag} />
