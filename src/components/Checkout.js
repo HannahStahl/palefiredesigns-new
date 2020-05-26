@@ -40,7 +40,7 @@ const Checkout = ({ items, bag, updateBag }) => {
       }
       if (!itemNotFound) setTotal(runningTotal);
     }
-  }, [items, bag]);
+  }, [items, bag, updateBag]);
 
   const showCheckoutForm = () => {
     setCheckoutFormVisible(true);
