@@ -10,7 +10,7 @@ import Routes from './components/Routes';
 import config from './config';
 import { sortByOptions } from './utils';
 
-const App = withRouter(() => {
+const App = withRouter((props) => {
   const [items, setItems] = useState([]);
   const [sortBy, setSortBy] = useState(sortByOptions[0]);
   const [sortedItems, setSortedItems] = useState([]);
@@ -46,7 +46,7 @@ const App = withRouter(() => {
 
   useEffect(() => {
     window.scrollTo({ top: 0 });
-  }, [window.location.pathname]);
+  }, [props.location]);
 
   return (
     <>
