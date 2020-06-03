@@ -15,8 +15,11 @@ const Collection = ({
         window.location.pathname = '/items';
       } else {
         setCollectionName(thisCollectionName);
+        const itemType = thisCollectionName.slice(0, -1);
         setFilteredItems(items.filter((item) => (
-          item.tags.map((tag) => tag.toLowerCase()).includes(thisCollectionName)
+          item.title.toLowerCase().includes(itemType)
+          || item.description.toLowerCase().includes(itemType)
+          || item.tags.map((tag) => tag.toLowerCase()).includes(itemType)
         )));
       }
     }
