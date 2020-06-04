@@ -50,6 +50,12 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
           .note {
             font-size: 14px;
           }
+          .total {
+            margin-bottom: 0px;
+          }
+          .payment-note {
+            margin-top: 0px;
+          }
           .address {
             margin: 0px;
           }
@@ -64,7 +70,8 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
           </tr></thead>
           <tbody>${itemsTable}</tbody>
         </table>
-        <p><b>TOTAL AMOUNT PAID:</b> $${total.toFixed(2)}</p>
+        <p class="total"><b>TOTAL AMOUNT PAID:</b> $${total.toFixed(2)}</p>
+        <p class="payment-note">Funds should arrive in your bank account within 2 business days.</p>
         <p class="address"><b>SHIP TO:</b></p>
         <p class="address">${name}</p>
         <p class="address">${address}</p>
