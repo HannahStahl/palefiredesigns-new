@@ -749,7 +749,7 @@ a {
 }
 
 .checkout-form .state-input {
-  width: 25%;
+  width: 85px;
 }
 
 .checkout-form .state-input.placeholder .form-control {
@@ -757,7 +757,8 @@ a {
 }
 
 .checkout-form .zip-input {
-  width: 25%;
+  width: calc(50% - 85px);
+  min-width: 85px;
 }
 
 .checkout-success .modal-header {
