@@ -241,6 +241,18 @@ a {
   max-height: 80vh;
 }
 
+@keyframes fadeOutQuickview {
+  0% { opacity: 1; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.quickview.fade-out {
+  animation-name: fadeOutQuickview;
+  animation-duration: 500ms;
+  opacity: 0;
+}
+
 .quickview .carousel {
   width: 300px;
   border: solid 1px rgba(0, 0, 0, 0.5);

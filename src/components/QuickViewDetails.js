@@ -1,26 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 
 export default ({
-  show, selected, bag, item, exitQuickview, updateBag,
+  show, selected, bag, item, exitQuickview, updateBag, setFadeOut,
 }) => {
-  const getButtonText = () => {
-    if (!item) return '';
-    const index = bag.findIndex((itemInList) => itemInList === item.listing_id);
-    return index > -1 ? 'REMOVE FROM BAG' : 'ADD TO BAG';
-  };
+  const [buttonText, setButtonText] = useState('');
+
+  useEffect(() => {
+    if (!item) setButtonText('');
+    else {
+      const index = bag.findIndex((itemInList) => itemInList === item.listing_id);
+      setButtonText(index > -1 ? 'REMOVE FROM BAG' : 'ADD TO BAG');
+    }
+  }, [bag, item]);
 
   const addOrRemoveFromBag = () => {
     const { listing_id } = item; // eslint-disable-line camelcase
     const newBagItem = listing_id; // eslint-disable-line camelcase
     const index = bag.findIndex((itemInList) => itemInList === newBagItem);
-    let removingItem = false;
+    let addingItem = true;
     if (index > -1) {
-      removingItem = true;
+      addingItem = false;
       bag.splice(index, 1);
-    } else bag.push(newBagItem);
-    if (removingItem && window.location.pathname === '/checkout') exitQuickview();
-    updateBag(bag);
+      setButtonText('ADD TO BAG');
+    } else {
+      bag.push(newBagItem);
+      setButtonText('ADDED TO BAG!');
+    }
+    const closeQuickview = addingItem || window.location.pathname === '/checkout';
+    if (closeQuickview) {
+      setFadeOut(true);
+      setTimeout(() => {
+        exitQuickview();
+        updateBag(bag);
+      }, 500);
+    } else updateBag(bag);
   };
 
   const getUnits = () => {
@@ -41,7 +55,7 @@ export default ({
             <div className="item-price-container">
               <h3 className="item-price">{`$${item.price}`}</h3>
               <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag} className="aqua-button">
-                {getButtonText()}
+                {buttonText}
               </Button>
             </div>
             {(item.item_length || item.item_width) && (

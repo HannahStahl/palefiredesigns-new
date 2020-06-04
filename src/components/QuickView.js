@@ -13,12 +13,14 @@ const QuickView = ({
   const [imgLeft, setImgLeft] = useState(undefined);
   const [imgHeight, setImgHeight] = useState(undefined);
   const [animationComplete, setAnimationComplete] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
   const [layoutComplete, setLayoutComplete] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const showThumbnails = layoutComplete && imagesLoaded;
 
   useEffect(() => {
     if (selected !== undefined) {
+      setFadeOut(false);
       const img = document.getElementById(`item-${selected}`);
       img.style.visibility = 'hidden';
       const { top, left, height } = img.getBoundingClientRect();
@@ -122,7 +124,7 @@ const QuickView = ({
       >
         <div className="exit-quickview"><img src="/exit.svg" alt="Exit" /></div>
       </div>
-      <div className={`quickview${expanded ? ' expanded' : ''}`} id="quickview">
+      <div className={`quickview${expanded ? ' expanded' : ''}${fadeOut ? ' fade-out' : ''}`} id="quickview">
         <div className={`quickview-img-container${expanded ? ' expanded' : ''}`} id="quickview-img-container">
           {selected === undefined ? <></> : (
             <QuickViewCarousel
@@ -153,6 +155,7 @@ const QuickView = ({
           item={item}
           exitQuickview={exitQuickview}
           updateBag={updateBag}
+          setFadeOut={setFadeOut}
         />
       </div>
     </>
