@@ -4,7 +4,7 @@ import QuickViewThumbnails from './QuickViewThumbnails';
 import QuickViewDetails from './QuickViewDetails';
 
 const QuickView = ({
-  items, selected, setSelected, bag, updateBag, closeOnRemove,
+  items, selected, setSelected, bag, updateBag,
 }) => {
   const item = items[selected];
   const [expanded, setExpanded] = useState(false);
@@ -151,7 +151,6 @@ const QuickView = ({
           selected={selected}
           bag={bag}
           item={item}
-          closeOnRemove={closeOnRemove}
           exitQuickview={exitQuickview}
           updateBag={updateBag}
         />

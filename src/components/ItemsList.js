@@ -6,7 +6,7 @@ import Loading from './Loading';
 import SortBy from './SortBy';
 
 const Items = ({
-  items, sortBy, setSortBy, bag, updateBag, closeOnRemove,
+  items, sortBy, setSortBy, bag, updateBag,
 }) => {
   const [selected, setSelected] = useState(undefined);
   const [layoutComplete, setLayoutComplete] = useState(false);
@@ -21,7 +21,6 @@ const Items = ({
         setSelected={setSelected}
         bag={bag}
         updateBag={updateBag}
-        closeOnRemove={closeOnRemove}
       />
       {sortBy && <SortBy sortBy={sortBy} setSortBy={setSortBy} />}
       <div className="items-container">

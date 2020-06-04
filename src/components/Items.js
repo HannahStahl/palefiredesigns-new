@@ -2,7 +2,7 @@ import React from 'react';
 import ItemsList from './ItemsList';
 
 const Items = ({
-  items, sortBy, setSortBy, bag, updateBag, closeOnRemove,
+  items, sortBy, setSortBy, bag, updateBag,
 }) => (
   <div className="page-content">
     <ItemsList
@@ -11,7 +11,6 @@ const Items = ({
       setSortBy={setSortBy}
       bag={bag}
       updateBag={updateBag}
-      closeOnRemove={closeOnRemove}
     />
   </div>
 );

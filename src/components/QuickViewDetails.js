@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 export default ({
-  show, selected, bag, item, closeOnRemove, exitQuickview, updateBag,
+  show, selected, bag, item, exitQuickview, updateBag,
 }) => {
   const getButtonText = () => {
     if (!item) return '';
@@ -19,7 +19,7 @@ export default ({
       removingItem = true;
       bag.splice(index, 1);
     } else bag.push(newBagItem);
-    if (removingItem && closeOnRemove) exitQuickview();
+    if (removingItem && window.location.pathname === '/checkout') exitQuickview();
     updateBag(bag);
   };
 
