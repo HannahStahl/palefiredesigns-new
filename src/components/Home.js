@@ -7,7 +7,7 @@ const getImgUrl = (fileName) => `url("${config.publicCloudfrontURL}/dalefeuerjew
 
 const Home = () => (
   <div className="home">
-    <Carousel indicators={false}>
+    <Carousel indicators={false} pauseOnHover={false}>
       <Carousel.Item>
         <div className="home-section left-text slide-1" style={{ backgroundImage: getImgUrl('jewelry') }}>
           <div className="home-section-text">
