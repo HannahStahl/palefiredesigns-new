@@ -180,37 +180,6 @@ a {
   height: 80px;
 }
 
-.category-banner {
-  text-align: left;
-  border-bottom: solid 1px #eee;
-  width: 100vw;
-  height: 400px;
-  min-height: 50vh;
-  margin: -9vh -8vw -9vh -8vw;
-  margin-bottom: 60px;
-  background-size: cover;
-  background-position: center;
-}
-
-.category-name {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  animation-name: fadeInText;
-  animation-duration: 600ms;
-  animation-timing-function: ease-in-out;
-}
-
-.category-name h1 {
-  margin-left: 7vw;
-  margin-right: 7vw;
-  margin-bottom: 0px;
-  padding: 25px 30px 25px 30px;
-  border-radius: 4px;
-  color: white;
-  background-color: rgba(230, 76, 37, 0.6);
-}
-
 @keyframes darkenBackground {
   from {
     background-color: transparent;
@@ -886,17 +855,8 @@ a {
     padding-top: 10vh;
   }
 
-  .category-banner {
-    margin-top: -10vh;
-  }
-
   h1 {
     margin-bottom: 35px;
-  }
-
-  .category-name {
-    justify-content: center;
-    text-align: center;
   }
 }
 

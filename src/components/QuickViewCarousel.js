@@ -22,6 +22,7 @@ export default ({
 
   const renderCarousel = () => (
     <Carousel
+      indicators={false}
       activeIndex={imgIndex}
       onSelect={setImgIndex}
       interval={false}
@@ -42,6 +43,7 @@ export default ({
   const renderZoomableCarousel = () => (
     <>
       <Carousel
+        indicators={false}
         activeIndex={imgIndex}
         onSelect={setImgIndex}
         interval={false}
@@ -63,6 +65,7 @@ export default ({
         <>
           <div className="zoomed-carousel-background" onClick={zoomOut} />
           <Carousel
+            indicators={false}
             activeIndex={imgIndex}
             onSelect={setImgIndex}
             interval={false}
