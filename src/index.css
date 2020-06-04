@@ -180,6 +180,17 @@ a {
   height: 80px;
 }
 
+.category-banner {
+  border-bottom: solid 1px #eee;
+  width: 100vw;
+  height: 400px;
+  min-height: 50vh;
+  margin: -9vh -8vw -9vh -8vw;
+  margin-bottom: 60px;
+  background-size: cover;
+  background-position: center;
+}
+
 @keyframes darkenBackground {
   from {
     background-color: transparent;
@@ -853,6 +864,10 @@ a {
 
   .page-content {
     padding-top: 10vh;
+  }
+
+  .category-banner {
+    margin-top: -10vh;
   }
 
   h1 {
