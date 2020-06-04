@@ -106,6 +106,9 @@ const QuickView = ({
       .thumbnail, .thumbnail-img {
         width: 80px;
       }
+      .quickview {
+        flex-wrap: wrap;
+      }
     `;
   }
 

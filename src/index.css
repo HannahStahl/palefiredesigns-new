@@ -225,7 +225,6 @@ a {
   z-index: 18;
   display: none;
   border-radius: 4px;
-  flex-wrap: wrap;
   overflow: hidden;
   width: 302px;
   margin: 0;
