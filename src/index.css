@@ -941,10 +941,6 @@ a {
     background-color: var(--dark-aqua);
   }
 
-  .navbar-home-link:hover {
-    height: 64px;
-  }
-
   .dropdown-item:hover {
     background-color: white;
     color: rgba(0, 0, 0, 0.9);
