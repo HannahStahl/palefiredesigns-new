@@ -63,7 +63,7 @@ const Checkout = ({ items, bag, updateBag }) => {
       fetch(`${config.etsyApiURL}/purchase`, {
         method: 'POST',
         body: JSON.stringify({
-          listingIds: bag,
+          cart: bag.map((listingId) => ({ listingId })),
           amount: total,
           description: config.businessName,
           source: token.id,

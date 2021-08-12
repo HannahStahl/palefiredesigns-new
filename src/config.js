@@ -1,6 +1,6 @@
 const dev = {
   etsyApiURL: 'https://nbqclvrlaf.execute-api.us-east-1.amazonaws.com/dev',
-  etsyShopName: 'DesignsByHannahTEST',
+  etsyShopName: 'HannahsShopTEST',
   cloudfrontBaseURL: 'https://d1ljva6zkf6zjh.cloudfront.net',
   emailURL: 'https://c0mrk8va37.execute-api.us-east-1.amazonaws.com/dev/email/send',
   emailAddress: 'hannahstahl14@gmail.com',
