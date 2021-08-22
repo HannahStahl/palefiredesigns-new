@@ -22,7 +22,7 @@ const App = withRouter((props) => {
     setBag(bagStr ? JSON.parse(bagStr) : []);
   };
 
-  const refreshItems = () => {
+  const refreshItems = () => (
     fetch(`${config.etsyApiURL}/listings`).then((res) => res.json()).then((json) => {
       const newItems = json.results;
       newItems.forEach((item, index) => {
@@ -30,8 +30,8 @@ const App = withRouter((props) => {
       });
       setItems(newItems);
       setSortedItems(newItems);
-    });
-  };
+    })
+  );
 
   useEffect(() => {
     fetch(`${config.etsyApiURL}/listings`).then((res) => res.json()).then((json) => {
