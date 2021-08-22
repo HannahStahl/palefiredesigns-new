@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import QuickViewCarousel from './QuickViewCarousel';
 import QuickViewThumbnails from './QuickViewThumbnails';
 import QuickViewDetails from './QuickViewDetails';
+import config from '../config';
 
 const QuickView = ({
-  items, selected, setSelected, bag, updateBag,
+  items, selected, setSelected, colorSelected, setColorSelected, bag, updateBag,
 }) => {
   const item = items[selected];
   const [expanded, setExpanded] = useState(false);
@@ -16,10 +17,12 @@ const QuickView = ({
   const [fadeOut, setFadeOut] = useState(false);
   const [layoutComplete, setLayoutComplete] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [variations, setVariations] = useState(undefined);
   const showThumbnails = layoutComplete && imagesLoaded;
 
   useEffect(() => {
     if (selected !== undefined) {
+      fetch(`${config.etsyApiURL}/listingVariations?listingId=${items[selected].listing_id}`).then((res) => res.json()).then(setVariations);
       setFadeOut(false);
       const img = document.getElementById(`item-${selected}`);
       img.style.visibility = 'hidden';
@@ -31,8 +34,9 @@ const QuickView = ({
       document.body.style.height = '100vh';
       document.body.style.overflow = 'hidden';
       setTimeout(() => setAnimationComplete(true), 1200);
+      setColorSelected('');
     }
-  }, [selected]);
+  }, [selected, setColorSelected, items]);
 
   const exitQuickview = () => {
     const img = document.getElementById(`item-${selected}`);
@@ -151,11 +155,14 @@ const QuickView = ({
         <QuickViewDetails
           show={showThumbnails}
           selected={selected}
+          colorSelected={colorSelected}
+          setColorSelected={setColorSelected}
           bag={bag}
           item={item}
           exitQuickview={exitQuickview}
           updateBag={updateBag}
           setFadeOut={setFadeOut}
+          variations={variations}
         />
       </div>
     </>

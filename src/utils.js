@@ -3,11 +3,25 @@ import config from './config';
 export const sortByOptions = ['Newest', 'Least expensive', 'Most expensive'];
 
 export const getItemDetails = (items, item) => (
-  items.find((itemInList) => itemInList.listing_id === item)
+  items.find((itemInList) => itemInList.listing_id === item.listingId)
 );
+
+export const getProductDetails = async (items, item) => {
+  const { listingId, productId } = item;
+  let color;
+  if (productId) {
+    const variations = await fetch(`${config.etsyApiURL}/listingVariations?listingId=${listingId}`).then((res) => res.json());
+    // eslint-disable-next-line prefer-destructuring
+    color = variations.find(
+      (variation) => variation.product_id === productId,
+    ).property_values[0].values[0];
+  }
+  return { ...items.find((itemInList) => itemInList.listing_id === listingId), color };
+};
 
 export const constructOrderNotificationHtml = (items, name, total, address, city, state, zip) => {
   let itemsTable = '';
+  const multipleColors = items.find(({ color }) => color);
   items.forEach((item) => {
     itemsTable += `
       <tr>
@@ -17,6 +31,7 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
           </a>
         </td>
         <td><p>$${item.price}</p></td>
+        ${multipleColors ? `<td><p>${item.color || ''}</p></td>` : ''}
       </tr>
     `;
   });
@@ -67,6 +82,7 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
           <thead><tr>
             <td><p><b>ITEM</b></p></td>
             <td><p><b>PRICE</b></p></td>
+            ${multipleColors ? '<td><p><b>COLOR</b></p></td>' : ''}
           </tr></thead>
           <tbody>${itemsTable}</tbody>
         </table>
@@ -84,11 +100,13 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
 
 export const constructOrderConfirmationHtml = (items, name, total, address, city, state, zip) => {
   let itemsTable = '';
+  const multipleColors = items.find(({ color }) => color);
   items.forEach((item) => {
     itemsTable += `
       <tr>
         <td><img src="${item.Images[0].url_fullxfull}" width="200" /></td>
         <td><p>$${item.price}</p></td>
+        ${multipleColors ? `<td><p>${item.color || ''}</p></td>` : ''}
       </tr>
     `;
   });
@@ -129,6 +147,7 @@ export const constructOrderConfirmationHtml = (items, name, total, address, city
           <thead><tr>
             <td><p><b>ITEM</b></p></td>
             <td><p><b>PRICE</b></p></td>
+            ${multipleColors ? '<td><p><b>COLOR</b></p></td>' : ''}
           </tr></thead>
           <tbody>${itemsTable}</tbody>
         </table>

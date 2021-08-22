@@ -1,23 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
+import FormControl from 'react-bootstrap/FormControl';
 
 export default ({
-  show, selected, bag, item, exitQuickview, updateBag, setFadeOut,
+  show,
+  selected,
+  colorSelected,
+  setColorSelected,
+  bag,
+  item,
+  exitQuickview,
+  updateBag,
+  setFadeOut,
+  variations,
 }) => {
+  let colors = [];
+  if (variations) {
+    colors = variations
+      .map((variation) => variation.property_values[0])
+      .filter((variation) => variation && variation.property_name === 'Primary color')
+      .map((color) => color.values[0]);
+  }
+  const multipleColors = colors.length > 0;
+  let selectedProductId;
+  if (colorSelected) {
+    const variationSelected = variations.find((variationInList) => {
+      const variation = variationInList.property_values[0];
+      if (!variation) return false;
+      const isColor = variation.property_name === 'Primary color';
+      if (!isColor) return false;
+      return variation.values[0] === colorSelected;
+    });
+    selectedProductId = variationSelected.product_id;
+  }
+
   const [buttonText, setButtonText] = useState('');
 
   useEffect(() => {
     if (!item) setButtonText('');
     else {
-      const index = bag.findIndex((itemInList) => itemInList === item.listing_id);
+      const index = bag.findIndex((itemInBag) => (
+        itemInBag.listingId === item.listing_id
+        && itemInBag.productId === selectedProductId
+      ));
       setButtonText(index > -1 ? 'REMOVE FROM BAG' : 'ADD TO BAG');
     }
-  }, [bag, item]);
+  }, [bag, item, colorSelected, selectedProductId]);
 
   const addOrRemoveFromBag = () => {
-    const { listing_id } = item; // eslint-disable-line camelcase
-    const newBagItem = listing_id; // eslint-disable-line camelcase
-    const index = bag.findIndex((itemInList) => itemInList === newBagItem);
+    const productId = selectedProductId;
+    const newBagItem = { listingId: item.listing_id, productId };
+    const index = bag.findIndex((itemInBag) => (
+      itemInBag.listingId === newBagItem.listingId
+      && itemInBag.productId === newBagItem.productId
+    ));
     let addingItem = true;
     if (index > -1) {
       addingItem = false;
@@ -52,9 +88,26 @@ export default ({
       <div className="item-details" id="quickview-details">
         {selected === undefined ? <></> : (
           <>
-            <div className="item-price-container">
+            <div className={`item-price-container${multipleColors ? '' : ' without-colors'}`}>
               <h3 className="item-price">{`$${item.price}`}</h3>
-              <Button size="lg" variant="outline-dark" onClick={addOrRemoveFromBag} className="aqua-button">
+              {multipleColors && (
+                <FormControl
+                  as="select"
+                  value={colorSelected}
+                  onChange={(e) => setColorSelected(e.target.value)}
+                  className="color-dropdown"
+                >
+                  <option value="" disabled>SELECT COLOR</option>
+                  {colors.map((color) => <option key={color} value={color}>{color}</option>)}
+                </FormControl>
+              )}
+              <Button
+                size="lg"
+                variant="outline-dark"
+                onClick={addOrRemoveFromBag}
+                disabled={multipleColors && colorSelected === ''}
+                className="aqua-button"
+              >
                 {buttonText}
               </Button>
             </div>

@@ -5,10 +5,11 @@ import config from '../config';
 import CheckoutForm from './CheckoutForm';
 import CheckoutSuccess from './CheckoutSuccess';
 import ItemsList from './ItemsList';
-import { constructOrderNotificationHtml, constructOrderConfirmationHtml, getItemDetails } from '../utils';
+import {
+  constructOrderNotificationHtml, constructOrderConfirmationHtml, getItemDetails, getProductDetails,
+} from '../utils';
 
-
-const Checkout = ({ items, bag, updateBag }) => {
+const Checkout = ({ items, refreshItems, bag, updateBag }) => {
   const [stripe, setStripe] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -30,7 +31,7 @@ const Checkout = ({ items, bag, updateBag }) => {
         const item = bag[index];
         const itemDetails = getItemDetails(items, item);
         if (itemDetails) {
-          runningTotal += parseFloat(getItemDetails(items, item).price);
+          runningTotal += parseFloat(itemDetails.price);
           index += 1;
         } else {
           itemNotFound = true;
@@ -51,7 +52,7 @@ const Checkout = ({ items, bag, updateBag }) => {
     }, 100);
   };
 
-  const handleSubmit = async ({
+  const handleSubmit = ({
     token, error, name, email, address, city, state, zip,
   }) => {
     if (error) {
@@ -60,66 +61,75 @@ const Checkout = ({ items, bag, updateBag }) => {
     }
     setIsLoading(true);
     try {
-      fetch(`${config.etsyApiURL}/purchase`, {
-        method: 'POST',
-        body: JSON.stringify({
-          cart: bag.map((listingId) => ({ listingId })),
-          amount: total,
-          description: config.businessName,
-          source: token.id,
-          userId: config.userID,
-          email,
-        }),
-      }).then((res) => res.json()).then((json) => {
-        if (!json.status) {
-          alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
-          setIsLoading(false);
-        } else {
-          const emailsToSend = [
-            fetch(config.emailURL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                name,
-                html: constructOrderNotificationHtml(
-                  bag.map((item) => getItemDetails(items, item)),
-                  name, total, address, city, state, zip,
-                ),
-                userEmail: email,
-                clientEmail: config.emailAddress,
-                siteDomain: window.location.origin,
-                orderNotification: true,
-              }),
-            }),
-            fetch(config.emailURL, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                name,
-                html: constructOrderConfirmationHtml(
-                  bag.map((item) => getItemDetails(items, item)),
-                  name, total, address, city, state, zip,
-                ),
-                userEmail: email,
-                clientEmail: config.emailAddress,
-                siteDomain: window.location.origin,
-                orderConfirmation: true,
-                businessName: config.businessName,
-              }),
-            }),
-          ];
-          Promise.all(emailsToSend).then(() => {
-            updateBag([]);
+      Promise.all(bag.map((item) => getProductDetails(items, item))).then((productDetails) => {
+        fetch(`${config.etsyApiURL}/purchase`, {
+          method: 'POST',
+          body: JSON.stringify({
+            cart: bag,
+            amount: total,
+            description: config.businessName,
+            source: token.id,
+            userId: config.userID,
+            email,
+          }),
+        }).then((res) => res.json()).then((json) => {
+          if (!json.status) {
+            alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
             setIsLoading(false);
-            setShowSuccessModal(true);
-          });
-        }
+          } else {
+            const emailsToSend = [
+              fetch(config.emailURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name,
+                  html: constructOrderNotificationHtml(
+                    productDetails, name, total, address, city, state, zip,
+                  ),
+                  userEmail: email,
+                  clientEmail: config.emailAddress,
+                  siteDomain: window.location.origin,
+                  orderNotification: true,
+                }),
+              }),
+              fetch(config.emailURL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  name,
+                  html: constructOrderConfirmationHtml(
+                    productDetails, name, total, address, city, state, zip,
+                  ),
+                  userEmail: email,
+                  clientEmail: config.emailAddress,
+                  siteDomain: window.location.origin,
+                  orderConfirmation: true,
+                  businessName: config.businessName,
+                }),
+              }),
+            ];
+            Promise.all(emailsToSend).then(() => {
+              updateBag([]);
+              refreshItems().then(() => {
+                setIsLoading(false);
+                setShowSuccessModal(true);
+              });
+            });
+          }
+        });
       });
     } catch (e) {
       alert(e);
       setIsLoading(false);
     }
   };
+
+  const itemsToDisplay = [];
+  bag.forEach((item) => {
+    if (!itemsToDisplay.find(({ listingId }) => listingId === item.listingId)) {
+      itemsToDisplay.push(item);
+    }
+  });
 
   return (
     <div className="page-content">
@@ -129,7 +139,7 @@ const Checkout = ({ items, bag, updateBag }) => {
           <div className="checkout-container">
             <div className={`shopping-bag-details${checkoutFormVisible ? ' collapsed' : ''}`}>
               <ItemsList
-                items={bag.map((item) => getItemDetails(items, item))}
+                items={itemsToDisplay.map((item) => getItemDetails(items, item))}
                 bag={bag}
                 updateBag={updateBag}
               />

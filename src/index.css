@@ -388,19 +388,27 @@ a {
 }
 
 .item-price-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   margin-bottom: 0px;
 }
 
-.item-price {
+.item-price-container.without-colors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.item-price-container.without-colors .item-price {
   margin-right: 10px;
   margin-bottom: 15px;
 }
 
 .item-price-container .btn {
   margin-bottom: 15px;
+}
+
+.color-dropdown {
+  width: 175px;
+  margin-bottom: 10px;
 }
 
 .masonry-layout {

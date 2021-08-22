@@ -9,6 +9,7 @@ const Items = ({
   items, sortBy, setSortBy, bag, updateBag,
 }) => {
   const [selected, setSelected] = useState(undefined);
+  const [colorSelected, setColorSelected] = useState('');
   const [layoutComplete, setLayoutComplete] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const showItems = layoutComplete && imagesLoaded;
@@ -19,6 +20,8 @@ const Items = ({
         items={items}
         selected={selected}
         setSelected={setSelected}
+        colorSelected={colorSelected}
+        setColorSelected={setColorSelected}
         bag={bag}
         updateBag={updateBag}
       />

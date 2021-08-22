@@ -10,7 +10,7 @@ import Contact from './Contact';
 import Checkout from './Checkout';
 
 export default ({
-  items, sortBy, setSortBy, bag, updateBag,
+  items, refreshItems, sortBy, setSortBy, bag, updateBag,
 }) => {
   const routes = [
     { path: '/', Component: Home },
@@ -37,7 +37,13 @@ export default ({
       },
     },
     { path: '/contact', Component: Contact },
-    { path: '/checkout', Component: Checkout, props: { items, bag, updateBag } },
+    {
+      path: '/checkout',
+      Component: Checkout,
+      props: {
+        items, refreshItems, bag, updateBag,
+      },
+    },
   ];
 
   return (
@@ -51,8 +57,8 @@ export default ({
               classNames="page"
               unmountOnExit
             >
-              {/* eslint-disable-next-line react/jsx-props-no-spreading */}
               <div className={`page ${window.location.pathname.split('/')[1]}-page`}>
+                {/* eslint-disable-next-line react/jsx-props-no-spreading */}
                 <Component {...props} match={match} />
               </div>
             </CSSTransition>

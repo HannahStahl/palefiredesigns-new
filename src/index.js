@@ -17,9 +17,20 @@ const App = withRouter((props) => {
   const [bag, setBag] = useState([]);
 
   const updateBag = (newBag) => {
-    if (newBag) localStorage.setItem('bag', JSON.stringify(newBag));
-    const bagStr = localStorage.getItem('bag');
+    if (newBag) localStorage.setItem('cart', JSON.stringify(newBag));
+    const bagStr = localStorage.getItem('cart');
     setBag(bagStr ? JSON.parse(bagStr) : []);
+  };
+
+  const refreshItems = () => {
+    fetch(`${config.etsyApiURL}/listings`).then((res) => res.json()).then((json) => {
+      const newItems = json.results;
+      newItems.forEach((item, index) => {
+        if (!item.Images) newItems[index].Images = [{ url_fullxfull: 'placeholder.png' }];
+      });
+      setItems(newItems);
+      setSortedItems(newItems);
+    });
   };
 
   useEffect(() => {
@@ -53,6 +64,7 @@ const App = withRouter((props) => {
       <NavBar bag={bag} />
       <Routes
         items={sortedItems}
+        refreshItems={refreshItems}
         sortBy={sortBy}
         setSortBy={setSortBy}
         bag={bag}
