@@ -71,7 +71,7 @@ const Checkout = ({ items, refreshItems, bag, updateBag }) => {
         }),
       }).then((res) => res.json()).then((json) => {
         if (!json.status) {
-          alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
+          alert(`Error: ${json.error.raw.message}`);
           setIsLoading(false);
         } else {
           const itemsWithDetails = bag.map((item) => ({
