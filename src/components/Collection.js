@@ -17,9 +17,7 @@ const Collection = ({
         setCollectionName(thisCollectionName);
         const itemType = thisCollectionName.slice(0, -1);
         setFilteredItems(items.filter((item) => (
-          item.title.toLowerCase().includes(itemType)
-          || item.description.toLowerCase().includes(itemType)
-          || item.tags.map((tag) => tag.toLowerCase()).includes(itemType)
+          item.collection.toLowerCase() === itemType
         )));
       }
     }

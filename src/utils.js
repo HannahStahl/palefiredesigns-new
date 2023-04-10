@@ -3,21 +3,8 @@ import config from './config';
 export const sortByOptions = ['Newest', 'Least expensive', 'Most expensive'];
 
 export const getItemDetails = (items, item) => (
-  items.find((itemInList) => itemInList.listing_id === item.listingId)
+  items.find((itemInList) => itemInList._id === item.listingId)
 );
-
-export const getProductDetails = async (items, item) => {
-  const { listingId, productId } = item;
-  let color;
-  if (productId) {
-    const variations = await fetch(`${config.etsyApiURL}/listingVariations?listingId=${listingId}`).then((res) => res.json());
-    // eslint-disable-next-line prefer-destructuring
-    color = variations.find(
-      (variation) => variation.product_id === productId,
-    ).property_values[0].values[0];
-  }
-  return { ...items.find((itemInList) => itemInList.listing_id === listingId), color };
-};
 
 export const constructOrderNotificationHtml = (items, name, total, address, city, state, zip) => {
   let itemsTable = '';
@@ -26,8 +13,8 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
     itemsTable += `
       <tr>
         <td>
-          <a href="https://etsy.com/your/shops/${config.etsyShopName}/tools/listings/state:inactive/${item.listing_id}">
-            <img src="${item.Images[0].url_fullxfull}" width="200" />
+          <a href="https://etsy.com/your/shops/${config.etsyShopName}/tools/listings/state:inactive/${item._id}">
+            <img src="${item.photos[0].asset.url}" width="200" />
           </a>
         </td>
         <td><p>$${item.price}</p></td>
@@ -104,7 +91,7 @@ export const constructOrderConfirmationHtml = (items, name, total, address, city
   items.forEach((item) => {
     itemsTable += `
       <tr>
-        <td><img src="${item.Images[0].url_fullxfull}" width="200" /></td>
+        <td><img src="${item.photos[0].asset.url}" width="200" /></td>
         <td><p>$${item.price}</p></td>
         ${multipleColors ? `<td><p>${item.color || ''}</p></td>` : ''}
       </tr>

@@ -28,10 +28,10 @@ export default ({
       interval={false}
       slide={false}
     >
-      {item.Images.map((image) => (
-        <Carousel.Item key={image.listing_image_id}>
+      {item.photos.map((photo) => (
+        <Carousel.Item key={photo.asset.url}>
           <img
-            src={selected === undefined ? undefined : image.url_fullxfull}
+            src={selected === undefined ? undefined : photo.asset.url}
             alt={selected === undefined ? '' : item.title}
             className="quickview-img"
           />
@@ -50,10 +50,10 @@ export default ({
         slide={false}
         className={isZoomed ? 'hidden-carousel' : ''}
       >
-        {item.Images.map((image) => (
-          <Carousel.Item key={image.listing_image_id}>
+        {item.photos.map((photo) => (
+          <Carousel.Item key={photo.asset.url}>
             <img
-              src={selected === undefined ? undefined : image.url_fullxfull}
+              src={selected === undefined ? undefined : photo.asset.url}
               alt={selected === undefined ? '' : item.title}
               className="quickview-img zoomable"
               onClick={zoomIn}
@@ -72,10 +72,10 @@ export default ({
             slide={false}
             className="zoomed-carousel"
           >
-            {item.Images.map((image) => (
-              <Carousel.Item key={image.listing_image_id}>
+            {item.photos.map((photo) => (
+              <Carousel.Item key={photo.asset.url}>
                 <img
-                  src={selected === undefined ? undefined : image.url_fullxfull}
+                  src={selected === undefined ? undefined : photo.asset.url}
                   alt={selected === undefined ? '' : item.title}
                   className="quickview-img"
                 />

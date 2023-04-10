@@ -6,7 +6,7 @@ import CheckoutForm from './CheckoutForm';
 import CheckoutSuccess from './CheckoutSuccess';
 import ItemsList from './ItemsList';
 import {
-  constructOrderNotificationHtml, constructOrderConfirmationHtml, getItemDetails, getProductDetails,
+  constructOrderNotificationHtml, constructOrderConfirmationHtml, getItemDetails,
 } from '../utils';
 
 const Checkout = ({ items, refreshItems, bag, updateBag }) => {
@@ -61,62 +61,58 @@ const Checkout = ({ items, refreshItems, bag, updateBag }) => {
     }
     setIsLoading(true);
     try {
-      Promise.all(bag.map((item) => getProductDetails(items, item))).then((productDetails) => {
-        fetch(`${config.etsyApiURL}/purchase`, {
-          method: 'POST',
-          body: JSON.stringify({
-            cart: bag,
-            amount: total,
-            description: config.businessName,
-            source: token.id,
-            userId: config.userID,
-            email,
-          }),
-        }).then((res) => res.json()).then((json) => {
-          if (!json.status) {
-            alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
-            setIsLoading(false);
-          } else {
-            const emailsToSend = [
-              fetch(config.emailURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  name,
-                  html: constructOrderNotificationHtml(
-                    productDetails, name, total, address, city, state, zip,
-                  ),
-                  userEmail: email,
-                  clientEmail: config.emailAddress,
-                  siteDomain: window.location.origin,
-                  orderNotification: true,
-                }),
+      fetch(`${config.billingURL}/${config.userID}`, {
+        method: 'POST',
+        body: JSON.stringify({
+          amount: total,
+          description: config.businessName,
+          source: token.id,
+          email,
+        }),
+      }).then((res) => res.json()).then((json) => {
+        if (!json.status) {
+          alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
+          setIsLoading(false);
+        } else {
+          const emailsToSend = [
+            fetch(config.emailURL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name,
+                html: constructOrderNotificationHtml(
+                  bag, name, total, address, city, state, zip,
+                ),
+                userEmail: email,
+                clientEmail: config.emailAddress,
+                siteDomain: window.location.origin,
+                orderNotification: true,
               }),
-              fetch(config.emailURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                  name,
-                  html: constructOrderConfirmationHtml(
-                    productDetails, name, total, address, city, state, zip,
-                  ),
-                  userEmail: email,
-                  clientEmail: config.emailAddress,
-                  siteDomain: window.location.origin,
-                  orderConfirmation: true,
-                  businessName: config.businessName,
-                }),
+            }),
+            fetch(config.emailURL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                name,
+                html: constructOrderConfirmationHtml(
+                  bag, name, total, address, city, state, zip,
+                ),
+                userEmail: email,
+                clientEmail: config.emailAddress,
+                siteDomain: window.location.origin,
+                orderConfirmation: true,
+                businessName: config.businessName,
               }),
-            ];
-            Promise.all(emailsToSend).then(() => {
-              updateBag([]);
-              refreshItems().then(() => {
-                setIsLoading(false);
-                setShowSuccessModal(true);
-              });
+            }),
+          ];
+          Promise.all(emailsToSend).then(() => {
+            updateBag([]);
+            refreshItems().then(() => {
+              setIsLoading(false);
+              setShowSuccessModal(true);
             });
-          }
-        });
+          });
+        }
       });
     } catch (e) {
       alert(e);

@@ -23,25 +23,39 @@ const App = withRouter((props) => {
   };
 
   const refreshItems = () => (
-    fetch(`${config.etsyApiURL}/listings`).then((res) => res.json()).then((json) => {
-      const newItems = json.results;
-      newItems.forEach((item, index) => {
-        if (!item.Images) newItems[index].Images = [{ url_fullxfull: 'placeholder.png' }];
-      });
-      setItems(newItems);
-      setSortedItems(newItems);
+    fetch(config.sanityURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: `
+          query {
+            allListing {
+              _id
+              title
+              category
+              collection
+              price
+              length
+              width
+              materials
+              colors
+              photos {
+                asset {
+                  url
+                }
+              }
+            }
+          }
+        `,
+      }),
+    }).then((res) => res.json()).then(({ data: { allListing } }) => {
+      setItems(allListing);
+      setSortedItems(allListing);
     })
   );
 
   useEffect(() => {
-    fetch(`${config.etsyApiURL}/listings`).then((res) => res.json()).then((json) => {
-      const newItems = json.results;
-      newItems.forEach((item, index) => {
-        if (!item.Images) newItems[index].Images = [{ url_fullxfull: 'placeholder.png' }];
-      });
-      setItems(newItems);
-      setSortedItems(newItems);
-    });
+    refreshItems();
     updateBag();
   }, []);
 

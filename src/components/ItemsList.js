@@ -35,9 +35,9 @@ const Items = ({
           onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
         >
           {items.map((item, index) => (
-            <div key={item.listing_id} className="item" onClick={() => setSelected(index)}>
+            <div key={item._id} className="item" onClick={() => setSelected(index)}>
               <img
-                src={item.Images[0].url_fullxfull}
+                src={item.photos[0].asset.url}
                 alt={item.title}
                 className="item-img"
                 id={`item-${index}`}

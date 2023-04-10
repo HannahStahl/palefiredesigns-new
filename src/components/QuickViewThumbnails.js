@@ -14,10 +14,10 @@ export default ({
         onLayoutComplete={(layout) => { if (layout.length > 0) setLayoutComplete(true); }}
         onImagesLoaded={(images) => { if (images.images.length > 0) setImagesLoaded(true); }}
       >
-        {selected === undefined ? <></> : item.Images.map((image, index) => (
-          <div key={image.listing_image_id} className="thumbnail">
+        {selected === undefined ? <></> : item.photos.map((photo, index) => (
+          <div key={photo.asset.url} className="thumbnail">
             <img
-              src={image.url_fullxfull}
+              src={photo.asset.url}
               alt={item.title}
               className="thumbnail-img"
               id={`thumbnail-${index}`}

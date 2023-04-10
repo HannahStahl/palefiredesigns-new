@@ -19,7 +19,7 @@ const Category = ({
       } else {
         setCategoryName(capitalizedCategoryName);
         setFilteredItems(items.filter((item) => (
-          item.taxonomy_path && item.taxonomy_path[1] === capitalizedCategoryName
+          item.category === capitalizedCategoryName
         )));
       }
     }
