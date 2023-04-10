@@ -74,7 +74,10 @@ const Checkout = ({ items, refreshItems, bag, updateBag }) => {
           alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
           setIsLoading(false);
         } else {
-          const itemsWithDetails = bag.map((item) => getItemDetails(items, item));
+          const itemsWithDetails = bag.map((item) => ({
+            ...getItemDetails(items, item),
+            color: item.color,
+          }));
           const emailsToSend = [
             fetch(config.emailURL, {
               method: 'POST',
