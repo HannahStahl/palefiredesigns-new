@@ -59,7 +59,7 @@ export default ({
         {selected === undefined ? <></> : (
           <>
             <div className={`item-price-container${multipleColors ? '' : ' without-colors'}`}>
-              <h3 className="item-price">{`$${item.price}`}</h3>
+              <h3 className="item-price">{`$${item.price.toFixed(2)}`}</h3>
               {multipleColors && (
                 <FormControl
                   as="select"

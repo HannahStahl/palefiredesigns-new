@@ -17,7 +17,7 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
             <img src="${item.photos[0].asset.url}" width="200" />
           </a>
         </td>
-        <td><p>$${item.price}</p></td>
+        <td><p>$${item.price.toFixed(2)}</p></td>
         ${multipleColors ? `<td><p>${item.color || ''}</p></td>` : ''}
       </tr>
     `;
@@ -92,7 +92,7 @@ export const constructOrderConfirmationHtml = (items, name, total, address, city
     itemsTable += `
       <tr>
         <td><img src="${item.photos[0].asset.url}" width="200" /></td>
-        <td><p>$${item.price}</p></td>
+        <td><p>$${item.price.toFixed(2)}</p></td>
         ${multipleColors ? `<td><p>${item.color || ''}</p></td>` : ''}
       </tr>
     `;
