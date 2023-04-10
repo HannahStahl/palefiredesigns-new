@@ -15,9 +15,8 @@ const Collection = ({
         window.location.pathname = '/items';
       } else {
         setCollectionName(thisCollectionName);
-        const itemType = thisCollectionName.slice(0, -1);
         setFilteredItems(items.filter((item) => (
-          item.collection.toLowerCase() === itemType
+          item.collection && item.collection.toLowerCase() === thisCollectionName
         )));
       }
     }
