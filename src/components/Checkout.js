@@ -74,6 +74,7 @@ const Checkout = ({ items, refreshItems, bag, updateBag }) => {
           alert('Oops! An error occurred with our checkout form. Please use the Contact page to send me a message, and we\'ll get everything straightened out.');
           setIsLoading(false);
         } else {
+          const itemsWithDetails = bag.map((item) => getItemDetails(items, item));
           const emailsToSend = [
             fetch(config.emailURL, {
               method: 'POST',
@@ -81,7 +82,7 @@ const Checkout = ({ items, refreshItems, bag, updateBag }) => {
               body: JSON.stringify({
                 name,
                 html: constructOrderNotificationHtml(
-                  bag, name, total, address, city, state, zip,
+                  itemsWithDetails, name, total, address, city, state, zip,
                 ),
                 userEmail: email,
                 clientEmail: config.emailAddress,
@@ -95,7 +96,7 @@ const Checkout = ({ items, refreshItems, bag, updateBag }) => {
               body: JSON.stringify({
                 name,
                 html: constructOrderConfirmationHtml(
-                  bag, name, total, address, city, state, zip,
+                  itemsWithDetails, name, total, address, city, state, zip,
                 ),
                 userEmail: email,
                 clientEmail: config.emailAddress,
