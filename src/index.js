@@ -29,7 +29,7 @@ const App = withRouter((props) => {
       body: JSON.stringify({
         query: `
           query {
-            allListing {
+            allListing(sort: { _createdAt: DESC }) {
               _id
               title
               category
