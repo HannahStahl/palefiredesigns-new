@@ -73,6 +73,7 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
           </tr></thead>
           <tbody>${itemsTable}</tbody>
         </table>
+        <p><b><i>Be sure to remove these listings from Sanity and Etsy!</i></b></p>
         <p class="total"><b>TOTAL AMOUNT PAID:</b> $${total.toFixed(2)}</p>
         <p class="payment-note">Funds should arrive in your bank account within 2 business days.</p>
         <p class="address"><b>SHIP TO:</b></p>
