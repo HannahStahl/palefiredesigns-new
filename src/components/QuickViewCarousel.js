@@ -30,7 +30,7 @@ export default ({
         else setImgIndex(0);
       }
     }
-  }, [isZoomed, imgIndex, item]);
+  }, [isZoomed, imgIndex, setImgIndex, item]);
 
   useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
