@@ -13,7 +13,7 @@ export const constructOrderNotificationHtml = (items, name, total, address, city
     itemsTable += `
       <tr>
         <td>
-          <a href="https://etsy.com/your/shops/${config.etsyShopName}/tools/listings/state:inactive/${item._id}">
+          <a href="https://dalefeuerjewelry.sanity.studio/desk/${item._id}">
             <img src="${item.photos[0].asset.url}" width="200" />
           </a>
         </td>
