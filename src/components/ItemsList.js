@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
 import Masonry from 'react-masonry-component';
 import QuickView from './QuickView';
 import Loading from './Loading';
@@ -42,9 +41,7 @@ const Items = ({
                 className="item-img"
                 id={`item-${index}`}
               />
-              <div className="quickview-button-container" id="quickview-button-container">
-                <Button size="lg" variant="light">QUICK VIEW</Button>
-              </div>
+              <div className="item-img-container" id="quickview-button-container" />
             </div>
           ))}
         </Masonry>
