@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 
 export default ({
@@ -19,6 +19,23 @@ export default ({
     body.style.height = 'auto';
     body.style.overflow = 'auto';
   };
+
+  const handleKeyDown = useCallback((e) => {
+    if (isZoomed) {
+      if (e.keyCode === 37) {
+        if (imgIndex > 0) setImgIndex(imgIndex - 1);
+        else setImgIndex(item.photos.length - 1);
+      } else if (e.keyCode === 39) {
+        if (imgIndex < item.photos.length - 1) setImgIndex(imgIndex + 1);
+        else setImgIndex(0);
+      }
+    }
+  }, [isZoomed, imgIndex, item]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   const renderCarousel = () => (
     <Carousel
